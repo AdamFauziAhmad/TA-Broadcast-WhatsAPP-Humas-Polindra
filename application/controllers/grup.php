@@ -1,0 +1,75 @@
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
+
+class Grup extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        //set model yang digunakan
+        $this->load->model('m_login');
+        $this->load->model('m_grup');
+        $this->load->model('m_kontak');
+        // set library yang digunakan
+        $this->load->library('form_validation');
+        //cek sudah login atau belum
+        if ($this->m_login->isNotLogin() == true) {
+            redirect(base_url('login'));
+        }
+    }
+
+    /**
+     * Index Page for this controller.
+     *
+     * Maps to the following URL
+     * 		http://example.com/index.php/welcome
+     *	- or -
+     * 		http://example.com/index.php/welcome/index
+     *	- or -
+     * Since this controller is set as the default controller in
+     * config/routes.php, it's displayed at http://example.com/
+     *
+     * So any other public methods not prefixed with an underscore will
+     * map to /index.php/welcome/<method_name>
+     * @see https://codeigniter.com/user_guide/general/urls.html
+     */
+    public function index()
+    {
+        //siapkan data yang akan digunakana view
+        $data['kontak'] = $this->m_kontak->get_kontak();
+        $data['grup'] = $this->m_grup->get_grup();
+
+
+
+
+        //set tampilan yang akan muncul dihalaman
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
+        $this->load->view('V_grup', $data);
+        $this->load->view('template/footer');
+    }
+    //tambah grup
+    function tambah_grup()
+    {
+        $nama_grup = $this->input->post('nama_grup', TRUE);
+        $keterangan = $this->input->post('keterangan', TRUE);
+        $kontak = $this->input->post('kontak', TRUE);
+
+        $grup = array(
+            'nama_grup' => $nama_grup,
+            'keterangan' => $keterangan
+
+        );
+        $this->m_grup->create_grup($grup, $kontak);
+        redirect('grup');
+    }
+
+    // DELETE
+    function hapus_grup()
+    {
+        $id = $this->input->post('id', TRUE);
+        $this->m_grup->delete_grup($id);
+        redirect('grup');
+    }
+}
