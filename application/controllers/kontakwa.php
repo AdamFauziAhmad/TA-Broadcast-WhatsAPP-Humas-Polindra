@@ -56,7 +56,7 @@ class Kontakwa extends CI_Controller
         $this->load->view('template/header');
         $this->load->view('template/navbar');
         $this->load->view('template/sidebar');
-        $this->load->view('V_kontakwa', $data);
+        $this->load->view('kontak/V_kontakwa', $data);
         $this->load->view('template/footer');
     }
 

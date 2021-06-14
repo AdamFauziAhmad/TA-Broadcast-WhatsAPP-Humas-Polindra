@@ -46,7 +46,7 @@ class Grup extends CI_Controller
         $this->load->view('template/header');
         $this->load->view('template/navbar');
         $this->load->view('template/sidebar');
-        $this->load->view('V_grup', $data);
+        $this->load->view('grup/V_grup', $data);
         $this->load->view('template/footer');
     }
     //tambah grup
@@ -63,6 +63,25 @@ class Grup extends CI_Controller
         );
         $this->m_grup->create_grup($grup, $kontak);
         redirect('grup');
+    }
+    //Derail Grup
+    function detail_grup()
+    {
+
+        $id = $this->uri->segment('3');
+
+        $data['data'] = $this->m_grup->get_grup_by_id($id)->result();
+        $data['kontak'] = $this->m_grup->get_kontak_by_grup($id)->result();
+
+        // var_dump($data['kontak']);
+        // die();
+
+
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
+        $this->load->view('grup/V_grup_detail', $data);
+        $this->load->view('template/footer');
     }
 
     // DELETE

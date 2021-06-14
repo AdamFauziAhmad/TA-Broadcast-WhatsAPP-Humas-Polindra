@@ -9,13 +9,26 @@ class M_grup extends CI_Model
         $this->db->select('*');
         $this->db->from('kontak');
         $this->db->join('detail_grup', 'id_detail_kontak=id_kontak');
-        $this->db->join('grup', 'id=id_detail_grup');
-        $this->db->where('id', $id);
+        $this->db->join('grup', 'id_detail_grup=id');
+        $this->db->where('id_detail_grup', $id);
         $query = $this->db->get();
         return $query;
     }
     //menampilkan data grup dari database
     //READ
+    function get_grup_by_id($id)
+    {
+        // $query = $this->db->get('grup');
+        $this->db->select('grup.*,COUNT(id_kontak) AS item_grup');
+        $this->db->from('grup');
+        $this->db->join('detail_grup', 'id=id_detail_grup');
+        $this->db->join('kontak', 'id_detail_kontak=id_kontak');
+        $this->db->group_by('id');
+        $this->db->where('id', $id);
+        $this->db->order_by('nama_grup', "asc");
+        $query = $this->db->get();
+        return $query;
+    }
     function get_grup()
     {
         // $query = $this->db->get('grup');

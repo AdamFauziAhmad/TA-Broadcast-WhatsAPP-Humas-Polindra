@@ -29,7 +29,7 @@
                          </div>
 
                          <div class="card-body">
-                             <form id="buat-pesan" action="<?php echo site_url('pesan_bc/generate_ahk'); ?>" method="post">
+                             <form id="buat-pesan" action="<?php echo site_url('pesan_bc/generate_AHK'); ?>" method="post">
                                  <div class="form-group">
                                      <label for="nama_file">Nama File</label>
                                      <input class="form-control col-6" id="nama_file" name="nama_file" type="text" placeholder="Masukan nama File">
