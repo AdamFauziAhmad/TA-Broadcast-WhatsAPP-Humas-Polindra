@@ -83,8 +83,14 @@
                          </div>
                          <!-- /.card-body -->
                          <div class="card-footer">
-                             <button form="buat-pesan" type="reset" class="btn btn-danger col-3">Batal</button>
-                             <button form="buat-pesan" type="submit" class="btn btn-primary col-3">Simpan</button>
+                             <?php if ($jenis == 1) {
+
+                                ?>
+                                 <a href="<?php echo base_url('Kontakwa')  ?>" class="btn btn-block bg-gradient-danger col-6" style="display: inline; ">kembali</a>
+                             <?php } else { ?>
+                                 <a href="<?php echo base_url('grup')  ?>" class="btn btn-block bg-gradient-danger col-6" style="display: inline; ">kembali</a>
+                             <?php  } ?>
+                             <button form="buat-pesan" type="submit" class="btn btn-primary col-1">Simpan</button>
                          </div>
 
                      </div>

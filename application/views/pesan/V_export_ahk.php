@@ -72,112 +72,22 @@
                                  </table>
 
                              </form>
-                             <?php
 
-                                //Contoh Penggunaan Fungsi explode ()
-                                // $kode_enter = 13;
-                                // $str = chr($kode_enter);
-
-                                // $PecahStr = explode($str, $pesan);
-
-
-
-                                // for ($i = 0; $i < count($PecahStr); $i++) {
-                                //     echo $PecahStr[$i];
-                                // }
-
-                                ?>
-
-                             <?php
-
-                                // $ankga = mt_rand(1000, 10000);
-                                // $nama_file = $nama_file;
-                                // $tanggal = date('d-M-Y-H-i-s');
-                                // $kode_enter = 13; //kode ASCII untuk enter
-                                // $str = chr($kode_enter); //deklarasi variabel kode ASCII 
-                                // //membuat gemerate tamda bca ke AHK
-                                // $pesan_isi = str_replace(array('!', '?', ',', '.', ':', '"', ';', '[', ']', '|', '<', '>'), array('{!}', '{?}', '{,}' . '{,}', '{:}', '{,}', '{"}', '{;}', '{[}', '{}}', '{|}', '{<}', '{>}'), $pesan);
-                                // $PecahStr = explode($str, $pesan_isi); //mengacak string setiap enter kedalam bentuk array
-                                // $tanggal = date('d-M-Y-H-i-s');
-                                // $myfile = fopen("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk", "w") or die("Unable to open file!");
-                                // $txt = "MsgBox, Mulai?\n";
-                                // fwrite($myfile, $txt);
-
-                                // $txt = ";Jika ingin mengirim gambar, copy foto yang akan dikirim ke WA\n";
-                                // // fwrite($myfile, $txt);
-                                // // $txt = 'clipboard :=""' . "\n";
-                                // fwrite($myfile, $txt);
-
-
-                                // foreach ($data_kontak as $data) {
-
-                                //     $txt = "Run, https://api.whatsapp.com/send?phone=" . $data->nomor_kontak . "\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "Sleep, 10000\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "Sleep, 100\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "send, ^W\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "Sleep, 9000\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "Send, ^v\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "Sleep," . $ankga . "\n";
-                                //     // fwrite($myfile, $txt);
-                                //     // $txt = "string =\n(\n" . $pesan_isi . "\n)\n";
-                                //     foreach ($PecahStr as $jml => $psn) {
-                                //         if ($jml == 0) {
-                                //             fwrite($myfile, $txt);
-                                //             $txt = "string" . $jml . " =\n(\n" . $psn . "\n)\n";
-                                //         } else {
-
-                                //             fwrite($myfile, $txt);
-                                //             $txt = "string" . $jml . " =\n(" . $psn . "\n)\n";
-                                //         }
-                                //     }
-
-                                //     foreach ($PecahStr as $jml => $data) {
-                                //         if ($jml == 0) {
-                                //             fwrite($myfile, $txt);
-                                //             $txt = "Send," . "%string" . $jml . "%+{Enter}";
-                                //         } else {
-                                //             fwrite($myfile, $txt);
-                                //             $txt = "%string" . $jml . "%+{Enter}";
-                                //         }
-                                //     }
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "Sleep," . $ankga . "\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt = "Send, {Enter}\n";
-                                //     fwrite($myfile, $txt);
-                                //     $txt =  "Sleep," . $ankga . "\n";
-                                //     fwrite($myfile, $txt);
-                                // }
-                                // fwrite($myfile, $txt);
-                                // $txt = "Sleep," . $ankga . "\n";
-                                // fwrite($myfile, $txt);
-                                // $txt = 'clipboard :=""' . "\n";
-                                // fwrite($myfile, $txt);
-                                // $txt = "MsgBox, Selesai!\n";
-                                // fwrite($myfile, $txt);
-                                // $txt = "return\n";
-                                // fwrite($myfile, $txt);
-                                // $txt = "Exit";
-                                // fwrite($myfile, $txt);
-                                // fclose($myfile);
-                                ?>
                          </div>
                          <!-- /.card-body -->
                          <div class="card-footer">
-                             <a href="<?php echo base_url('Kontakwa')  ?>" class="btn btn-block bg-gradient-danger col-3" style="display: inline; ">kembali</a>
+                             <?php if ($jenis == 1) {
+
+                                ?>
+                                 <a href="<?php echo base_url('Kontakwa')  ?>" class="btn btn-block bg-gradient-danger col-6" style="display: inline; ">kembali</a>
+                             <?php } else { ?>
+                                 <a href="<?php echo base_url('grup')  ?>" class="btn btn-block bg-gradient-danger col-6" style="display: inline; ">kembali</a>
+                             <?php  } ?>
                              <!-- <a href="<?php //echo base_url('pesan_bc/download_AHK') . "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";
                                             ?>" class="btn btn-block bg-gradient-secondary col-6" style="display: inline;" download>Export</a> -->
 
 
-                             <button form="buat-pesan" type="submit" class="btn btn-block btn-primary col-1" style="display: inline; padding: 4px; margin-bottom: 5px;">Export</button>
+                             <button form="buat-pesan" type="submit" class="btn btn-block btn-primary col-3">Export</button>
                          </div>
 
                      </div>
