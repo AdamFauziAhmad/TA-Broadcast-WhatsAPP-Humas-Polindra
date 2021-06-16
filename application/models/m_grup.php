@@ -29,6 +29,7 @@ class M_grup extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+    //mengambil data grup dengan menghitung jumlah kontak
     function get_grup()
     {
         // $query = $this->db->get('grup');
@@ -66,6 +67,33 @@ class M_grup extends CI_Model
         $this->db->insert_batch('detail_grup', $result);
         $this->db->trans_complete();
     }
+
+    // UPDATE
+    function update_grup($id, $grup, $kontak)
+    {
+        $this->db->trans_start();
+        //UPDATE TO PACKAGE
+        // $data  = array(
+        //     'nama_grup' => $grup
+        // );
+        $this->db->where('package_id', $id);
+        $this->db->update('grup', $grup);
+
+        //DELETE DETAIL PACKAGE
+        $this->db->delete('detail_grup', array('id_detail_grup' => $id));
+
+        $result = array();
+        foreach ($kontak as $key => $val) {
+            $result[] = array(
+                'id_detail_grup'   => $id,
+                'id_detail_kontak'   => $_POST['kontak_edit'][$key]
+            );
+        }
+        //MULTIPLE INSERT TO DETAIL TABLE
+        $this->db->insert_batch('detail_grup', $result);
+        $this->db->trans_complete();
+    }
+
 
     // DELETE
     function delete_grup($id)

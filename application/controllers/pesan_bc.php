@@ -9,6 +9,7 @@ class Pesan_bc extends CI_Controller
         //set model yang akan dipakai
         $this->load->model('m_kontak');
         $this->load->model('m_login');
+        $this->load->model('m_grup');
         $this->load->helper('download');
         // menyiapkan library CI
         $this->load->library('form_validation');
@@ -38,12 +39,21 @@ class Pesan_bc extends CI_Controller
     public function index()
     {
         $kontak = $this->input->post('id_kontak', true);
+        $grup = $this->input->post('id_grup', true);
+        $jenis = $this->input->post('jenis', true);
 
 
-        if ($kontak != null) {
-            $data['data_kontak'] = $this->m_kontak->get_kontak_by_id($kontak);
 
-
+        if ($kontak != null || $grup != null) {
+            if ($jenis == 1) {
+                $data['data_kontak'] = $this->m_kontak->get_kontak_by_id($kontak)->result();
+                $data['nama_grup'] = null;
+                $data['jenis'] = $jenis;
+            } else {
+                $data['data_kontak'] = $this->m_grup->get_kontak_by_grup($grup)->result();
+                $data['nama_grup'] = $this->m_grup->get_grup_by_id($grup)->result();
+                $data['jenis'] = $jenis;
+            }
 
 
             // set data yang akan dikirim ke view
@@ -57,12 +67,23 @@ class Pesan_bc extends CI_Controller
             $this->load->view('pesan/V_buat_pesan', $data);
             $this->load->view('template/footer');
         } else {
-            $this->session->set_flashdata('message', ' <div class="alert alert-danger" role="alert" style="padding-top: -30px; padding-bottom: -30px; margin-top: 10px; margin-bottom: 10px;">pilih kontak untuk membuat pesan !</div>');
-            redirect('kontakwa');
+            if ($jenis == 1) {
+                $this->session->set_flashdata('message', ' <div class="alert alert-danger" role="alert" style="padding-top: -30px; padding-bottom: -30px; margin-top: 10px; margin-bottom: 10px;">pilih kontak untuk membuat pesan !</div>');
+                redirect('kontakwa');
+            } else {
+                $this->session->set_flashdata('message', ' <div class="alert alert-danger" role="alert" style="padding-top: -30px; padding-bottom: -30px; margin-top: 10px; margin-bottom: 10px;">pilih grup untuk membuat pesan !</div>');
+                redirect('grup');
+            }
         }
     }
     public function generate_ahk()
     {
+        $jenis_nomor = $this->input->post('jenis', true);
+        if ($jenis_nomor == '1') {
+            $jenis = " ";
+        } else {
+            $jenis = "[GRUP]";
+        }
         $Id_kontak = $this->input->post('id_kontak', true);
         $nama_file = $this->input->post('nama_file', true);
         $keterangan = $this->input->post('keterangan', true);
@@ -74,7 +95,8 @@ class Pesan_bc extends CI_Controller
             'data_kontak' => $dt_kontak,
             'nama_file' => $nama_file,
             'pesan' => $pesan,
-            'keterangan' =>   $keterangan
+            'keterangan' =>   $keterangan,
+            'jenis' => $jenis
 
         );
         $this->load->view('template/header');
@@ -102,7 +124,7 @@ class Pesan_bc extends CI_Controller
         $kode_enter = 13; //kode ASCII untuk enter
         $str = chr($kode_enter); //deklarasi variabel kode ASCII 
         //membuat gemerate tamda bca ke AHK
-        $pesan_isi = str_replace(array('!', '?', ',', '.', ':', '"', ';', '[', ']', '|', '<', '>'), array('{!}', '{?}', '{,}' . '{,}', '{:}', '{,}', '{"}', '{;}', '{[}', '{}}', '{|}', '{<}', '{>}'), $pesan);
+        $pesan_isi = str_replace(array('!', '?', '.', ':', '"', ';', '[', ']', '|', '<', '>'), array('{!}', '{?}',  '{,}', '{:}', '{,}', '{"}', '{;}', '{[}', '{}}', '{|}', '{<}', '{>}'), $pesan);
         $PecahStr = explode($str, $pesan_isi); //mengacak string setiap enter kedalam bentuk array
         $tanggal = date('d-M-Y-H-i-s');
         $myfile = fopen("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk", "w") or die("Unable to open file!");
@@ -112,18 +134,15 @@ class Pesan_bc extends CI_Controller
         $txt = ";Jika ingin mengirim gambar, copy foto yang akan dikirim ke WA\n";
         // fwrite($myfile, $txt);
         // $txt = 'clipboard :=""' . "\n";
-        fwrite($myfile, $txt);
+
 
 
         foreach ($data_kontak as $data) {
+            fwrite($myfile, $txt);
 
             $txt = "Run, https://api.whatsapp.com/send?phone=" . $data->nomor_kontak . "\n";
-            fwrite($myfile, $txt);
-            $txt = "Sleep, 10000\n";
-            fwrite($myfile, $txt);
-            $txt = "Sleep, 100\n";
-            fwrite($myfile, $txt);
-            $txt = "send, ^W\n";
+            // fwrite($myfile, $txt);
+            // $txt = "Sleep, 10000\n";
             fwrite($myfile, $txt);
             $txt = "Sleep, 9000\n";
             fwrite($myfile, $txt);
@@ -161,6 +180,13 @@ class Pesan_bc extends CI_Controller
             fwrite($myfile, $txt);
             $txt =  "Sleep," . mt_rand(1000, 10000) . "\n";
             fwrite($myfile, $txt);
+            $txt = "send, !{TAB}\n";
+            fwrite($myfile, $txt);
+            $txt =  "Sleep," . mt_rand(1000, 10000) . "\n";
+            fwrite($myfile, $txt);
+            $txt = "send, ^w\n";
+            fwrite($myfile, $txt);
+            $txt =  "Sleep," . mt_rand(1000, 10000) . "\n";
         }
         fwrite($myfile, $txt);
         $txt = 'clipboard :=""' . "\n";

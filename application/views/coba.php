@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -50,6 +51,31 @@
     $str = chr($kode);
     echo "karakter dengan kode ascii $kode adalah $str djaklj";
     ?>
+    <h2>Suckittrees.com</h2>
+    <form id="form1" name="form1" onsubmit="return false">
+        <label>Pilih Kategori: </label>
+        <select id="kategori" name="kategori" onchange="tampilkan()">
+            <option value="makanan">makanan</option>
+            <option value="minuman">minuman</option>
+        </select>
+    </form>
+    <br /><br />
+    <div id="tampil"></div>
+
+    <select id="se" name="actors">
+        <option>Uthappa</option>
+        <option selected="selected">Kattapa</option>
+        <option>Veerappa</option>
+        <option>Bahubali</option>
+        <option>Bhallal Dev</option>
+        <option>Awantika</option>
+    </select>
+    <div id="loc"></div>
+    <script>
+        $("select").change(function() {
+            document.getElementById("loc").innerHTML = "You selected: " + document.getElementById("se").value;
+        });
+    </script>
 </body>
 
 <!-- //modal tambah -->

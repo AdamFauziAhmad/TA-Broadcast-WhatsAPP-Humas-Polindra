@@ -85,6 +85,7 @@
                                              <tr>
                                                  <td> <?php echo $count; ?> </td>
                                                  <td style="width: 2px;"><input name="id_kontak[]" value="<?php echo $row->id_kontak ?>" type="checkbox"> </td>
+                                                 <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
                                                  <td><?php echo $row->nama_kontak; ?></td>
                                                  <td><?php echo $row->nomor_kontak; ?></td>
                                                  <td><?php echo $row->kelas ?></td>
@@ -235,7 +236,7 @@
                              <!-- /.card-body -->
 
                              <div class="card-footer">
-                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                                 <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
                                  <button type="submit" class="btn btn-primary">Simpan</button>
                              </div>
                          </form>

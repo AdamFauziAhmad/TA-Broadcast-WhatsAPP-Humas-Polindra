@@ -34,7 +34,7 @@
                              <form id="buat-pesan" action="<?php echo site_url('pesan_bc/download_AHK'); ?>" method="post" hidden>
                                  <div class="form-group">
                                      <label for="nama_file">Nama File</label>
-                                     <input value="<?php echo $nama_file  ?>" class="form-control col-6" id="nama_file" name="nama_file" type="text" placeholder="Masukan nama File">
+                                     <input value="<?php echo $jenis . " " . $nama_file  ?>" class="form-control col-6" id="nama_file" name="nama_file" type="text" placeholder="Masukan nama File">
                                  </div>
                                  <div class="form-group">
                                      <label for="keterangan">Keterangan</label>

@@ -64,6 +64,18 @@ class Grup extends CI_Controller
         $this->m_grup->create_grup($grup, $kontak);
         redirect('grup');
     }
+    //nenampilkan kontak berdasarkan idnya
+    function get_kontak_by_id()
+    {
+        $id = $this->input->post('id', TRUE);
+        if ($id != null) {
+            $data = $this->m_kontak->get_kontak_by_id($id)->result();
+            echo json_encode($data);
+        } else {
+            echo json_encode($data = null);
+        }
+    }
+
     //Derail Grup
     function detail_grup()
     {
@@ -82,6 +94,28 @@ class Grup extends CI_Controller
         $this->load->view('template/sidebar');
         $this->load->view('grup/V_grup_detail', $data);
         $this->load->view('template/footer');
+    }
+
+    // GET DATA PRODUCT BERDASARKAN Grup ID
+    function get_kontak_by_grup()
+    {
+        $grup_id = $this->input->post('grup_id', true);
+        // $grup_id = 4;
+        $data = $this->m_grup->get_kontak_by_grup($grup_id)->result();
+
+        foreach ($data as $result) {
+            $value[] = $result->id_kontak;
+        }
+        echo json_encode($value);
+    }
+    //UPDATE
+    function update()
+    {
+        $id = $this->input->post('grup_id', TRUE);
+        $grup = $this->input->post('grup_edit', TRUE);
+        $kontak = $this->input->post('kontak_edit', TRUE);
+        $this->package_model->update_package($id, $grup, $kontak);
+        redirect('grup');
     }
 
     // DELETE

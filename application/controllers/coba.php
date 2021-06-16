@@ -37,8 +37,8 @@ class Coba extends CI_Controller
         );
         $string = "+0987765544Suka*()bumi #$^%&87 Kode ()*(&*^6.";
         $result = preg_replace("/[^1-9]/", "", $string);
-        echo $result;
-        die();
+        // echo $result;
+        // die();
 
         $this->load->view('template/header');
         $this->load->view('coba', $data);

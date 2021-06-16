@@ -25,11 +25,19 @@
                  <div class="col-12">
                      <div class="card card-primary">
                          <div class="card-header">
-                             <h3 class="card-title">Form Pembuatan Pesan Broadcast</h3>
+                             <?php
+                                if ($jenis == '1') { ?>
+                                 <h3 class="card-title">Form Pembuatan Pesan Broadcast</h3>
+                                 <?php  } else {
+                                    foreach ($nama_grup as $nama_grup) : ?>
+                                     <h3 class="card-title">Form Pembuatan Pesan Broadcast <?php echo $nama_grup->nama_grup  ?></h3>
+                             <?php endforeach;
+                                }    ?>
                          </div>
 
                          <div class="card-body">
                              <form id="buat-pesan" action="<?php echo site_url('pesan_bc/generate_AHK'); ?>" method="post">
+                                 <input class="form-control col-6" value="<?php echo $jenis; ?>" id="jenis" name="jenis" type="text" hidden>
                                  <div class="form-group">
                                      <label for="nama_file">Nama File</label>
                                      <input class="form-control col-6" id="nama_file" name="nama_file" type="text" placeholder="Masukan nama File">
@@ -40,7 +48,7 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="pesan">Pesan</label>
-                                     <textarea class="form-control col-7" rows="0" id="keterangan" name="pesan" placeholder="Masukan Pesan Anda ..."></textarea>
+                                     <textarea class="form-control col-7" rows="5" id="keterangan" name="pesan" placeholder="Masukan Pesan Anda ..."></textarea>
                                  </div>
                                  <div class="card-body table-responsive p-0 col-6" style="height: 300px;">
                                      <table class="table table-head-fixed text-nowrap">
@@ -54,7 +62,7 @@
                                          <tbody>
                                              <?php
                                                 $count = 0;
-                                                foreach ($data_kontak->result() as $row) :
+                                                foreach ($data_kontak as $row) :
                                                     $count++;
                                                 ?>
 

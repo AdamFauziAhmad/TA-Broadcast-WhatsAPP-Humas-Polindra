@@ -47,6 +47,16 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+    $('#addNewModal').on('hidden.bs.modal', function(e) {
+        $(this)
+            .find("input,textarea,select")
+            .val('')
+            .end()
+        $(".select2").val([]).trigger("change")
+            .find("input[type=checkbox], input[type=radio]")
+            .prop("checked", "")
+            .end();
+    })
     $(function() {
         //Initialize Select2 Elements
         $('.select2').select2()
