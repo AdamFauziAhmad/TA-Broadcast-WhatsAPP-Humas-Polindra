@@ -47,6 +47,27 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
+    function checkall(box) {
+        let Checkboxes = document.getElementsByTagName('input');
+        if (box.checked) {
+            for (let i = 0; i < Checkboxes.length; i++) {
+                if (Checkboxes[i].type == 'checkbox') {
+                    Checkboxes[i].checked = true;
+
+                }
+
+            }
+
+        } else {
+            for (let i = 0; i < Checkboxes.length; i++) {
+                if (Checkboxes[i].type == 'checkbox') {
+                    Checkboxes[i].checked = false;
+
+                }
+
+            }
+        }
+    }
     $('#addNewModal').on('hidden.bs.modal', function(e) {
         $(this)
             .find("input,textarea,select")

@@ -30,8 +30,18 @@
                              <!-- <a href="#" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#addNewModal">Tambah Data</a>
                              <a href="#" form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;">Buat Pesan Broadcast</a> -->
 
-                             <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button>
-                             <button form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline; margin-bottom: 5px;">Buat Pesan Broadcast</button>
+
+                             <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                 Tambah Data
+                             </button>
+                             <div class="dropdown-menu" role="menu">
+                                 <a data-toggle="modal" data-target="#addNewModal" class="btn btn-block btn-outline-primary btn-sm" href="#">Tambah Kontak</a>
+                                 <div class="dropdown-divider"></div>
+                                 <a data-toggle="modal" data-target="#addImport" class="btn btn-block btn-outline-success btn-sm" href="#">Import Kontak</a>
+                             </div>
+
+                             <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button> -->
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-2">Buat Pesan Broadcast</button>
 
 
                              <div class="card-tools">
@@ -59,6 +69,7 @@
                                  </form>
                              </div>
                              <?php echo $this->session->flashdata('message'); ?>
+                             <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $junlah_kontak ?></b></p>
                          </div>
                          <!-- /.card-header -->
                          <!-- tampilan tabel Kontak -->
@@ -68,11 +79,12 @@
                                      <thead>
                                          <tr>
                                              <th>#</th>
-                                             <th colspan="2">Nama</th>
+                                             <th><input onchange="checkall(this)" type="checkbox"></th>
+                                             <th>Nama</th>
                                              <th>Nomor Kontak</th>
-                                             <th>Kelas</th>
-                                             <th>Tahun Masuk</th>
-                                             <th>Status</th>
+                                             <!-- <th>Kelas</th>
+                                             <th>Tahun Masuk</th> -->
+                                             <th>keterngan</th>
                                              <th>#</th>
                                          </tr>
                                      </thead>
@@ -88,9 +100,11 @@
                                                  <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
                                                  <td><?php echo $row->nama_kontak; ?></td>
                                                  <td><?php echo $row->nomor_kontak; ?></td>
-                                                 <td><?php echo $row->kelas ?></td>
-                                                 <td><?php echo $row->tahun_masuk; ?></td>
-                                                 <td><?php echo $row->status; ?></td>
+                                                 <!-- <td><?php //echo $row->kelas 
+                                                            ?></td>
+                                                 <td><?php // echo $row->tahun_masuk; 
+                                                        ?></td> -->
+                                                 <td><?php echo $row->keterangan; ?></td>
                                                  <td>
                                                      <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>
                                                      <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_kontak; ?>">Delete</a>
@@ -99,8 +113,10 @@
                                          <?php endforeach; ?>
 
                                      </tbody>
+
                                  </table>
                              </form>
+
                          </div>
                          <!-- end tampilan tabel Kontak -->
                          <!-- /.card-body -->
@@ -144,7 +160,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="status">Status</label>
-                                 <input type="text" class="form-control" id="status" name="status" placeholder="Masukan status">
+                                 <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan status">
                              </div>
 
                              <!-- <div class="form-group">
@@ -175,6 +191,43 @@
              </div>
          </div>
          <!-- //modal tambah -->
+         <!-- //modal tambah Import Excel -->
+         <div class="modal fade" id="addImport" role="dialog">
+             <div class="modal-dialog" role="dokumen">
+                 <div class="modal-content card card-success">
+
+                     <div class="card-header">
+                         <h3 class="card-title">Import Excel</h3>
+                     </div>
+                     <!-- /.card-header -->
+
+                     <!-- form start -->
+                     <form action="<?php echo site_url('kontakwa/import_excel'); ?>" method="post" enctype="multipart/form-data">
+                         <div class="card-body">
+
+
+                             <div class="form-group">
+                                 <label for="file">File input</label>
+                                 <div class="input-group">
+                                     <div class="custom-file">
+                                         <input type="file" class="custom-file-input" id="file" name="file">
+                                         <label class="custom-file-label" for="file">Choose file</label>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+                         <!-- /.card-body -->
+
+                         <div class="card-footer">
+                             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                             <button type="submit" class="btn btn-primary">Simpan</button>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+         <!-- //modal tambah import excel-->
 
 
 
@@ -201,7 +254,7 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="nomor_kontak">Nomor Kontak</label>
-                                     <input type="number" value="<?php echo $row->nomor_kontak; ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
+                                     <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
                                  </div>
                                  <div class="form-group">
                                      <label for="kelas">Kelas</label>
@@ -213,7 +266,7 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="status">Status</label>
-                                     <input type="text" value="<?php echo $row->status; ?>" class="form-control" id="status" name="status" placeholder="Masukan status">
+                                     <input type="text" value="<?php echo $row->keterangan; ?>" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan status">
                                  </div>
 
                                  <!-- <div class="form-group">

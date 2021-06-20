@@ -12,6 +12,7 @@ class M_kontak extends CI_Model
         $query = $this->db->get('kontak');
         return $query;
     }
+
     // get data with limit and search
     function get_filtered($q = NULL)
     {
@@ -20,7 +21,7 @@ class M_kontak extends CI_Model
         $this->db->or_like('nomor_kontak', $q);
         $this->db->or_like('kelas', $q);
         $this->db->or_like('tahun_masuk', $q);
-        $this->db->or_like('status', $q);
+        $this->db->or_like('keterangan', $q);
         $this->db->order_by('nama_kontak', "asc");
 
         return $this->db->get('kontak');

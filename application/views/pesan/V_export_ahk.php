@@ -79,15 +79,15 @@
                              <?php if ($jenis == 1) {
 
                                 ?>
-                                 <a href="<?php echo base_url('Kontakwa')  ?>" class="btn btn-block bg-gradient-danger col-6" style="display: inline; ">kembali</a>
+                                 <a href="<?php echo base_url('Kontakwa')  ?>" class="btn btn-inline bg-gradient-danger col-3">kembali</a>
                              <?php } else { ?>
-                                 <a href="<?php echo base_url('grup')  ?>" class="btn btn-block bg-gradient-danger col-6" style="display: inline; ">kembali</a>
+                                 <a href="<?php echo base_url('grup')  ?>" class="btn btn-inline bg-gradient-danger col-3">kembali</a>
                              <?php  } ?>
                              <!-- <a href="<?php //echo base_url('pesan_bc/download_AHK') . "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";
                                             ?>" class="btn btn-block bg-gradient-secondary col-6" style="display: inline;" download>Export</a> -->
 
 
-                             <button form="buat-pesan" type="submit" class="btn btn-block btn-primary col-3">Export</button>
+                             <button form="buat-pesan" type="submit" class="btn btn-inline bg-gradient-primary col-3">Export</button>
                          </div>
 
                      </div>

@@ -11,6 +11,7 @@ class Kontakwa extends CI_Controller
         $this->load->model('m_login');
         // menyiapkan library CI
         $this->load->library('form_validation');
+        $this->load->library('Excel');
         //melakukan pengecekan sudah login atau belum
         if ($this->m_login->isNotLogin() == true) {
             redirect(base_url('login'));
@@ -37,18 +38,21 @@ class Kontakwa extends CI_Controller
     public function index()
     {
         $table_search = urldecode($this->input->get('table_search', true));
-        if ($table_search <> '') {
-            $config['base_url'] = base_url() . 'dt_konsumen/index.html?q=' . urlencode($table_search);
-            $config['first_url'] = base_url() . 'dt_konsumen/index.html?q=' . urlencode($table_search);
-        } else {
-            $config['base_url'] = base_url() . 'dt_konsumen/index.html';
-            $config['first_url'] = base_url() . 'dt_konsumen/index.html';
-        }
+
         // set data yang akan dikirim ke view
         $kontak = $this->m_kontak->get_filtered($table_search);
+        $jumlah = $kontak->num_rows();
+        // if ($kontak->num_rows() > 0) {
+        //     return $jumlah = $kontak->num_rows();
+        // } else {
+        //     return $jumlah = 0;
+        // }
+
+
         $data = array(
             'kontak' => $kontak,
-            'table_search' => $table_search
+            'table_search' => $table_search,
+            'junlah_kontak' => $jumlah
         );
 
 
@@ -74,17 +78,19 @@ class Kontakwa extends CI_Controller
             $nomor_kontak = substr_replace($nohp, $pengganti, $start, $length);
         } else if (substr(trim($nohp), 0, 1) == '+') {
             $nomor_kontak = preg_replace("/[^1-9]/", "", $nohp);
+        } else {
+            $nomor_kontak = $nohp;
         }
 
         $kelas = $this->input->post('kelas');
-        $status = $this->input->post('status');
+        $keterangan = $this->input->post('keterangan');
 
         $data = array(
             'nama_kontak' => $nama_kontak,
             'nomor_kontak' => $nomor_kontak,
             'tahun_masuk' => $tahun_masuk,
             'kelas' => $kelas,
-            'status' => $status
+            'keterangan ' => $keterangan
         );
         $this->m_kontak->tambah_kontak($data, 'kontak');
 
@@ -98,23 +104,29 @@ class Kontakwa extends CI_Controller
         $nama_kontak = $this->input->post('nama_kontak');
         $tahun_masuk = $this->input->post('tahun_masuk');
         $nohp = $this->input->post('nomor_kontak');
-        if (substr(trim($nohp), 0, 1) == '0') {
+        $regex = "/-/";
+
+
+        if (substr(trim($nohp), 0, 1) == '0' || preg_match_all($regex, trim($nohp)) > 0) {
             $pengganti = "62";
             $start = 0;
             $length = 1;
             $nomor_kontak = substr_replace($nohp, $pengganti, $start, $length);
-        } else if (substr(trim($nohp), 0, 1) == '+') {
+        } else if (substr(trim($nohp), 0, 1) == '+' || preg_match_all($regex, trim($nohp)) > 0) {
             $nomor_kontak = preg_replace("/[^1-9]/", "", $nohp);
+        } else {
+            $nomor_kontak = $nohp;
         }
+
         $kelas = $this->input->post('kelas');
-        $status = $this->input->post('status');
+        $keterangan = $this->input->post('keterangan');
 
         $data = array(
             'nama_kontak' => $nama_kontak,
             'nomor_kontak' => $nomor_kontak,
             'tahun_masuk' => $tahun_masuk,
             'kelas' => $kelas,
-            'status' => $status
+            'keterangan' => $keterangan
         );
         $this->m_kontak->edit_kontak($data, 'kontak', $id_kontak);
 
@@ -130,6 +142,68 @@ class Kontakwa extends CI_Controller
 
         $this->m_kontak->hapus_kontak($id_kontak, 'kontak');
 
+        redirect('kontakwa');
+    }
+
+    //input data lewat excel
+    public function import_excel()
+    {
+        $fileName = $_FILES['file']['name'];
+
+        $config['upload_path'] = './assets/file'; //path upload
+        $config['file_name'] = $fileName;  // nama file
+        $config['allowed_types'] = 'xls|xlsx|csv'; //tipe file yang diperbolehkan
+        $config['max_size'] = 10000; // maksimal sizze
+
+        $this->load->library('upload'); //meload librari upload
+        $this->upload->initialize($config);
+
+        if (!$this->upload->do_upload('file')) {
+            echo $this->upload->display_errors();
+            exit();
+        }
+
+        $inputFileName = './assets/file' . $fileName;
+
+        try {
+            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+            $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+            $objPHPExcel = $objReader->load($inputFileName);
+        } catch (Exception $e) {
+            die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
+        }
+
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow();
+        $highestColumn = $sheet->getHighestColumn();
+
+        for ($row = 2; $row <= $highestRow; $row++) {                  //  Read a row of data into an array                 
+            $rowData = $sheet->rangeToArray(
+                'A' . $row . ':' . $highestColumn . $row,
+                NULL,
+                TRUE,
+                FALSE
+            );
+            $no_hp = $rowData[0][0];
+            if (substr(trim($no_hp), 0, 1) == '0') {
+                $pengganti = "62";
+                $start = 0;
+                $length = 1;
+                $nomor_kontak = substr_replace($no_hp, $pengganti, $start, $length);
+            } else if (substr(trim($no_hp), 0, 1) == '+') {
+                $nomor_kontak = preg_replace("/[^1-9]/", "", $no_hp);
+            } else {
+                $nomor_kontak = $no_hp;
+            }
+
+            // Sesuaikan key array dengan nama kolom di database                                                         
+            $data = array(
+                "nomor_kontak" => $nomor_kontak,
+                "nama_kontak" => $rowData[0][1]
+            );
+
+            $this->m_kontak->tambah_kontak('kontak', $data);
+        }
         redirect('kontakwa');
     }
 }

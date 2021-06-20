@@ -205,6 +205,7 @@ class Pesan_bc extends CI_Controller
         header('Pragma: public');
         header('Content-Length: ' . filesize("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk"));
         readfile("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk");
+        unlink("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk");
 
         // redirect('kontakwa');
 
