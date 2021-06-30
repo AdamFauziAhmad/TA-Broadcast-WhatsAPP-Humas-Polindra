@@ -28,12 +28,37 @@
 
                              <!-- <a href="#" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#addNewModal">Tambah Data</a>
                              <a href="#" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#newBCWA">Buat Pesan Broadcast</a> -->
-                             <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button>
-                             <button form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline; margin-bottom: 5px;">Buat Pesan Broadcast</button>
-
-
+                             <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-outline-primary col-2">Tambah Data</button>
+                             <!-- <button form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline; margin-bottom: 5px;">Buat Pesan Broadcast</button> -->
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-2">Buat Pesan Broadcast</button>
 
                              <div class="card-tools">
+                                 <form action="<?php echo site_url('grup'); ?>" method="get">
+                                     <div class="input-group input-group-sm" style="width: 150px; margin-top: 5px;">
+
+                                         <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right" placeholder="Search">
+
+                                         <div class="input-group-append">
+
+                                             <?php
+                                                if ($table_search <> '') {
+                                                ?>
+                                                 <a href="<?php echo site_url('grup'); ?>" class="btn btn-default">X</a>
+                                             <?php
+                                                }
+                                                ?>
+                                             <button type="submit" class="btn btn-default">
+                                                 <i class="fas fa-search"></i>
+                                             </button>
+
+                                         </div>
+
+                                     </div>
+                                 </form>
+                             </div>
+                             <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $jumlah_grup ?></b></p>
+
+                             <!-- <div class="card-tools">
                                  <div class="input-group input-group-sm" style="width: 150px;">
                                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
@@ -43,7 +68,7 @@
                                          </button>
                                      </div>
                                  </div>
-                             </div>
+                             </div> -->
                              <?php echo $this->session->flashdata('message'); ?>
                          </div>
                          <!-- /.card-header -->
@@ -54,7 +79,7 @@
                                          <tr>
                                              <th>#</th>
                                              <th colspan="2">Nama Grup</th>
-                                             <th>Keterangan</th>
+                                             <th>Dekskripsi Grup</th>
                                              <th>Jumlah Anggota</th>
                                              <th>#</th>
                                          </tr>
@@ -196,7 +221,7 @@
                              <div class="form-group">
                                  <label for="kelas">Kontak</label>
                                  <div class="col-sm-12">
-                                     <select class="select2 strings" data-live-search="true" name="kontak_edit[]" id="kontak_edit" multiple="multiple" data-placeholder="pilih kontak" style="width: 100%;">
+                                     <select class="select2 strings" data-live-search="true" name="kontak_edit[]" id="kontak_edit[]" multiple="multiple" data-placeholder="pilih kontak" style="width: 100%;">
 
                                          <?php foreach ($kontak->result() as $row) : ?>
                                              <option value="<?php echo $row->id_kontak; ?>"><?php echo $row->nama_kontak . " - " . $row->tahun_masuk ?> </option>
@@ -374,9 +399,12 @@
                      var values = val2;
                      console.log(values);
                      $.each(values.split(","), function(i, e) {
-                         $("#kontak_edit").val([e]);
-                         $(".strings[" + e + "]").prop("selected", true).trigger('change');
-                         $(".strings").select2('refresh');
+                         //  $("#kontak_edit").val([e]);
+                         //  console.log($coba);
+                         //  $("#kontak_edit[" + e + "]").prop("selected", true).trigger('change');
+                         //  $("#kontak_edit").select2('refresh');
+                         $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
+                         $(".strings").selectpicker('refresh');
 
                      });
                  }

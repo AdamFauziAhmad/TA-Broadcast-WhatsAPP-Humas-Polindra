@@ -35,9 +35,12 @@ class Grup extends CI_Controller
      */
     public function index()
     {
+        $table_search = urldecode($this->input->get('table_search', true));
         //siapkan data yang akan digunakana view
         $data['kontak'] = $this->m_kontak->get_kontak();
-        $data['grup'] = $this->m_grup->get_grup();
+        $data['jumlah_grup'] = $this->m_grup->get_grup($table_search)->num_rows();
+        $data['grup'] = $this->m_grup->get_grup($table_search);
+        $data['table_search'] = $table_search;
 
 
 

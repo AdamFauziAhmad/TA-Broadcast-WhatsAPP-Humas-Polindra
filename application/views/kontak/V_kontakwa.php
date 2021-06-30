@@ -71,6 +71,7 @@
                              <?php echo $this->session->flashdata('message'); ?>
                              <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $junlah_kontak ?></b></p>
                          </div>
+
                          <!-- /.card-header -->
                          <!-- tampilan tabel Kontak -->
                          <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -151,34 +152,36 @@
                                  <input type="number" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
                              </div>
                              <div class="form-group">
+                                 <label>Keterangan </label>
+                                 <select class="form-control" id="keterangan" name="keterangan">
+                                     <option value="Lainnya">Lainnya</option>
+                                     <option value="Mahasiswa">Mahasiswa</option>
+                                     <option value="Dosen">Dosen</option>
+                                     <option value="Pegawai Polindra">Pegawai Polindra</option>
+                                 </select>
+                             </div>
+                             <div class="form-group" name="kelas_tag" id="kelas_tag" hidden>
                                  <label for="kelas">Kelas</label>
                                  <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas">
                              </div>
-                             <div class="form-group">
+                             <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag" hidden>
                                  <label for="tahun_masuk">Tahun Masuk</label>
                                  <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk">
                              </div>
-                             <div class="form-group">
-                                 <label for="status">Status</label>
-                                 <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan status">
+
+                             <div class="form-group" id="jurusan_tags" hidden>
+                                 <label>Jurusan </label>
+                                 <select class="form-control" id="jurusan" name="jurusan">
+                                     <option value="Teknik Mesin">Teknik Mesin</option>
+                                     <option value="Teknik Pendigin">Teknik Pendigin</option>
+                                     <option value="Teknik Informatika">Teknik Informatika</option>
+                                     <option value="Keperawatan">Keperawatan</option>
+                                 </select>
                              </div>
 
-                             <!-- <div class="form-group">
-                                 <label for="exampleInputFile">File input</label>
-                                 <div class="input-group">
-                                     <div class="custom-file">
-                                         <input type="file" class="custom-file-input" id="exampleInputFile">
-                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                     </div>
-                                     <div class="input-group-append">
-                                         <span class="input-group-text">Upload</span>
-                                     </div>
-                                 </div>
-                             </div> -->
-                             <!-- <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                             </div> -->
+
+
+
                          </div>
                          <!-- /.card-body -->
 
@@ -265,9 +268,18 @@
                                      <input type="text" value="<?php echo $row->tahun_masuk; ?>" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk">
                                  </div>
                                  <div class="form-group">
-                                     <label for="status">Status</label>
+                                     <label for="status">keterangan</label>
                                      <input type="text" value="<?php echo $row->keterangan; ?>" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan status">
                                  </div>
+                                 <!-- <div class="form-group">
+                                     <label>Keterangan </label>
+                                     <select class="form-control" id="keterangan" name="keterangan">
+                                         <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ? 'Lainnya' : 'selected'); ?>>Lainnya</option>
+                                         <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'Mahasiswa' : 'selected'); ?>>Mahasiswa</option>
+                                         <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'Dosen' : 'selected'); ?>>Dosen</option>
+                                         <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'Pegawai Polindra' : 'selected'); ?>>Pegawai Polindra</option>
+                                     </select>
+                                 </div> -->
 
                                  <!-- <div class="form-group">
                                  <label for="exampleInputFile">File input</label>
@@ -354,3 +366,25 @@
  <!-- /.content -->
 
  <!-- /.content-wrapper -->
+
+ <!-- /.content-wrapper -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+ <script>
+     $(window).load(function() {
+         $("#keterangan").change(function() {
+             console.log($("#keterangan option:selected").val());
+             if ($("#keterangan option:selected").val() == 'Lainnya' || $("#keterangan option:selected").val() == 'Pegawai Polindra') {
+                 $('#kelas_tag').prop('hidden', true);
+                 $('#tahun_masuk_tag').prop('hidden', true);
+                 $('#jurusan').prop('hidden', true);
+             } else if ($("#keterangan option:selected").val() == 'Mahasiswa') {
+                 $('#kelas_tag').prop('hidden', false);
+                 $('#tahun_masuk_tag').prop('hidden', false);
+             } else if ($("#keterangan option:selected").val() == 'Dosen') {
+                 $('#jurusan_tags').prop('hidden', false);
+             }
+         });
+     });
+ </script>

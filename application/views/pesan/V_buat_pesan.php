@@ -44,7 +44,11 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="keterangan">Keterangan</label>
-                                     <input class="form-control col-6" id="keterangan" name="keterangan" type="text" placeholder="Masukan Keterangan File">
+                                     <?php if ($jenis == 1) { ?>
+                                         <input value="KONTAK" class="form-control col-6" id="keterangan" name="keterangan" type="text" placeholder="Masukan Keterangan File" disabled>
+                                     <?php } else { ?>
+                                         <input value="GRUP" class="form-control col-6" id="keterangan" name="keterangan" type="text" placeholder="Masukan Keterangan File" disabled>
+                                     <?php  } ?>
                                  </div>
                                  <div class="form-group">
                                      <label for="pesan">Pesan</label>

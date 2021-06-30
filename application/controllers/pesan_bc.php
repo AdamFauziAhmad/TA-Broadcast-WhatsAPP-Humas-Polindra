@@ -10,6 +10,7 @@ class Pesan_bc extends CI_Controller
         $this->load->model('m_kontak');
         $this->load->model('m_login');
         $this->load->model('m_grup');
+        $this->load->model('m_history');
         $this->load->helper('download');
         // menyiapkan library CI
         $this->load->library('form_validation');
@@ -120,13 +121,21 @@ class Pesan_bc extends CI_Controller
 
 
         $nama_file = $nama_file;
+        date_default_timezone_set("ASIA/JAKARTA");
+        $tanggal = date('Y-m-d-H-i-s');
+        $file = "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";
+        $data = array(
+            'nama_file' => $file,
+            'waktu' => $tanggal,
+            'keterangan' => $keterangan,
+        );
+        $this->m_history->tambah_hostory_file($data, 'history');
         $tanggal = date('d-M-Y-H-i-s');
         $kode_enter = 13; //kode ASCII untuk enter
         $str = chr($kode_enter); //deklarasi variabel kode ASCII 
         //membuat gemerate tamda bca ke AHK
-        $pesan_isi = str_replace(array('!', '?', '.', ':', '"', ';', '[', ']', '|', '<', '>'), array('{!}', '{?}',  '{,}', '{:}', '{,}', '{"}', '{;}', '{[}', '{}}', '{|}', '{<}', '{>}'), $pesan);
+        $pesan_isi = str_replace(array('!', '?', '.', ':', ',', '"', ';', '[', ']', '|', '<', '>'), array('{!}', '{?}',  '{.}', '{:}', '{,}', '{"}', '{;}', '{[}', '{}}', '{|}', '{<}', '{>}'), $pesan);
         $PecahStr = explode($str, $pesan_isi); //mengacak string setiap enter kedalam bentuk array
-        $tanggal = date('d-M-Y-H-i-s');
         $myfile = fopen("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk", "w") or die("Unable to open file!");
         $txt = "MsgBox, Mulai?\n";
         fwrite($myfile, $txt);
@@ -207,10 +216,9 @@ class Pesan_bc extends CI_Controller
         readfile("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk");
         unlink("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk");
 
-        // redirect('kontakwa');
 
 
 
-        // force_download(base_url() . "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk",, NULL);
+        redirect('kontakwa');
     }
 }

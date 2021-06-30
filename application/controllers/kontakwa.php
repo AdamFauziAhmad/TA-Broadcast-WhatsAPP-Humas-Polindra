@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once APPPATH . 'third_party/spout-master/src/Spout/Autoloader/autoload.php';
+
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class Kontakwa extends CI_Controller
 {
@@ -67,37 +70,43 @@ class Kontakwa extends CI_Controller
     //tamabah data
     function tambah_kontak()
     {
+        //menangkap data dari form
         // $id_kontak = $this->input->post('id_kontak');
         $nama_kontak = $this->input->post('nama_kontak');
         $tahun_masuk = $this->input->post('tahun_masuk');
         $nohp = $this->input->post('nomor_kontak');
+        $kelas = $this->input->post('kelas');
+        $keterangan = $this->input->post('keterangan');
+        $jurusan = $this->input->post('jurusan');
+        // membuat format nomor telepon jadi 628xxxxx
         if (substr(trim($nohp), 0, 1) == '0') {
             $pengganti = "62";
             $start = 0;
             $length = 1;
             $nomor_kontak = substr_replace($nohp, $pengganti, $start, $length);
         } else if (substr(trim($nohp), 0, 1) == '+') {
-            $nomor_kontak = preg_replace("/[^1-9]/", "", $nohp);
+            $nomor_kontak = preg_replace("/[^0-9]/", "", $nohp);
         } else {
             $nomor_kontak = $nohp;
         }
 
-        $kelas = $this->input->post('kelas');
-        $keterangan = $this->input->post('keterangan');
 
+        //memasukan data dalam array untuk di kirim ke db
         $data = array(
             'nama_kontak' => $nama_kontak,
             'nomor_kontak' => $nomor_kontak,
             'tahun_masuk' => $tahun_masuk,
             'kelas' => $kelas,
-            'keterangan ' => $keterangan
+            'keterangan ' => $keterangan,
+            'jurusan' => $jurusan
         );
+        //menjalankan operasi tambah pada model
         $this->m_kontak->tambah_kontak($data, 'kontak');
 
         redirect('kontakwa');
     }
 
-    //edit data
+    //edit data=
     function edit_kontak()
     {
         $id_kontak = $this->input->post('id_kontak');
@@ -113,7 +122,7 @@ class Kontakwa extends CI_Controller
             $length = 1;
             $nomor_kontak = substr_replace($nohp, $pengganti, $start, $length);
         } else if (substr(trim($nohp), 0, 1) == '+' || preg_match_all($regex, trim($nohp)) > 0) {
-            $nomor_kontak = preg_replace("/[^1-9]/", "", $nohp);
+            $nomor_kontak = preg_replace("/[^0-9]/", "", $nohp);
         } else {
             $nomor_kontak = $nohp;
         }
@@ -148,62 +157,57 @@ class Kontakwa extends CI_Controller
     //input data lewat excel
     public function import_excel()
     {
-        $fileName = $_FILES['file']['name'];
+
 
         $config['upload_path'] = './assets/file'; //path upload
-        $config['file_name'] = $fileName;  // nama file
+
         $config['allowed_types'] = 'xls|xlsx|csv'; //tipe file yang diperbolehkan
         $config['max_size'] = 10000; // maksimal sizze
+        $config['file_name'] = 'doc' . time();  // nama file
 
-        $this->load->library('upload'); //meload librari upload
-        $this->upload->initialize($config);
+        $this->load->library('upload', $config); //meload librari upload
 
-        if (!$this->upload->do_upload('file')) {
-            echo $this->upload->display_errors();
-            exit();
-        }
+        if ($this->upload->do_upload('file')) {
+            $file = $this->upload->data();
+            $reader = ReaderEntityFactory::createXLSXReader();
 
-        $inputFileName = './assets/file' . $fileName;
-
-        try {
-            $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
-            $objReader = PHPExcel_IOFactory::createReader($inputFileType);
-            $objPHPExcel = $objReader->load($inputFileName);
-        } catch (Exception $e) {
-            die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME) . '": ' . $e->getMessage());
-        }
-
-        $sheet = $objPHPExcel->getSheet(0);
-        $highestRow = $sheet->getHighestRow();
-        $highestColumn = $sheet->getHighestColumn();
-
-        for ($row = 2; $row <= $highestRow; $row++) {                  //  Read a row of data into an array                 
-            $rowData = $sheet->rangeToArray(
-                'A' . $row . ':' . $highestColumn . $row,
-                NULL,
-                TRUE,
-                FALSE
-            );
-            $no_hp = $rowData[0][0];
-            if (substr(trim($no_hp), 0, 1) == '0') {
-                $pengganti = "62";
-                $start = 0;
-                $length = 1;
-                $nomor_kontak = substr_replace($no_hp, $pengganti, $start, $length);
-            } else if (substr(trim($no_hp), 0, 1) == '+') {
-                $nomor_kontak = preg_replace("/[^1-9]/", "", $no_hp);
-            } else {
-                $nomor_kontak = $no_hp;
+            $reader->open('assets/file/' . $file['file_name']);
+            foreach ($reader->getSheetIterator() as $sheet) {
+                $numrow = 2;
+                foreach ($sheet->getRowIterator() as $row) {
+                    // cek kondisi memulai pengambilan data pada baris 3
+                    if ($numrow > 2) {
+                        //seleksi nomor agar menjadi 628xxxx
+                        $kontak_hp = $row->getCellAtIndex(2);
+                        if (substr(trim($kontak_hp), 0, 1) == '0') {
+                            $pengganti = "62";
+                            $start = 0;
+                            $length = 1;
+                            $nomor_kontak = substr_replace($kontak_hp, $pengganti, $start, $length);
+                        } else if (substr(trim($kontak_hp), 0, 1) == '+') {
+                            $nomor_kontak = preg_replace("/[^0-9]/", "", $kontak_hp);
+                        } else {
+                            $nomor_kontak = $kontak_hp;
+                        }
+                        //input data excel kevariabel array
+                        $data = array(
+                            'nama_kontak' => $row->getCellAtIndex(1),
+                            'nomor_kontak' => $nomor_kontak,
+                            'keterangan' => $row->getCellAtIndex(3),
+                        );
+                        //jalan operasi database 
+                        $this->m_kontak->tambah_kontak($data, 'kontak');
+                    }
+                    $numrow++;
+                }
+                $reader->close();
+                unlink('assets/file/' . $file['file_name']);
             }
+        } else {
+            echo "Eror :" . $this->upload->display_errors();
+        };
 
-            // Sesuaikan key array dengan nama kolom di database                                                         
-            $data = array(
-                "nomor_kontak" => $nomor_kontak,
-                "nama_kontak" => $rowData[0][1]
-            );
 
-            $this->m_kontak->tambah_kontak('kontak', $data);
-        }
         redirect('kontakwa');
     }
 }

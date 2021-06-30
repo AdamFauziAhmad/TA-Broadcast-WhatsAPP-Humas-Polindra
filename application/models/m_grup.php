@@ -30,14 +30,18 @@ class M_grup extends CI_Model
         return $query;
     }
     //mengambil data grup dengan menghitung jumlah kontak
-    function get_grup()
+    function get_grup($q = NULL)
     {
         // $query = $this->db->get('grup');
         $this->db->select('grup.*,COUNT(id_kontak) AS item_grup');
         $this->db->from('grup');
+
         $this->db->join('detail_grup', 'id=id_detail_grup');
         $this->db->join('kontak', 'id_detail_kontak=id_kontak');
         $this->db->group_by('id');
+        $this->db->or_like('grup.nama_grup', $q);
+        $this->db->or_like('grup.keterangan', $q);
+
         $this->db->order_by('nama_grup', "asc");
         $query = $this->db->get();
         return $query;

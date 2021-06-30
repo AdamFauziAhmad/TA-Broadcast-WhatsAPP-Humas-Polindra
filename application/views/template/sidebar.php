@@ -14,7 +14,8 @@
                 <!-- <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
-                <a href="#" class="d-block"><?php echo ucwords($this->session->userdata('nama_admin')); ?> - <?php echo ucwords($this->session->userdata('role')); ?>
+                <a href="#" class="d-block"> <i class="nav-icon fas fa-user"></i> <?php echo ucwords($this->session->userdata('nama_admin')); ?> <?php //echo ucwords($this->session->userdata('role')); 
+                                                                                                                                                    ?>
 
             </div>
         </div>
@@ -34,7 +35,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url(); ?>kontakwa" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-phone-square-alt"></i>
                         <p>
                             kontak
                         </p>
@@ -42,15 +43,15 @@
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo base_url(); ?>grup" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             grup
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url(); ?>welcome" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="<?php echo base_url(); ?>history" class="nav-link">
+                        <i class="nav-icon fas fa-history"></i>
                         <p>
                             riwayat
                         </p>
