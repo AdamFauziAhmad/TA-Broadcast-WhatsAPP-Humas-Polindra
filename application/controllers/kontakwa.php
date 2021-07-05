@@ -192,20 +192,29 @@ class Kontakwa extends CI_Controller
                         } else {
                             $nomor_kontak = $kontak_hp;
                         }
+                        $cek_nomer = preg_replace("/[^0-9]/", "", $nomor_kontak);
+                        if ($cek_nomer == null || $cek_nomer == "") {
+                        } else {
+                            $cek = $this->m_kontak->get_kontak($nomor_kontak)->num_rows();
+                            // echo $cek;
+                            // die();
+                            if ($cek > 0) {
+                            } else {
+                                //input data excel kevariabel array
+                                $data = array(
+                                    'nama_kontak' => $row->getCellAtIndex(1),
+                                    'nomor_kontak' => $nomor_kontak,
+                                    'keterangan' => $row->getCellAtIndex(3),
+                                    'tahun_masuk' => $row->getCellAtIndex(4),
+                                    'kelas' => $row->getCellAtIndex(5),
+                                    'jurusan' => $row->getCellAtIndex(6)
+                                );
 
 
-
-                        //input data excel kevariabel array
-                        $data = array(
-                            'nama_kontak' => $row->getCellAtIndex(1),
-                            'nomor_kontak' => $nomor_kontak,
-                            'keterangan' => $row->getCellAtIndex(3),
-                            'tahun_masuk' => $row->getCellAtIndex(4),
-                            'kelas' => $row->getCellAtIndex(5),
-                            'jurusan' => $row->getCellAtIndex(6)
-                        );
-                        //jalan operasi database 
-                        $this->m_kontak->tambah_kontak($data, 'kontak');
+                                //jalan operasi database 
+                                $this->m_kontak->tambah_kontak($data, 'kontak');
+                            }
+                        }
                     }
                     $numrow++;
                 }
@@ -216,7 +225,7 @@ class Kontakwa extends CI_Controller
             echo "Eror :" . $this->upload->display_errors();
         };
 
-
+        unlink('assets/file/' . $file['file_name']);
         redirect('kontakwa');
     }
     public function download_format_excel()

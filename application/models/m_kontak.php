@@ -51,6 +51,8 @@ class M_kontak extends CI_Model
 
         $this->db->insert($table, $data);
     }
+    //menambah data ke db kontak
+
     //edit data ke db kontak
     function edit_kontak($data, $table, $id)
     {

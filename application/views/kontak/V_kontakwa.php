@@ -216,7 +216,7 @@
 
                              <div class="form-group">
                                  <label for="file">File input</label>
-                                 <a class="btn btn-inline btn-outline-success btn-sm float-right" href="<?php echo base_url();  ?>assets/file/format_excel_import/Fromat Import Excel_BCWA.xlsx" download>Download Fromat</a>
+                                 <a class="btn btn-inline btn-outline-success btn-sm float-right" href="<?php echo base_url();  ?>assets/file/format_excel_import/Format Import Excel_BCWA.xlsx" download>Download Fromat</a>
                                  <div class="input-group">
                                      <div class="custom-file">
                                          <input type="file" class="custom-file-input" id="file" name="file">
@@ -370,11 +370,6 @@
                                  </div>
 
 
-
-
-
-
-
                              </div>
                              <!-- /.card-body -->
 
@@ -407,22 +402,6 @@
                                      <input type="hidden" value="<?php echo $row->id_kontak; ?>" name="id_kontak">
                                  </div>
 
-                                 <!-- <div class="form-group">
-                                 <label for="exampleInputFile">File input</label>
-                                 <div class="input-group">
-                                     <div class="custom-file">
-                                         <input type="file" class="custom-file-input" id="exampleInputFile">
-                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                     </div>
-                                     <div class="input-group-append">
-                                         <span class="input-group-text">Upload</span>
-                                     </div>
-                                 </div>
-                             </div> -->
-                                 <!-- <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                             </div> -->
                              </div>
                              <!-- /.card-body -->
 
