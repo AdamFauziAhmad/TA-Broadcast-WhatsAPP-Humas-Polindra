@@ -219,6 +219,6 @@ class Pesan_bc extends CI_Controller
 
 
 
-        redirect('kontakwa');
+        // redirect('kontakwa');
     }
 }

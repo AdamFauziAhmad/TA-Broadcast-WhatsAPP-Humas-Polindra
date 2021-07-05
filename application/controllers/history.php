@@ -12,7 +12,6 @@ class History extends CI_Controller
 
         // menyiapkan library CI
         $this->load->library('form_validation');
-        $this->load->library('Excel');
         //melakukan pengecekan sudah login atau belum
         if ($this->m_login->isNotLogin() == true) {
             redirect(base_url('login'));

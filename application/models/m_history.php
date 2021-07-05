@@ -15,7 +15,7 @@ class M_history extends CI_Model
         $this->db->or_like('nama_file', $q);
         $this->db->or_like('waktu', $q);
         $this->db->or_like('keterangan', $q);
-        $this->db->order_by('nama_file', "asc");
+        $this->db->order_by('waktu', "desc");
 
         return $this->db->get('history');
     }

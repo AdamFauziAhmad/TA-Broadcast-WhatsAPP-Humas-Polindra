@@ -11,6 +11,7 @@ class M_grup extends CI_Model
         $this->db->join('detail_grup', 'id_detail_kontak=id_kontak');
         $this->db->join('grup', 'id_detail_grup=id');
         $this->db->where('id_detail_grup', $id);
+        $this->db->order_by('nama_grup', "asc");
         $query = $this->db->get();
         return $query;
     }
@@ -77,11 +78,11 @@ class M_grup extends CI_Model
     {
         $this->db->trans_start();
         //UPDATE TO PACKAGE
-        // $data  = array(
-        //     'nama_grup' => $grup
-        // );
-        $this->db->where('package_id', $id);
-        $this->db->update('grup', $grup);
+        $data  = array(
+            'nama_grup' => $grup
+        );
+        $this->db->where('id', $id);
+        $this->db->update('grup', $data);
 
         //DELETE DETAIL PACKAGE
         $this->db->delete('detail_grup', array('id_detail_grup' => $id));

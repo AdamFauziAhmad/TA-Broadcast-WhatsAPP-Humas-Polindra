@@ -5,13 +5,15 @@ class M_kontak extends CI_Model
 {
 
     //menampilkan data kontak dari database
-    function get_kontak()
+    function get_kontak($nomor)
     {
         // GET ALL kontak
+        $this->db->where('nomor_kontak', $nomor);
         $this->db->order_by('nama_kontak', "asc");
         $query = $this->db->get('kontak');
         return $query;
     }
+
 
     // get data with limit and search
     function get_filtered($q = NULL)
@@ -19,8 +21,8 @@ class M_kontak extends CI_Model
 
         $this->db->or_like('nama_kontak', $q);
         $this->db->or_like('nomor_kontak', $q);
-        $this->db->or_like('kelas', $q);
-        $this->db->or_like('tahun_masuk', $q);
+        // $this->db->or_like('kelas', $q);
+        // $this->db->or_like('tahun_masuk', $q);
         $this->db->or_like('keterangan', $q);
         $this->db->order_by('nama_kontak', "asc");
 

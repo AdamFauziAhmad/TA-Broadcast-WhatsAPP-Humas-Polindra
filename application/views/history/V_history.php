@@ -45,21 +45,17 @@
 
 
                              <div class="card-tools">
-                                 <form action="<?php echo site_url('kontakwa'); ?>" method="get">
+                                 <form action="<?php echo site_url('history'); ?>" method="get">
                                      <div class="input-group input-group-sm" style="width: 150px; margin-top: 5px;">
 
                                          <input type="text" name="table_search" value="" class="form-control float-right" placeholder="Search">
 
                                          <div class="input-group-append">
-
                                              <?php
-                                                // if ($table_search <> '') {
+                                                if ($table_search <> '') {
                                                 ?>
-                                             <!-- <a href="<? //php echo site_url('kontakwa'); 
-                                                            ?>" class="btn btn-default">X</a> -->
-                                             <?php
-                                                //  }
-                                                ?>
+                                                 <a href="<?php echo site_url('history'); ?>" class="btn btn-default">X</a>
+                                             <?php } ?>
                                              <button type="submit" class="btn btn-default">
                                                  <i class="fas fa-search"></i>
                                              </button>

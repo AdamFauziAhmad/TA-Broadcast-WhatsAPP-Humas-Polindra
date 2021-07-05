@@ -45,6 +45,7 @@ class Grup extends CI_Controller
 
 
 
+
         //set tampilan yang akan muncul dihalaman
         $this->load->view('template/header');
         $this->load->view('template/navbar');
@@ -107,7 +108,7 @@ class Grup extends CI_Controller
         $data = $this->m_grup->get_kontak_by_grup($grup_id)->result();
 
         foreach ($data as $result) {
-            $value[] = $result->id_kontak;
+            $value[] = (float) $result->id_kontak;
         }
         echo json_encode($value);
     }
@@ -115,9 +116,9 @@ class Grup extends CI_Controller
     function update()
     {
         $id = $this->input->post('grup_id', TRUE);
-        $grup = $this->input->post('grup_edit', TRUE);
+        $grup = $this->input->post('nama_edit', TRUE);
         $kontak = $this->input->post('kontak_edit', TRUE);
-        $this->package_model->update_package($id, $grup, $kontak);
+        $this->m_grup->update_grup($id, $grup, $kontak);
         redirect('grup');
     }
 

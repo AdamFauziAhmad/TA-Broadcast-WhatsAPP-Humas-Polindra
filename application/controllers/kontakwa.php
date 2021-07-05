@@ -14,7 +14,10 @@ class Kontakwa extends CI_Controller
         $this->load->model('m_login');
         // menyiapkan library CI
         $this->load->library('form_validation');
-        $this->load->library('Excel');
+        //load helper
+        $this->load->helper('download');
+        $this->load->helper('url');
+
         //melakukan pengecekan sudah login atau belum
         if ($this->m_login->isNotLogin() == true) {
             redirect(base_url('login'));
@@ -173,10 +176,10 @@ class Kontakwa extends CI_Controller
 
             $reader->open('assets/file/' . $file['file_name']);
             foreach ($reader->getSheetIterator() as $sheet) {
-                $numrow = 2;
+                $numrow = 11;
                 foreach ($sheet->getRowIterator() as $row) {
                     // cek kondisi memulai pengambilan data pada baris 3
-                    if ($numrow > 2) {
+                    if ($numrow > 11) {
                         //seleksi nomor agar menjadi 628xxxx
                         $kontak_hp = $row->getCellAtIndex(2);
                         if (substr(trim($kontak_hp), 0, 1) == '0') {
@@ -189,11 +192,17 @@ class Kontakwa extends CI_Controller
                         } else {
                             $nomor_kontak = $kontak_hp;
                         }
+
+
+
                         //input data excel kevariabel array
                         $data = array(
                             'nama_kontak' => $row->getCellAtIndex(1),
                             'nomor_kontak' => $nomor_kontak,
                             'keterangan' => $row->getCellAtIndex(3),
+                            'tahun_masuk' => $row->getCellAtIndex(4),
+                            'kelas' => $row->getCellAtIndex(5),
+                            'jurusan' => $row->getCellAtIndex(6)
                         );
                         //jalan operasi database 
                         $this->m_kontak->tambah_kontak($data, 'kontak');
@@ -209,5 +218,9 @@ class Kontakwa extends CI_Controller
 
 
         redirect('kontakwa');
+    }
+    public function download_format_excel()
+    {
+        force_download('assets/file/format_excel_import/Fromat Import Excel_BCWA.xlsx', null);
     }
 }

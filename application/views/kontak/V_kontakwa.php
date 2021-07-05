@@ -108,6 +108,7 @@
                                                  <td><?php echo $row->keterangan; ?></td>
                                                  <td>
                                                      <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>
+                                                     <a href="#" class="btn btn-block bg-gradient-primary btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_kontak; ?>">Detail</a>
                                                      <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_kontak; ?>">Delete</a>
                                                  </td>
                                              </tr>
@@ -151,6 +152,7 @@
                                  <label for="nomor_kontak">Nomor Kontak</label>
                                  <input type="number" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
                              </div>
+
                              <div class="form-group">
                                  <label>Keterangan </label>
                                  <select class="form-control" id="keterangan" name="keterangan">
@@ -160,24 +162,27 @@
                                      <option value="Pegawai Polindra">Pegawai Polindra</option>
                                  </select>
                              </div>
-                             <div class="form-group" name="kelas_tag" id="kelas_tag" hidden>
+                             <div class="form-group" name="kelas_tag" id="kelas_tag">
                                  <label for="kelas">Kelas</label>
                                  <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas">
                              </div>
-                             <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag" hidden>
+                             <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
                                  <label for="tahun_masuk">Tahun Masuk</label>
                                  <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk">
                              </div>
-
-                             <div class="form-group" id="jurusan_tags" hidden>
-                                 <label>Jurusan </label>
+                             <div class="form-group" id="jurusan_tags">
+                                 <label>Jurusan</label>
                                  <select class="form-control" id="jurusan" name="jurusan">
                                      <option value="Teknik Mesin">Teknik Mesin</option>
                                      <option value="Teknik Pendigin">Teknik Pendigin</option>
                                      <option value="Teknik Informatika">Teknik Informatika</option>
                                      <option value="Keperawatan">Keperawatan</option>
+
                                  </select>
+
                              </div>
+
+
 
 
 
@@ -211,6 +216,7 @@
 
                              <div class="form-group">
                                  <label for="file">File input</label>
+                                 <a class="btn btn-inline btn-outline-success btn-sm float-right" href="<?php echo base_url();  ?>assets/file/format_excel_import/Fromat Import Excel_BCWA.xlsx" download>Download Fromat</a>
                                  <div class="input-group">
                                      <div class="custom-file">
                                          <input type="file" class="custom-file-input" id="file" name="file">
@@ -234,8 +240,83 @@
 
 
 
-         <!-- //modal Edit -->
          <?php foreach ($kontak->result() as $row) : ?>
+
+             <!-- //modal Detail -->
+             <div class="modal fade" id="modal_detail<?php echo $row->id_kontak; ?>" role="dialog">
+                 <div class="modal-dialog" role="dokumen">
+                     <div class="modal-content card card-Primary">
+
+                         <div class="card-header">
+                             <h3 class="card-title">Detail Kontak</h3>
+                         </div>
+                         <!-- /.card-header -->
+
+                         <!-- form start -->
+                         <form action="" method="post">
+                             <div class="card-body">
+                                 <div class="form-group">
+                                     <label for="nama_kontak">Nama Kontak</label>
+                                     <input type="text" value="<?php echo $row->nama_kontak; ?>" class="form-control" id="nama_kontak" name="nama_kontak" disabled>
+                                 </div>
+                                 <div class="form-group">
+                                     <input type="text" value="<?php echo $row->id_kontak; ?>" class="form-control" id="id_kontak" name="id_kontak" hidden>
+                                 </div>
+                                 <div class="form-group">
+                                     <label for="nomor_kontak">Nomor Kontak</label>
+                                     <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" disabled>
+                                 </div>
+                                 <div class="form-group">
+                                     <label>Keterangan </label>
+                                     <select class="form-control" id="edit_keterangan" name="keterangan" disabled>
+                                         <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ?  'selected' : ''); ?>>Lainnya</option>
+                                         <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'selected' : ''); ?>>Mahasiswa</option>
+                                         <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'selected' : ''); ?>>Dosen</option>
+                                         <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'selected' : ''); ?>>Pegawai Polindra</option>
+                                     </select>
+                                 </div>
+                                 <div class="form-group" name="kelas_tag" id="kelas_tag">
+                                     <label for="kelas">Kelas</label>
+                                     <?php if ($row->kelas == null) { ?>
+                                         <input type="text" value="<?php echo "-"; ?>" class="form-control" id="kelas" name="kelas" disabled>
+                                     <?php } else { ?>
+                                         <input type="text" value="<?php echo $row->kelas; ?>" class="form-control" id="kelas" name="kelas" disabled>
+                                     <?php } ?>
+                                 </div>
+                                 <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
+                                     <label for="tahun_masuk">Tahun Masuk</label>
+                                     <?php if ($row->tahun_masuk == null) { ?>
+                                         <input value="<?php echo "-"; ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" disabled>
+                                     <?php } else { ?>
+                                         <input value="<?php echo $row->tahun_masuk  ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" disabled>
+                                     <?php } ?>
+
+                                 </div>
+
+                                 <div class="form-group" id="jurusan_tags_edit">
+                                     <label>Jurusan </label>
+                                     <?php if ($row->jurusan == null) { ?>
+                                         <input value="<?php echo "-"; ?>" type="text" class="form-control" id="jurusan" name="jurusan" disabled>
+                                     <?php  } else { ?>
+                                         <input value="<?php echo $row->jurusan; ?>" type="text" class="form-control" id="jurusan" name="jurusan" disabled>
+                                     <?php  } ?>
+
+                                 </div>
+                             </div>
+                             <!-- /.card-body -->
+
+                             <div class="card-footer">
+                                 <button type="button" class="btn btn-danger" data-dismiss="modal">kembali</button>
+
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+             <!-- end modal detail -->
+
+             <!-- //modal Edit -->
+
              <div class="modal fade" id="modal_edit<?php echo $row->id_kontak; ?>" role="dialog">
                  <div class="modal-dialog" role="dokumen">
                      <div class="modal-content card card-success">
@@ -260,43 +341,40 @@
                                      <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
                                  </div>
                                  <div class="form-group">
-                                     <label for="kelas">Kelas</label>
-                                     <input type="text" value="<?php echo $row->kelas; ?>" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas">
-                                 </div>
-                                 <div class="form-group">
-                                     <label for="tahun_masuk">Tahun Masuk</label>
-                                     <input type="text" value="<?php echo $row->tahun_masuk; ?>" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk">
-                                 </div>
-                                 <div class="form-group">
-                                     <label for="status">keterangan</label>
-                                     <input type="text" value="<?php echo $row->keterangan; ?>" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan status">
-                                 </div>
-                                 <!-- <div class="form-group">
                                      <label>Keterangan </label>
-                                     <select class="form-control" id="keterangan" name="keterangan">
-                                         <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ? 'Lainnya' : 'selected'); ?>>Lainnya</option>
-                                         <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'Mahasiswa' : 'selected'); ?>>Mahasiswa</option>
-                                         <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'Dosen' : 'selected'); ?>>Dosen</option>
-                                         <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'Pegawai Polindra' : 'selected'); ?>>Pegawai Polindra</option>
+                                     <select class="form-control" id="edit_keterangan" name="keterangan">
+                                         <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ?  'selected' : ''); ?>>Lainnya</option>
+                                         <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'selected' : ''); ?>>Mahasiswa</option>
+                                         <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'selected' : ''); ?>>Dosen</option>
+                                         <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'selected' : ''); ?>>Pegawai Polindra</option>
                                      </select>
-                                 </div> -->
-
-                                 <!-- <div class="form-group">
-                                 <label for="exampleInputFile">File input</label>
-                                 <div class="input-group">
-                                     <div class="custom-file">
-                                         <input type="file" class="custom-file-input" id="exampleInputFile">
-                                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                     </div>
-                                     <div class="input-group-append">
-                                         <span class="input-group-text">Upload</span>
-                                     </div>
                                  </div>
-                             </div> -->
-                                 <!-- <div class="form-check">
-                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                             </div> -->
+                                 <div class="form-group" name="kelas_tag" id="kelas_tag">
+                                     <label for="kelas">Kelas</label>
+                                     <input type="text" value="<?php echo $row->kelas; ?>" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas (Boleh Dikosongkan)">
+                                 </div>
+                                 <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
+                                     <label for="tahun_masuk">Tahun Masuk</label>
+                                     <input value="<?php echo $row->tahun_masuk;  ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk (Boleh Dikosongkan)">
+                                 </div>
+
+                                 <div class="form-group" id="jurusan_tags_edit">
+                                     <label>Jurusan </label>
+                                     <select class="form-control" id="jurusan" name="jurusan">
+                                         <option value="">Pilih Jurusan(Boleh Dikosongkan)</option>
+                                         <option value="Teknik Mesin">Teknik Mesin</option>
+                                         <option value="Teknik Pendigin">Teknik Pendigin</option>
+                                         <option value="Teknik Informatika">Teknik Informatika</option>
+                                         <option value="Keperawatan">Keperawatan</option>
+                                     </select>
+                                 </div>
+
+
+
+
+
+
+
                              </div>
                              <!-- /.card-body -->
 
@@ -372,19 +450,50 @@
 
 
  <script>
-     $(window).load(function() {
-         $("#keterangan").change(function() {
-             console.log($("#keterangan option:selected").val());
-             if ($("#keterangan option:selected").val() == 'Lainnya' || $("#keterangan option:selected").val() == 'Pegawai Polindra') {
-                 $('#kelas_tag').prop('hidden', true);
-                 $('#tahun_masuk_tag').prop('hidden', true);
-                 $('#jurusan').prop('hidden', true);
-             } else if ($("#keterangan option:selected").val() == 'Mahasiswa') {
-                 $('#kelas_tag').prop('hidden', false);
-                 $('#tahun_masuk_tag').prop('hidden', false);
-             } else if ($("#keterangan option:selected").val() == 'Dosen') {
-                 $('#jurusan_tags').prop('hidden', false);
-             }
+     $(document).ready(function() {
+         $('#file').on('change', function() {
+             // Ambil nama file 
+             let fileName = $(this).val().split('\\').pop();
+             // Ubah "Choose a file" label sesuai dengan nama file yag akan diupload
+             $(this).next('.custom-file-label').addClass("selected").html(fileName);
          });
+
+         //  $("#keterangan").change(function() {
+         //      console.log($("#keterangan option:selected").val());
+         //      if ($("#keterangan option:selected").val() == 'Lainnya' || $("#keterangan option:selected").val() == 'Pegawai Polindra') {
+         //          $('#kelas_tag').prop('hidden', true);
+         //          $('#tahun_masuk_tag').prop('hidden', true);
+         //          $('#jurusan_tags').prop('hidden', true);
+
+         //          $('#jurusan').prop('hidden', true);
+         //      } else if ($("#keterangan option:selected").val() == 'Mahasiswa') {
+         //          $('#kelas_tag').prop('hidden', false);
+         //          $('#tahun_masuk_tag').prop('hidden', false);
+         //          $('#jurusan_tags').prop('hidden', false);
+
+         //      } else if ($("#keterangan option:selected").val() == 'Dosen') {
+
+         //      }
+         //  });
+
+
+
+
+
+
+
+         //  console.log($("#edit_keterangan option:selected").val());
+
+
+         //  $("#edit_keterangan").change(function() {
+         //      console.log($("#edit_keterangan option:selected").val());
+         //      if ($("#edit_keterangan option:selected").val() == 'Lainnya') {
+         //          $('#tahun_masuk_tag_edit').prop('hidden', true);
+
+         //      } else if ($("#edit_keterangan option:selected").val() == 'Mahasiswa') {
+         //          $('#tahun_masuk_tag_edit').prop('hidden', false);
+
+         //      }
+         //  });
      });
  </script>

@@ -40,8 +40,12 @@
                                          <label for="keterangan">Keterangan</label>
                                          <input value="<?php echo $grup->keterangan; ?>" class="form-control col-6" id="keterangan" name="keterangan" type="text" placeholder="Masukan Keterangan File" disabled>
                                      </div>
-
+                                     <div class="form-group">
+                                         <label for="keterangan">Jumlah Anggota</label>
+                                         <input value="<?php echo $grup->item_grup; ?>" class="form-control col-6" id="jumlah" name="jumlah" type="text" placeholder="Masukan Keterangan File" disabled>
+                                     </div>
                                      <div class="card-body table-responsive p-0 col-6" style="height: 300px;">
+                                         <label for="keterangan">Daftar Anggota</label>
                                          <table class="table table-head-fixed text-nowrap">
                                              <thead>
                                                  <tr>
@@ -66,14 +70,8 @@
                                                  <?php endforeach; ?>
                                              </tbody>
                                          </table>
-
-
-
                                      </div>
-                                     <div class="form-group">
-                                         <label for="keterangan">Jumlah Anggota</label>
-                                         <input value="<?php echo $grup->item_grup; ?>" class="form-control col-6" id="jumlah" name="jumlah" type="text" placeholder="Masukan Keterangan File" disabled>
-                                     </div>
+
                                  </form>
 
                              </div>
