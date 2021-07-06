@@ -92,19 +92,23 @@ class Kontakwa extends CI_Controller
         } else {
             $nomor_kontak = $nohp;
         }
+        $cek = $this->m_kontak->get_kontak($nomor_kontak)->num_rows();
+        if ($cek == 0) {
+            # code...
 
-
-        //memasukan data dalam array untuk di kirim ke db
-        $data = array(
-            'nama_kontak' => $nama_kontak,
-            'nomor_kontak' => $nomor_kontak,
-            'tahun_masuk' => $tahun_masuk,
-            'kelas' => $kelas,
-            'keterangan ' => $keterangan,
-            'jurusan' => $jurusan
-        );
-        //menjalankan operasi tambah pada model
-        $this->m_kontak->tambah_kontak($data, 'kontak');
+            //memasukan data dalam array untuk di kirim ke db
+            $data = array(
+                'id_kontak' => uuid_v4(),
+                'nama_kontak' => $nama_kontak,
+                'nomor_kontak' => $nomor_kontak,
+                'tahun_masuk' => $tahun_masuk,
+                'kelas' => $kelas,
+                'keterangan ' => $keterangan,
+                'jurusan' => $jurusan
+            );
+            //menjalankan operasi tambah pada model
+            $this->m_kontak->tambah_kontak($data, 'kontak');
+        }
 
         redirect('kontakwa');
     }
@@ -200,14 +204,21 @@ class Kontakwa extends CI_Controller
                             // die();
                             if ($cek > 0) {
                             } else {
+                                $keterangan = strtolower($row->getCellAtIndex(3));
+                                // if ( substr(trim($row->getCellAtIndex(5)), 4, 1) == '/[^0-9]/') {
+                                //     $kelas =  substr_replace($row->getCellAtIndex(5), "", 4, 1);
+                                // }
+                                $jurusan = strtolower($row->getCellAtIndex(6));
+
                                 //input data excel kevariabel array
                                 $data = array(
+                                    'id_kontak' => uuid_v4(),
                                     'nama_kontak' => $row->getCellAtIndex(1),
                                     'nomor_kontak' => $nomor_kontak,
-                                    'keterangan' => $row->getCellAtIndex(3),
+                                    'keterangan' => ucwords($keterangan),
                                     'tahun_masuk' => $row->getCellAtIndex(4),
-                                    'kelas' => $row->getCellAtIndex(5),
-                                    'jurusan' => $row->getCellAtIndex(6)
+                                    'kelas' => strtoupper($row->getCellAtIndex(5)),
+                                    'jurusan' => ucwords($jurusan)
                                 );
 
 

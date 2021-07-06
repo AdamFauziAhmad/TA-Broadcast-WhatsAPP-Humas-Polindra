@@ -61,6 +61,7 @@ class Grup extends CI_Controller
         $kontak = $this->input->post('kontak', TRUE);
 
         $grup = array(
+            'id' => uuid_v4(),
             'nama_grup' => $nama_grup,
             'keterangan' => $keterangan
 
@@ -108,7 +109,7 @@ class Grup extends CI_Controller
         $data = $this->m_grup->get_kontak_by_grup($grup_id)->result();
 
         foreach ($data as $result) {
-            $value[] = (float) $result->id_kontak;
+            $value[] =  $result->id_kontak;
         }
         echo json_encode($value);
     }

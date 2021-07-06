@@ -125,6 +125,7 @@ class Pesan_bc extends CI_Controller
         $tanggal = date('Y-m-d-H-i-s');
         $file = "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";
         $data = array(
+            'id_history' => uuid_v4(),
             'nama_file' => $file,
             'waktu' => $tanggal,
             'keterangan' => $keterangan,

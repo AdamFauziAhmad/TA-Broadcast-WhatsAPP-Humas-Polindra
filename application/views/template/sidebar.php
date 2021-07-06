@@ -57,6 +57,17 @@
                         </p>
                     </a>
                 </li>
+                <?php if ($this->session->userdata('role') != 'admin') { ?>
+                    <li class="nav-item">
+                        <a href="<?php echo base_url(); ?>admin" class="nav-link">
+                            <i class="nav-icon fas fa-users-cog"></i>
+                            <p>
+                                Admin
+                            </p>
+                        </a>
+                    </li>
+                <?php  }  ?>
+
 
             </ul>
         </nav>

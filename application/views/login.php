@@ -30,6 +30,7 @@
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
+                <?php echo validation_errors('required'); ?>
                 <?php echo $this->session->flashdata('message'); ?>
 
 

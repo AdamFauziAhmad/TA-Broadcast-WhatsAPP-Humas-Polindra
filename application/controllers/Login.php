@@ -72,8 +72,7 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         //set message form validation
-        $this->form_validation->set_message('required', '<div class="alert alert-danger" style="margin-top: 3px">
-             <div class="header"><b><i class="fa fa-exclamation-circle"></i> {field}</b> harus diisi</div></div>');
+
 
         //cek validasi
         if ($this->form_validation->run() == TRUE) {
@@ -139,6 +138,10 @@ class Login extends CI_Controller
             //     $this->session->set_flashdata('message', '<div class="alert alert-danger role="alert"> Username Salah !</div>');
             //     redirect(base_url("login"));
             // }
+        } else {
+            $this->form_validation->set_message('required', '<div class="alert alert-danger" style="margin-top: 3px">
+            <div class="header"><b><i class="fa fa-exclamation-circle"></i> {field}</b> harus diisi</div></div>');
+            redirect(base_url("login"));
         }
     }
 

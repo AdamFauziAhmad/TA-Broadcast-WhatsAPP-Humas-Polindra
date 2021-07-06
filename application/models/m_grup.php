@@ -52,18 +52,15 @@ class M_grup extends CI_Model
     function create_grup($grup, $kontak)
     {
         $this->db->trans_start();
-        //INSERT TO PACKAGE
-        // date_default_timezone_set("Asia/Bangkok");
-        // $data  = array(
-        //     'package_name' => $grup,
-        //     'package_created_at' => date('Y-m-d H:i:s') 
-        // );
+
         $this->db->insert('grup', $grup);
-        //GET ID PACKAGE
+        //GET ID Grup
+
         $id = $this->db->insert_id();
         $result = array();
         foreach ($kontak as $key => $val) {
             $result[] = array(
+                'id_detail' => uuid_v4(),
                 'id_detail_grup'   => $id,
                 'id_detail_kontak'   => $_POST['kontak'][$key]
             );

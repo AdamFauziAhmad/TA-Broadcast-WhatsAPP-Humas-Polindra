@@ -391,14 +391,18 @@
                      var val2 = val1.replace("]", "");
                      var values = val2;
                      var values2 = values.split(",");
-                     console.log(values2);
+
+
                      $.each(values2, function(i, e) {
+                         var c1 = e.replace("\"", "")
+                         var c2 = c1.replace("\"", "")
+                         console.log(c2)
 
                          //  $("#kontak_edit").val([e]);
                          //  console.log($coba);
                          //  $("#kontak_edit[" + e + "]").prop("selected", true).trigger('change');
                          //  $("#kontak_edit").select2('refresh');
-                         $(".strings option[value='" + e + "']").prop("selected", true).trigger('change');
+                         $(".strings option[value='" + c2 + "']").prop("selected", true).trigger('change');
                          //   $(".strings").select2('refresh');
                          //  $('#kontak_edit').change(function() {
                          //      var id = $("#kontak_edit option:selected").val();
