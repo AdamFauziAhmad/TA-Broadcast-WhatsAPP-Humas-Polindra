@@ -38,7 +38,7 @@ class M_login extends CI_Model
     // check username
     public function check_field($table, $name)
     {
-        $query = $this->db->get_where($table, array('username' => $name));
+        $query = $this->db->get_where($table, $name);
         if ($query->row_array() === 0) {
             return false;
         } else {

@@ -18,13 +18,12 @@ class M_admin extends CI_Model
         $this->db->order_by('nama_admin', "asc");
         return $this->db->get('admin');
     }
-    function get_admin_by_id($id_kontak)
+    function get_admin_by_id($id_admin)
     {
 
         $this->db->select('*');
-        $this->db->from('kontak');
-        $this->db->where_in('id_kontak', $id_kontak);
-        $this->db->order_by('nama_kontak', "asc");
+        $this->db->from('admin');
+        $this->db->where('id_admin', $id_admin);
         $query = $this->db->get();
 
         return $query;

@@ -40,6 +40,7 @@
                                  <a data-toggle="modal" data-target="#addImport" class="btn btn-block btn-outline-success btn-sm" href="#">Import Kontak</a>
                              </div>
 
+
                              <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button> -->
                              <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-2">Buat Pesan Broadcast</button>
 
@@ -68,10 +69,10 @@
                                      </div>
                                  </form>
                              </div>
-                             <?php echo $this->session->flashdata('message'); ?>
+
                              <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $junlah_kontak ?></b></p>
                          </div>
-
+                         <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('message'); ?>"></div>
                          <!-- /.card-header -->
                          <!-- tampilan tabel Kontak -->
                          <div class="card-body table-responsive p-0" style="height: 300px;">
@@ -107,6 +108,7 @@
                                                         ?></td> -->
                                                  <td><?php echo $row->keterangan; ?></td>
                                                  <td>
+
                                                      <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>
                                                      <a href="#" class="btn btn-block bg-gradient-primary btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_kontak; ?>">Detail</a>
                                                      <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_kontak; ?>">Delete</a>
@@ -132,59 +134,53 @@
          <!-- /.row -->
 
          <!-- //modal tambah -->
-         <div class="modal fade" id="addNewModal" role="dialog">
-             <div class="modal-dialog" role="dokumen">
-                 <div class="modal-content card card-primary">
+         <div class="modal fade" id="addNewModal">
+             <!-- <div class="modal-dialog" role="dokumen"> -->
+             <div class="modal-content card card-primary">
 
-                     <div class="card-header">
-                         <h3 class="card-title">Tambah Kontak</h3>
-                     </div>
-                     <!-- /.card-header -->
+                 <div class="card-header">
+                     <h3 class="card-title">Tambah Kontak</h3>
+                 </div>
+                 <!-- /.card-header -->
 
-                     <!-- form start -->
-                     <form action="<?php echo site_url('kontakwa/tambah_kontak'); ?>" method="post">
-                         <div class="card-body">
-                             <div class="form-group">
-                                 <label for="nama_kontak">Nama Kontak</label>
-                                 <input type="text" class="form-control" id="nama_kontak" name="nama_kontak" placeholder="Mauskan Nama Kontak WA">
-                             </div>
-                             <div class="form-group">
-                                 <label for="nomor_kontak">Nomor Kontak</label>
-                                 <input type="number" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
-                             </div>
+                 <!-- form start -->
+                 <form action="<?php echo site_url('kontakwa/tambah_kontak'); ?>" method="post">
+                     <div class="card-body">
+                         <div class="form-group">
+                             <label for="nama_kontak">Nama Kontak</label>
+                             <input type="text" class="form-control" id="nama_kontak" name="nama_kontak" placeholder="Mauskan Nama Kontak WA">
+                         </div>
+                         <div class="form-group">
+                             <label for="nomor_kontak">Nomor Kontak</label>
+                             <input type="number" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA" required>
+                         </div>
 
-                             <div class="form-group">
-                                 <label>Keterangan </label>
-                                 <select class="form-control" id="keterangan" name="keterangan">
-                                     <option value="Lainnya">Lainnya</option>
-                                     <option value="Mahasiswa">Mahasiswa</option>
-                                     <option value="Dosen">Dosen</option>
-                                     <option value="Pegawai Polindra">Pegawai Polindra</option>
-                                 </select>
-                             </div>
-                             <div class="form-group" name="kelas_tag" id="kelas_tag">
-                                 <label for="kelas">Kelas</label>
-                                 <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas">
-                             </div>
-                             <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
-                                 <label for="tahun_masuk">Tahun Masuk</label>
-                                 <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk">
-                             </div>
-                             <div class="form-group" id="jurusan_tags">
-                                 <label>Jurusan</label>
-                                 <select class="form-control" id="jurusan" name="jurusan">
-                                     <option value="Teknik Mesin">Teknik Mesin</option>
-                                     <option value="Teknik Pendigin">Teknik Pendigin</option>
-                                     <option value="Teknik Informatika">Teknik Informatika</option>
-                                     <option value="Keperawatan">Keperawatan</option>
+                         <div class="form-group">
+                             <label>Keterangan </label>
+                             <select class="form-control" id="keterangan" name="keterangan">
+                                 <option value="Lainnya">Lainnya</option>
+                                 <option value="Mahasiswa">Mahasiswa</option>
+                                 <option value="Dosen">Dosen</option>
+                                 <option value="Pegawai Polindra">Pegawai Polindra</option>
+                             </select>
+                         </div>
+                         <div class="form-group" name="kelas_tag" id="kelas_tag">
+                             <label for="kelas">Kelas</label>
+                             <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas">
+                         </div>
+                         <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
+                             <label for="tahun_masuk">Tahun Masuk</label>
+                             <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk">
+                         </div>
+                         <div class="form-group" id="jurusan_tags">
+                             <label>Jurusan</label>
+                             <select class="form-control" id="jurusan" name="jurusan">
+                                 <option value="Teknik Mesin">Teknik Mesin</option>
+                                 <option value="Teknik Pendigin">Teknik Pendigin</option>
+                                 <option value="Teknik Informatika">Teknik Informatika</option>
+                                 <option value="Keperawatan">Keperawatan</option>
 
-                                 </select>
-
-                             </div>
-
-
-
-
+                             </select>
 
 
                          </div>
@@ -194,229 +190,231 @@
                              <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                              <button type="submit" class="btn btn-primary">Simpan</button>
                          </div>
-                     </form>
-                 </div>
+                 </form>
              </div>
          </div>
-         <!-- //modal tambah -->
-         <!-- //modal tambah Import Excel -->
-         <div class="modal fade" id="addImport" role="dialog">
-             <div class="modal-dialog" role="dokumen">
-                 <div class="modal-content card card-success">
+ </div>
+ <!-- //modal tambah -->
+ <!-- //modal tambah Import Excel -->
+ <div class="modal fade" id="addImport" role="dialog">
+     <div class="modal-dialog" role="dokumen">
+         <div class="modal-content card card-success">
 
-                     <div class="card-header">
-                         <h3 class="card-title">Import Excel</h3>
-                     </div>
-                     <!-- /.card-header -->
+             <div class="card-header">
+                 <h3 class="card-title">Import Excel</h3>
+             </div>
+             <!-- /.card-header -->
 
-                     <!-- form start -->
-                     <form action="<?php echo site_url('kontakwa/import_excel'); ?>" method="post" enctype="multipart/form-data">
-                         <div class="card-body">
+             <!-- form start -->
+             <form action="<?php echo site_url('kontakwa/import_excel'); ?>" method="post" enctype="multipart/form-data">
+                 <div class="card-body">
 
 
-                             <div class="form-group">
-                                 <label for="file">File input</label>
-                                 <a class="btn btn-inline btn-outline-success btn-sm float-right" href="<?php echo base_url();  ?>assets/file/format_excel_import/Format Import Excel_BCWA.xlsx" download>Download Fromat</a>
-                                 <div class="input-group">
-                                     <div class="custom-file">
-                                         <input type="file" class="custom-file-input" id="file" name="file">
-                                         <label class="custom-file-label" for="file">Choose file</label>
-                                     </div>
-                                 </div>
+                     <div class="form-group">
+                         <label for="file">File input</label>
+                         <a class="btn btn-inline btn-outline-success btn-sm float-right" href="<?php echo base_url();  ?>assets/file/format_excel_import/Format Import Excel_BCWA.xlsx" download>Download Fromat</a>
+                         <div class="input-group">
+                             <div class="custom-file">
+                                 <input type="file" class="custom-file-input" id="file" name="file">
+                                 <label class="custom-file-label" for="file">Choose file</label>
                              </div>
-
                          </div>
-                         <!-- /.card-body -->
+                     </div>
 
-                         <div class="card-footer">
-                             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                             <button type="submit" class="btn btn-primary">Simpan</button>
-                         </div>
-                     </form>
                  </div>
+                 <!-- /.card-body -->
+
+                 <div class="card-footer">
+                     <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                     <button type="submit" class="btn btn-primary">Simpan</button>
+                 </div>
+             </form>
+         </div>
+     </div>
+ </div>
+ <!-- //modal tambah import excel-->
+
+
+
+ <?php foreach ($kontak->result() as $row) : ?>
+
+     <!-- //modal Detail -->
+     <div class="modal fade" id="modal_detail<?php echo $row->id_kontak; ?>" role="dialog">
+         <div class="modal-dialog" role="dokumen">
+             <div class="modal-content card card-Primary">
+
+                 <div class="card-header">
+                     <h3 class="card-title">Detail Kontak</h3>
+                 </div>
+                 <!-- /.card-header -->
+
+                 <!-- form start -->
+                 <form action="" method="post">
+                     <div class="card-body">
+                         <div class="form-group">
+                             <label for="nama_kontak">Nama Kontak</label>
+                             <input type="text" value="<?php echo $row->nama_kontak; ?>" class="form-control" id="nama_kontak" name="nama_kontak" disabled>
+                         </div>
+                         <div class="form-group">
+                             <input type="text" value="<?php echo $row->id_kontak; ?>" class="form-control" id="id_kontak" name="id_kontak" hidden>
+                         </div>
+                         <div class="form-group">
+                             <label for="nomor_kontak">Nomor Kontak</label>
+                             <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" disabled>
+                         </div>
+                         <div class="form-group">
+                             <label>Keterangan </label>
+                             <select class="form-control" id="edit_keterangan" name="keterangan" disabled>
+                                 <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ?  'selected' : ''); ?>>Lainnya</option>
+                                 <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'selected' : ''); ?>>Mahasiswa</option>
+                                 <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'selected' : ''); ?>>Dosen</option>
+                                 <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'selected' : ''); ?>>Pegawai Polindra</option>
+                             </select>
+                         </div>
+                         <div class="form-group" name="kelas_tag" id="kelas_tag">
+                             <label for="kelas">Kelas</label>
+                             <?php if ($row->kelas == null) { ?>
+                                 <input type="text" value="<?php echo "-"; ?>" class="form-control" id="kelas" name="kelas" disabled>
+                             <?php } else { ?>
+                                 <input type="text" value="<?php echo $row->kelas; ?>" class="form-control" id="kelas" name="kelas" disabled>
+                             <?php } ?>
+                         </div>
+                         <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
+                             <label for="tahun_masuk">Tahun Masuk</label>
+                             <?php if ($row->tahun_masuk == null) { ?>
+                                 <input value="<?php echo "-"; ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" disabled>
+                             <?php } else { ?>
+                                 <input value="<?php echo $row->tahun_masuk  ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" disabled>
+                             <?php } ?>
+
+                         </div>
+
+                         <div class="form-group" id="jurusan_tags_edit">
+                             <label>Jurusan </label>
+                             <?php if ($row->jurusan == null) { ?>
+                                 <input value="<?php echo "-"; ?>" type="text" class="form-control" id="jurusan" name="jurusan" disabled>
+                             <?php  } else { ?>
+                                 <input value="<?php echo $row->jurusan; ?>" type="text" class="form-control" id="jurusan" name="jurusan" disabled>
+                             <?php  } ?>
+
+                         </div>
+                     </div>
+                     <!-- /.card-body -->
+
+                     <div class="card-footer">
+                         <button type="button" class="btn btn-danger" data-dismiss="modal">kembali</button>
+
+                     </div>
+                 </form>
              </div>
          </div>
-         <!-- //modal tambah import excel-->
+     </div>
+     <!-- end modal detail -->
 
+     <!-- //modal Edit -->
 
+     <div class="modal fade" id="modal_edit<?php echo $row->id_kontak; ?>" role="dialog">
+         <div class="modal-dialog" role="dokumen">
+             <div class="modal-content card card-success">
 
-         <?php foreach ($kontak->result() as $row) : ?>
-
-             <!-- //modal Detail -->
-             <div class="modal fade" id="modal_detail<?php echo $row->id_kontak; ?>" role="dialog">
-                 <div class="modal-dialog" role="dokumen">
-                     <div class="modal-content card card-Primary">
-
-                         <div class="card-header">
-                             <h3 class="card-title">Detail Kontak</h3>
-                         </div>
-                         <!-- /.card-header -->
-
-                         <!-- form start -->
-                         <form action="" method="post">
-                             <div class="card-body">
-                                 <div class="form-group">
-                                     <label for="nama_kontak">Nama Kontak</label>
-                                     <input type="text" value="<?php echo $row->nama_kontak; ?>" class="form-control" id="nama_kontak" name="nama_kontak" disabled>
-                                 </div>
-                                 <div class="form-group">
-                                     <input type="text" value="<?php echo $row->id_kontak; ?>" class="form-control" id="id_kontak" name="id_kontak" hidden>
-                                 </div>
-                                 <div class="form-group">
-                                     <label for="nomor_kontak">Nomor Kontak</label>
-                                     <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" disabled>
-                                 </div>
-                                 <div class="form-group">
-                                     <label>Keterangan </label>
-                                     <select class="form-control" id="edit_keterangan" name="keterangan" disabled>
-                                         <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ?  'selected' : ''); ?>>Lainnya</option>
-                                         <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'selected' : ''); ?>>Mahasiswa</option>
-                                         <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'selected' : ''); ?>>Dosen</option>
-                                         <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'selected' : ''); ?>>Pegawai Polindra</option>
-                                     </select>
-                                 </div>
-                                 <div class="form-group" name="kelas_tag" id="kelas_tag">
-                                     <label for="kelas">Kelas</label>
-                                     <?php if ($row->kelas == null) { ?>
-                                         <input type="text" value="<?php echo "-"; ?>" class="form-control" id="kelas" name="kelas" disabled>
-                                     <?php } else { ?>
-                                         <input type="text" value="<?php echo $row->kelas; ?>" class="form-control" id="kelas" name="kelas" disabled>
-                                     <?php } ?>
-                                 </div>
-                                 <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
-                                     <label for="tahun_masuk">Tahun Masuk</label>
-                                     <?php if ($row->tahun_masuk == null) { ?>
-                                         <input value="<?php echo "-"; ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" disabled>
-                                     <?php } else { ?>
-                                         <input value="<?php echo $row->tahun_masuk  ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" disabled>
-                                     <?php } ?>
-
-                                 </div>
-
-                                 <div class="form-group" id="jurusan_tags_edit">
-                                     <label>Jurusan </label>
-                                     <?php if ($row->jurusan == null) { ?>
-                                         <input value="<?php echo "-"; ?>" type="text" class="form-control" id="jurusan" name="jurusan" disabled>
-                                     <?php  } else { ?>
-                                         <input value="<?php echo $row->jurusan; ?>" type="text" class="form-control" id="jurusan" name="jurusan" disabled>
-                                     <?php  } ?>
-
-                                 </div>
-                             </div>
-                             <!-- /.card-body -->
-
-                             <div class="card-footer">
-                                 <button type="button" class="btn btn-danger" data-dismiss="modal">kembali</button>
-
-                             </div>
-                         </form>
-                     </div>
+                 <div class="card-header">
+                     <h3 class="card-title">Edit Kontak</h3>
                  </div>
-             </div>
-             <!-- end modal detail -->
+                 <!-- /.card-header -->
 
-             <!-- //modal Edit -->
-
-             <div class="modal fade" id="modal_edit<?php echo $row->id_kontak; ?>" role="dialog">
-                 <div class="modal-dialog" role="dokumen">
-                     <div class="modal-content card card-success">
-
-                         <div class="card-header">
-                             <h3 class="card-title">Edit Kontak</h3>
+                 <!-- form start -->
+                 <form action="<?php echo site_url('kontakwa/edit_kontak'); ?>" method="post">
+                     <div class="card-body">
+                         <div class="form-group">
+                             <label for="nama_kontak">Nama Kontak</label>
+                             <input type="text" value="<?php echo $row->nama_kontak; ?>" class="form-control" id="nama_kontak" name="nama_kontak" placeholder="Mauskan Nama Kontak WA">
                          </div>
-                         <!-- /.card-header -->
-
-                         <!-- form start -->
-                         <form action="<?php echo site_url('kontakwa/edit_kontak'); ?>" method="post">
-                             <div class="card-body">
-                                 <div class="form-group">
-                                     <label for="nama_kontak">Nama Kontak</label>
-                                     <input type="text" value="<?php echo $row->nama_kontak; ?>" class="form-control" id="nama_kontak" name="nama_kontak" placeholder="Mauskan Nama Kontak WA">
-                                 </div>
-                                 <div class="form-group">
-                                     <input type="text" value="<?php echo $row->id_kontak; ?>" class="form-control" id="id_kontak" name="id_kontak" hidden>
-                                 </div>
-                                 <div class="form-group">
-                                     <label for="nomor_kontak">Nomor Kontak</label>
-                                     <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
-                                 </div>
-                                 <div class="form-group">
-                                     <label>Keterangan </label>
-                                     <select class="form-control" id="edit_keterangan" name="keterangan">
-                                         <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ?  'selected' : ''); ?>>Lainnya</option>
-                                         <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'selected' : ''); ?>>Mahasiswa</option>
-                                         <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'selected' : ''); ?>>Dosen</option>
-                                         <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'selected' : ''); ?>>Pegawai Polindra</option>
-                                     </select>
-                                 </div>
-                                 <div class="form-group" name="kelas_tag" id="kelas_tag">
-                                     <label for="kelas">Kelas</label>
-                                     <input type="text" value="<?php echo $row->kelas; ?>" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas (Boleh Dikosongkan)">
-                                 </div>
-                                 <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
-                                     <label for="tahun_masuk">Tahun Masuk</label>
-                                     <input value="<?php echo $row->tahun_masuk;  ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk (Boleh Dikosongkan)">
-                                 </div>
-
-                                 <div class="form-group" id="jurusan_tags_edit">
-                                     <label>Jurusan </label>
-                                     <select class="form-control" id="jurusan" name="jurusan">
-                                         <option value="">Pilih Jurusan(Boleh Dikosongkan)</option>
-                                         <option value="Teknik Mesin">Teknik Mesin</option>
-                                         <option value="Teknik Pendigin">Teknik Pendigin</option>
-                                         <option value="Teknik Informatika">Teknik Informatika</option>
-                                         <option value="Keperawatan">Keperawatan</option>
-                                     </select>
-                                 </div>
-
-
-                             </div>
-                             <!-- /.card-body -->
-
-                             <div class="card-footer">
-                                 <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
-                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                             </div>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-             <!-- //End modal Edit -->
-
-
-             <!-- //modal hapus -->
-             <div class="modal fade" id="modal_hapus<?php echo $row->id_kontak; ?>" role="dialog">
-                 <div class="modal-dialog" role="dokumen">
-                     <div class="modal-content card card-danger">
-
-                         <div class="card-header">
-                             <h3 class="card-title">Hapus Kontak</h3>
+                         <div class="form-group">
+                             <input type="text" value="<?php echo $row->id_kontak; ?>" class="form-control" id="id_kontak" name="id_kontak" hidden>
                          </div>
-                         <!-- /.card-header -->
+                         <div class="form-group">
+                             <label for="nomor_kontak">Nomor Kontak</label>
+                             <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
+                         </div>
+                         <div class="form-group">
+                             <label>Keterangan </label>
+                             <select class="form-control" id="edit_keterangan" name="keterangan">
+                                 <option value="Lainnya" <?php echo ($row->keterangan == 'Lainnya' ?  'selected' : ''); ?>>Lainnya</option>
+                                 <option value="Mahasiswa" <?php echo ($row->keterangan == "Mahasiswa" ? 'selected' : ''); ?>>Mahasiswa</option>
+                                 <option value="Dosen" <?php echo ($row->keterangan ==  'Dosen' ? 'selected' : ''); ?>>Dosen</option>
+                                 <option value="Pegawai Polindra" <?php echo ($row->keterangan == 'Pegawai Polindra' ? 'selected' : ''); ?>>Pegawai Polindra</option>
+                             </select>
+                         </div>
+                         <div class="form-group" name="kelas_tag" id="kelas_tag">
+                             <label for="kelas">Kelas</label>
+                             <input type="text" value="<?php echo $row->kelas; ?>" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas (Boleh Dikosongkan)">
+                         </div>
+                         <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
+                             <label for="tahun_masuk">Tahun Masuk</label>
+                             <input value="<?php echo $row->tahun_masuk;  ?>" type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk (Boleh Dikosongkan)">
+                         </div>
 
-                         <!-- form start -->
-                         <form action="<?php echo site_url('kontakwa/hapus_kontak'); ?>" method="post">
-                             <div class="card-body">
-                                 <div class="form-group">
-                                     <p>Apakah Anda Yakin Ingin Menghapus Kontak WA <?php echo $row->nama_kontak  ?> ini ?</p>
-                                     <input type="hidden" value="<?php echo $row->id_kontak; ?>" name="id_kontak">
-                                 </div>
+                         <div class="form-group" id="jurusan_tags_edit">
+                             <label>Jurusan </label>
+                             <select class="form-control" id="jurusan" name="jurusan">
+                                 <option value="">Pilih Jurusan(Boleh Dikosongkan)</option>
+                                 <option value="Teknik Mesin">Teknik Mesin</option>
+                                 <option value="Teknik Pendigin">Teknik Pendigin</option>
+                                 <option value="Teknik Informatika">Teknik Informatika</option>
+                                 <option value="Keperawatan">Keperawatan</option>
+                             </select>
+                         </div>
 
-                             </div>
-                             <!-- /.card-body -->
 
-                             <div class="card-footer">
-                                 <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
-                                 <button type="submit" class="btn btn-danger">Ya</button>
-                             </div>
-                         </form>
                      </div>
-                 </div>
+                     <!-- /.card-body -->
+
+                     <div class="card-footer">
+                         <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                         <button type="submit" class="btn btn-primary">Simpan</button>
+                     </div>
+                 </form>
              </div>
-         <?php endforeach; ?>
-         <!-- //End modal hapus -->
-         <!-- /.card -->
-     </section>
+         </div>
+     </div>
+     <!-- //End modal Edit -->
+
+
+     <!-- //modal hapus -->
+     <div class="modal fade" id="modal_hapus<?php echo $row->id_kontak; ?>" role="dialog">
+         <div class="modal-dialog" role="dokumen">
+             <div class="modal-content card card-danger">
+
+                 <div class="card-header">
+                     <h3 class="card-title">Hapus Kontak</h3>
+                 </div>
+                 <!-- /.card-header -->
+
+                 <!-- form start -->
+                 <form action="<?php echo site_url('kontakwa/hapus_kontak'); ?>" method="post">
+                     <div class="card-body">
+                         <div class="form-group">
+                             <p>Apakah Anda Yakin Ingin Menghapus <?php echo $row->nama_kontak  ?> ini ?</p>
+                             <input type="hidden" value="<?php echo $row->id_kontak; ?>" name="id_kontak">
+                         </div>
+
+                     </div>
+                     <!-- /.card-body -->
+
+                     <div class="card-footer">
+                         <button type="button" class="btn btn-primary" data-dismiss="modal">Batal</button>
+                         <button type="submit" class="btn btn-danger">Ya</button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </div>
+
+
+ <?php endforeach; ?>
+ <!-- //End modal hapus -->
+ <!-- /.card -->
+ </section>
  </div>
 
 

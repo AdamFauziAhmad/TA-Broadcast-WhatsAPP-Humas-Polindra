@@ -60,7 +60,7 @@ class Admin extends CI_Controller
         );
 
 
-        // set tampilan yang akan muncul pada halaman kontak wa
+        // set tampilan yang akan muncul pada halaman admin 
         $this->load->view('template/header');
         $this->load->view('template/navbar');
         $this->load->view('template/sidebar');
@@ -71,63 +71,134 @@ class Admin extends CI_Controller
     //tambah admin
     public function tambah_admin()
     {
-        $nama = $this->input->post('nama_admin');
-        $username = $this->input->post('username');
-        $password = md5($this->input->post('password'));
-        //cek nilai row
-        $role_cek = $this->input->post('role');
+        //set form validation
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|is_unique[admin.username]', [
+            'is_unique' => '<b><i class="fa fa-exclamation-circle"></i> {field}</b> sudah digunakan'
+        ]);
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        //cek validasi
+        if ($this->form_validation->run() == true) {
+            $nama = $this->input->post('nama_admin');
+            $username = $this->input->post('username');
+            $password = md5($this->input->post('password'));
+            //cek nilai row
+            $role_cek = $this->input->post('role');
 
-        # code...
+            # code...
 
-        if ($role_cek != null || $role_cek != "") {
-            if ($role_cek == 1) {
-                $role = "superadmin";
+            if ($role_cek != null || $role_cek != "") {
+                if ($role_cek == 1) {
+                    $role = "superadmin";
+                } else {
+                    $role = "admin"; //kalau 2
+                }
             } else {
-                $role = "admin"; //kalau 2
+                $role = "admin";
             }
-        } else {
-            $role = "admin";
-        }
-        $data = array(
-            'id_admin' => uuid_v4(),
-            'nama_admin' => $nama,
-            'username' => $username,
-            'password' => $password,
-            'role' => $role
+            $data = array(
+                'id_admin' => uuid_v4(),
+                'nama_admin' => $nama,
+                'username' => $username,
+                'password' => $password,
+                'role' => $role
 
-        );
-        $this->m_admin->tambah_admin($data, 'admin');
-        redirect('admin');
+            );
+
+            $this->m_admin->tambah_admin($data, 'admin');
+            $this->session->set_flashdata('message', 'Ditambahkan');
+            redirect('admin');
+        } else {
+            $this->load->view('template/header');
+            $this->load->view('template/navbar');
+            $this->load->view('template/sidebar');
+            $this->load->view('user/V_tambah');
+            $this->load->view('template/footer');
+        }
     }
     //edit
     public function edit_admin()
     {
-        $nama = $this->input->post('nama_admin');
+        //set form validation
+        $this->form_validation->set_rules('username_edit', 'Username', 'trim|is_unique[admin.username]', [
+            'is_unique' => '<b><i class="fa fa-exclamation-circle"></i> {field}</b> sudah digunakan'
+        ]);
+        $this->form_validation->set_rules('new_password', 'New_password', 'trim|min_length[6]|max_length[15]|matches[password_confirm]', [
+            'matches' => '<b><i class="fa fa-exclamation-circle"></i> Password Baru dan Konfiramsi</b> Tidak sama'
+        ]);
+        $this->form_validation->set_rules('password_confirm', 'Password_confirm', 'trim|matches[new_password]');
+
         $id = $this->input->post('id_admin');
+        //cek validasi
+        if ($this->form_validation->run() == true) {
+            $nama = $this->input->post('nama_admin');
+            $username_awal = $this->input->post('username');
+            $new_password = $this->input->post('new_password');
 
-        //cek nilai row
-        $role_cek = $this->input->post('role');
-
-        # code...
-
-        if ($role_cek != null || $role_cek != "") {
-            if ($role_cek == 1) {
-                $role = "superadmin";
+            //cek nilai row
+            $role_cek = $this->input->post('role');
+            $username_cek = $this->input->post('username_edit');
+            if ($username_cek == null || $username_cek == "") {
+                $username = $username_awal;
             } else {
-                $role = "admin"; //kalau 2
+                $username = $username_cek;
             }
-        } else {
-            $role = "admin";
-        }
-        $data = array(
-            'nama_admin' => $nama,
-            // 'username' => $username,
-            // 'password' => $password,
-            'role' => $role
 
-        );
-        $this->m_admin->edit_admin($data, 'admin', $id);
-        redirect('admin');
+            # code...
+
+            if ($role_cek != null || $role_cek != "") {
+                if ($role_cek == 1) {
+                    $role = "superadmin";
+                } else {
+                    $role = "admin"; //kalau 2
+                }
+            } else {
+                $role = "admin";
+            }
+            $data = array(
+                'nama_admin' => $nama,
+                'username' => $username,
+                'password' => $new_password,
+                'role' => $role
+
+            );
+            $this->m_admin->edit_admin($data, 'admin', $id);
+            $this->session->set_flashdata('message', 'Diubah');
+            redirect('admin');
+        } else {
+            $admin = $this->m_admin->get_admin_by_id($id)->result();
+            $data['data'] = $admin;
+
+            // set tampilan yang akan muncul pada halaman admin 
+            $this->load->view('template/header');
+            $this->load->view('template/navbar');
+            $this->load->view('template/sidebar');
+            $this->load->view('user/V_edit', $data);
+            $this->load->view('template/footer');
+        }
+    }
+
+    public function form_tambah()
+    {
+
+        // set tampilan yang akan muncul pada halaman admin 
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
+        $this->load->view('user/V_tambah',);
+        $this->load->view('template/footer');
+    }
+    public function form_edit()
+    {
+        $id = $this->uri->segment('3');
+        $admin = $this->m_admin->get_admin_by_id($id)->result();
+        $data['data'] = $admin;
+
+        // set tampilan yang akan muncul pada halaman admin 
+        $this->load->view('template/header');
+        $this->load->view('template/navbar');
+        $this->load->view('template/sidebar');
+        $this->load->view('user/V_edit', $data);
+        $this->load->view('template/footer');
     }
     //hapus
     public function hapus_admin()
@@ -136,6 +207,7 @@ class Admin extends CI_Controller
 
 
         $this->m_admin->hapus_admin($id_admin, 'admin');
+        $this->session->set_flashdata('message', 'Dihapus');
 
         redirect('admin');
     }

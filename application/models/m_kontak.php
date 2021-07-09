@@ -5,10 +5,11 @@ class M_kontak extends CI_Model
 {
 
     //menampilkan data kontak dari database
-    function get_kontak()
+    function get_kontak($nomor_kontak)
     {
         // GET ALL kontak
         $this->db->select('*');
+        $this->db->where('nomor_kontak', $nomor_kontak);
         $this->db->order_by('nama_kontak', "asc");
         $query = $this->db->get('kontak');
         return $query;

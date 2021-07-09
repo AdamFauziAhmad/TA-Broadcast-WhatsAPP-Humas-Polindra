@@ -28,7 +28,10 @@
                          <div class="card-header">
 
 
-                             <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-outline-primary col-2">Tambah Data</button>
+                             <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-outline-primary col-2">Tambah Data</button> -->
+                             <form action="<?php echo base_url('admin/form_tambah')  ?>">
+                                 <button type="submit" class="btn btn-inline btn-outline-primary col-2">Tambah Data</button>
+                             </form>
 
 
                              <div class="card-tools">
@@ -55,7 +58,14 @@
                                      </div>
                                  </form>
                              </div>
-                             <?php echo $this->session->flashdata('message'); ?>
+                             <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('message'); ?>"></div>
+                             <!-- <?php if ($this->session->flashdata('flash') != null) { ?>
+                                 <div class="alert alert-danger alert-dismissible col-6" role="alert">
+                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                     Data Berhasil <b><?= $this->session->flashdata('flash'); ?></b>
+                                 </div>
+                             <?php } ?>
+                             <?php echo $this->session->flashdata('message'); ?> -->
                              <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $junlah_kontak ?></b></p>
                          </div>
 
@@ -89,6 +99,7 @@
 
                                              <td>
                                                  <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_admin; ?>">Edit</a>
+                                                 <a href="<?php echo base_url('admin/form_edit/') . $row->id_admin; ?> " class="btn btn-block bg-gradient-success btn-sm" style="display: inline;">Edit</a>
                                                  <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_admin; ?>">Delete</a>
                                              </td>
                                          </tr>
@@ -129,15 +140,15 @@
                              </div>
                              <div class="form-group">
                                  <label for="nama_kontak">Nama Admin</label>
-                                 <input type="text" class="form-control" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin">
+                                 <input type="text" class="form-control" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin" required>
                              </div>
                              <div class="form-group">
                                  <label for="username">Username</label>
-                                 <input type="text" class="form-control" id="username" name="username" placeholder="Mauskan Username">
+                                 <input type="text" class="form-control" id="username" name="username" placeholder="Mauskan Username" required>
                              </div>
                              <div class="form-group">
                                  <label for="password">Password</label>
-                                 <input type="password" class="form-control" id="password" name="password" placeholder="Mauskan Password">
+                                 <input type="password" class="form-control" id="password" name="password" placeholder="Mauskan Password" required>
                              </div>
 
 
@@ -271,14 +282,61 @@
  <!-- /.content -->
 
  <!-- /.content-wrapper -->
+ <!-- SweetAlert2 -->
+ <script src="<?php echo base_url(); ?>assets/template/plugins/sweetalert2/sweetalert2.min.js"></script>
 
  <!-- /.content-wrapper -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 
  <script>
+     document.addEventListener("DOMContentLoaded", function() {
+
+         var elements = document.getElementsByTagName("input");
+         for (var i = 0; i < elements.length; i++) {
+             elements[i].oninvalid = function(e) {
+                 e.target.setCustomValidity("");
+                 if (!e.target.validity.valid) {
+                     e.target.setCustomValidity("Mohon isi kolom tersebut");
+                 }
+             };
+             elements[i].oninput = function(e) {
+                 e.target.setCustomValidity("");
+             };
+         }
+     })
+     //  $(document).ready(function() {
+
+     //      $(function() {
+
+     //          $('#addNewModal').submit(function(event) {
+     //              event.preventDefault();
+     //              var custemail = $('#username').val();
+     //              var custname = $('#password').val();
+
+     //              $.ajax({
+     //                  type: 'POST',
+     //                  url: "<?php echo site_url('admin/get_admin'); ?>",
+     //                  data: {
+     //                      username: custname,
+     //                      password: custemail
+
+     //                  },
+     //                  dataType: 'html',
+     //                  success: function(results) {
+     //                      if (results != null || results != "") {
+     //                          $('.error_msg').html('error msg');
+     //                          return false;
+     //                      }
+     //                  }
+     //              });
+
+
+     //          });
+
+     //      });
 
 
 
-
+     //  })
  </script>

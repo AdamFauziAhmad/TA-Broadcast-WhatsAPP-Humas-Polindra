@@ -2,6 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require_once APPPATH . 'third_party/spout-master/src/Spout/Autoloader/autoload.php';
 
+use Box\Spout\Common\Entity\Row;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class Kontakwa extends CI_Controller
@@ -109,7 +110,7 @@ class Kontakwa extends CI_Controller
             //menjalankan operasi tambah pada model
             $this->m_kontak->tambah_kontak($data, 'kontak');
         }
-
+        $this->session->set_flashdata('message', 'Ditambahkan');
         redirect('kontakwa');
     }
 
@@ -145,7 +146,7 @@ class Kontakwa extends CI_Controller
             'keterangan' => $keterangan
         );
         $this->m_kontak->edit_kontak($data, 'kontak', $id_kontak);
-
+        $this->session->set_flashdata('message', 'Diubah');
         redirect('kontakwa');
     }
 
@@ -154,9 +155,8 @@ class Kontakwa extends CI_Controller
     {
         // $id_kontak = $this->input->post('id_kontak');
         $id_kontak = $this->input->post('id_kontak');
-
-
         $this->m_kontak->hapus_kontak($id_kontak, 'kontak');
+        $this->session->set_flashdata('message', 'Dihapus');
 
         redirect('kontakwa');
     }
@@ -174,6 +174,7 @@ class Kontakwa extends CI_Controller
 
         $this->load->library('upload', $config); //meload librari upload
 
+
         if ($this->upload->do_upload('file')) {
             $file = $this->upload->data();
             $reader = ReaderEntityFactory::createXLSXReader();
@@ -182,16 +183,20 @@ class Kontakwa extends CI_Controller
             foreach ($reader->getSheetIterator() as $sheet) {
                 $numrow = 11;
                 foreach ($sheet->getRowIterator() as $row) {
+
+
                     // cek kondisi memulai pengambilan data pada baris 3
                     if ($numrow > 11) {
+
                         //seleksi nomor agar menjadi 628xxxx
                         $kontak_hp = $row->getCellAtIndex(2);
-                        if (substr(trim($kontak_hp), 0, 1) == '0') {
+                        $regex = "/-/";
+                        if (substr(trim($kontak_hp), 0, 1) == '0' || preg_match_all($regex, trim($kontak_hp)) > 0) {
                             $pengganti = "62";
                             $start = 0;
                             $length = 1;
                             $nomor_kontak = substr_replace($kontak_hp, $pengganti, $start, $length);
-                        } else if (substr(trim($kontak_hp), 0, 1) == '+') {
+                        } else if (substr(trim($kontak_hp), 0, 1) == '+' || preg_match_all($regex, trim($kontak_hp)) > 0) {
                             $nomor_kontak = preg_replace("/[^0-9]/", "", $kontak_hp);
                         } else {
                             $nomor_kontak = $kontak_hp;
@@ -199,11 +204,15 @@ class Kontakwa extends CI_Controller
                         $cek_nomer = preg_replace("/[^0-9]/", "", $nomor_kontak);
                         if ($cek_nomer == null || $cek_nomer == "") {
                         } else {
+
+                            // echo $nomor_kontak;
+
                             $cek = $this->m_kontak->get_kontak($nomor_kontak)->num_rows();
-                            // echo $cek;
+                            // echo '<br>' . $cek;
+                            // die;
                             // die();
-                            if ($cek > 0) {
-                            } else {
+                            if ($cek == 0) {
+
                                 $keterangan = strtolower($row->getCellAtIndex(3));
                                 // if ( substr(trim($row->getCellAtIndex(5)), 4, 1) == '/[^0-9]/') {
                                 //     $kelas =  substr_replace($row->getCellAtIndex(5), "", 4, 1);
@@ -222,8 +231,10 @@ class Kontakwa extends CI_Controller
                                 );
 
 
+
                                 //jalan operasi database 
                                 $this->m_kontak->tambah_kontak($data, 'kontak');
+                            } else {
                             }
                         }
                     }
@@ -236,7 +247,8 @@ class Kontakwa extends CI_Controller
             echo "Eror :" . $this->upload->display_errors();
         };
 
-        unlink('assets/file/' . $file['file_name']);
+        // unlink('assets/file/' . $file['file_name']);
+        $this->session->set_flashdata('message', 'Ditambahkan');
         redirect('kontakwa');
     }
     public function download_format_excel()

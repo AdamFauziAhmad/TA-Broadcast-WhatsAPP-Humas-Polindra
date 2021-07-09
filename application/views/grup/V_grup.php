@@ -134,7 +134,7 @@
                          <div class="card-body">
                              <div class="form-group">
                                  <label for="nama_grup">Nama Kontak</label>
-                                 <input type="text" class="form-control col-6" id="nama_grup" name="nama_grup" placeholder="Mauskan Nama Grup">
+                                 <input type="text" class="form-control col-6" id="nama_grup" name="nama_grup" placeholder="Mauskan Nama Grup" required>
                              </div>
                              <div class="form-group">
                                  <label for="keterangan">Keterangan</label>
@@ -162,7 +162,7 @@
                                          </tr>
                                      </thead> -->
 
-                                     <tbody id="demo" name="demo">
+                                     <!-- <tbody id="demo" name="demo">
 
 
                                          <tr>
@@ -171,7 +171,7 @@
 
 
                                          </tr>
-                                     </tbody>
+                                     </tbody> -->
 
                                  </table>
                                  <!-- <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas"> -->
@@ -274,7 +274,7 @@
                      <div class="modal-content card card-danger">
 
                          <div class="card-header">
-                             <h3 class="card-title">Hapus Kontak</h3>
+                             <h3 class="card-title">Hapus Grup</h3>
                          </div>
                          <!-- /.card-header -->
 
