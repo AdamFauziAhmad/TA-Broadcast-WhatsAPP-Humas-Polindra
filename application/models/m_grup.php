@@ -71,13 +71,11 @@ class M_grup extends CI_Model
     }
 
     // UPDATE
-    function update_grup($id, $grup, $kontak)
+    function update_grup($id, $data, $kontak)
     {
         $this->db->trans_start();
         //UPDATE TO PACKAGE
-        $data  = array(
-            'nama_grup' => $grup
-        );
+
         $this->db->where('id', $id);
         $this->db->update('grup', $data);
 
@@ -87,6 +85,7 @@ class M_grup extends CI_Model
         $result = array();
         foreach ($kontak as $key => $val) {
             $result[] = array(
+                'id_detail' => uuid_v4(),
                 'id_detail_grup'   => $id,
                 'id_detail_kontak'   => $_POST['kontak_edit'][$key]
             );

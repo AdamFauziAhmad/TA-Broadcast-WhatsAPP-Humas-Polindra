@@ -9,7 +9,7 @@
                  </div>
                  <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
-                         <li class="breadcrumb-item"><a href="#">Home</a></li>
+                         <li class="breadcrumb-item"><a href="<?= base_url('welcome');  ?>">Dashboard</a></li>
                          <li class="breadcrumb-item active">Data Admin</li>
 
                      </ol>
@@ -98,7 +98,7 @@
                                              <td><?php echo $row->last_login; ?></td>
 
                                              <td>
-                                                 <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_admin; ?>">Edit</a>
+                                                 <!-- <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_admin; ?>">Edit</a> -->
                                                  <a href="<?php echo base_url('admin/form_edit/') . $row->id_admin; ?> " class="btn btn-block bg-gradient-success btn-sm" style="display: inline;">Edit</a>
                                                  <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_admin; ?>">Delete</a>
                                              </td>
@@ -283,7 +283,7 @@
 
  <!-- /.content-wrapper -->
  <!-- SweetAlert2 -->
- <script src="<?php echo base_url(); ?>assets/template/plugins/sweetalert2/sweetalert2.min.js"></script>
+ <!-- <script src="<?php echo base_url(); ?>assets/template/plugins/sweetalert2/sweetalert2.min.js"></script> -->
 
  <!-- /.content-wrapper -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

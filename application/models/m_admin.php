@@ -3,7 +3,14 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class M_admin extends CI_Model
 {
-
+    function get_admin($id_admin = null)
+    {
+        // GET ALL kontak
+        $this->db->select('*');
+        $this->db->where('id_admin', $id_admin);
+        $query = $this->db->get('admin');
+        return $query;
+    }
 
 
 

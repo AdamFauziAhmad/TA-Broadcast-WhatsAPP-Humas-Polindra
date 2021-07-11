@@ -45,11 +45,31 @@
 <script src="<?php echo base_url(); ?>assets/template/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url(); ?>assets/template/dist/js/demo.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/apl.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?php echo base_url(); ?>assets/template/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- js custom alert-->
+<script src="<?php echo base_url(); ?>assets/js/apl.js"></script>
+
+
+
 <!-- Page specific script -->
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        var elements = document.getElementsByTagName("input");
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].oninvalid = function(e) {
+                e.target.setCustomValidity("");
+                if (!e.target.validity.valid) {
+                    e.target.setCustomValidity("Mohon isi kolom tersebut");
+                }
+            };
+            elements[i].oninput = function(e) {
+                e.target.setCustomValidity("");
+            };
+        }
+    })
+
     function checkall(box) {
         let Checkboxes = document.getElementsByTagName('input');
         if (box.checked) {

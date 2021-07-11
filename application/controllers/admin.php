@@ -78,9 +78,9 @@ class Admin extends CI_Controller
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         //cek validasi
         if ($this->form_validation->run() == true) {
-            $nama = $this->input->post('nama_admin');
-            $username = $this->input->post('username');
-            $password = md5($this->input->post('password'));
+            $nama = $this->input->post('nama_admin', true);
+            $username = $this->input->post('username', true);
+            $password = md5($this->input->post('password', true));
             //cek nilai row
             $role_cek = $this->input->post('role');
 
@@ -123,7 +123,8 @@ class Admin extends CI_Controller
             'is_unique' => '<b><i class="fa fa-exclamation-circle"></i> {field}</b> sudah digunakan'
         ]);
         $this->form_validation->set_rules('new_password', 'New_password', 'trim|min_length[6]|max_length[15]|matches[password_confirm]', [
-            'matches' => '<b><i class="fa fa-exclamation-circle"></i> Password Baru dan Konfiramsi</b> Tidak sama'
+            'matches' => '<b><i class="fa fa-exclamation-circle"></i> Password Baru dan Konfiramsi</b> Tidak sama',
+            'min_lengt' => '<b><i class="fa fa-exclamation-circle"></i>minimal Password karakter 6</b>'
         ]);
         $this->form_validation->set_rules('password_confirm', 'Password_confirm', 'trim|matches[new_password]');
 
@@ -131,22 +132,34 @@ class Admin extends CI_Controller
         //cek validasi
         if ($this->form_validation->run() == true) {
             $nama = $this->input->post('nama_admin');
-            $username_awal = $this->input->post('username');
-            $new_password = $this->input->post('new_password');
+            $username_awal = $this->input->post('username', true);
+            $new_password = md5($this->input->post('new_password', true));
 
             //cek nilai row
             $role_cek = $this->input->post('role');
-            $username_cek = $this->input->post('username_edit');
+
+            $username_cek =  $this->input->post('username_edit', true);
+            //memnetukan userbame
             if ($username_cek == null || $username_cek == "") {
                 $username = $username_awal;
             } else {
                 $username = $username_cek;
             }
 
-            # code...
+            //cek password
+            if ($new_password == null || $new_password == md5("")) {
+                $get_password_now = $this->m_admin->get_admin($id)->result();
+                foreach ($get_password_now as $row) {
+                    $password_now = $row->password;
+                    $password = $password_now;
+                }
+            } else {
+                $password = $new_password;
+            }
+            //memnetukan role
 
             if ($role_cek != null || $role_cek != "") {
-                if ($role_cek == 1) {
+                if ($role_cek == "1") {
                     $role = "superadmin";
                 } else {
                     $role = "admin"; //kalau 2
@@ -157,13 +170,25 @@ class Admin extends CI_Controller
             $data = array(
                 'nama_admin' => $nama,
                 'username' => $username,
-                'password' => $new_password,
+                'password' =>  $password,
                 'role' => $role
 
             );
             $this->m_admin->edit_admin($data, 'admin', $id);
-            $this->session->set_flashdata('message', 'Diubah');
-            redirect('admin');
+            $session_now = $this->session->userdata('id_admin');
+            $id = $id;
+            if ($session_now == $id) {
+                if ($username != $username_awal || $password != $password_now) {
+                    $this->session->sess_destroy();
+                    redirect(base_url('login'));
+                } else {
+                    $this->session->set_flashdata('message', 'Diubah');
+                    redirect('admin');
+                }
+            } else {
+                $this->session->set_flashdata('message', 'Diubah');
+                redirect('admin');
+            }
         } else {
             $admin = $this->m_admin->get_admin_by_id($id)->result();
             $data['data'] = $admin;

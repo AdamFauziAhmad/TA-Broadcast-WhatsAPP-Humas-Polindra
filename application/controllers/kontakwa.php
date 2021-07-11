@@ -109,8 +109,11 @@ class Kontakwa extends CI_Controller
             );
             //menjalankan operasi tambah pada model
             $this->m_kontak->tambah_kontak($data, 'kontak');
+            $this->session->set_flashdata('message', 'Ditambahkan');
+        } else {
+
+            $this->session->set_flashdata('message', 'Sudah Ada');
         }
-        $this->session->set_flashdata('message', 'Ditambahkan');
         redirect('kontakwa');
     }
 
@@ -214,6 +217,11 @@ class Kontakwa extends CI_Controller
                             if ($cek == 0) {
 
                                 $keterangan = strtolower($row->getCellAtIndex(3));
+                                if ($keterangan == null || $keterangan == "" || $keterangan == 'lainya') {
+                                    $ket = "lainnya";
+                                } else {
+                                    $ket = $keterangan;
+                                }
                                 // if ( substr(trim($row->getCellAtIndex(5)), 4, 1) == '/[^0-9]/') {
                                 //     $kelas =  substr_replace($row->getCellAtIndex(5), "", 4, 1);
                                 // }
@@ -224,7 +232,7 @@ class Kontakwa extends CI_Controller
                                     'id_kontak' => uuid_v4(),
                                     'nama_kontak' => $row->getCellAtIndex(1),
                                     'nomor_kontak' => $nomor_kontak,
-                                    'keterangan' => ucwords($keterangan),
+                                    'keterangan' => ucwords($ket),
                                     'tahun_masuk' => $row->getCellAtIndex(4),
                                     'kelas' => strtoupper($row->getCellAtIndex(5)),
                                     'jurusan' => ucwords($jurusan)

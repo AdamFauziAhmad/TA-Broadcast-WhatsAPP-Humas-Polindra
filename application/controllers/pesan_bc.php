@@ -69,10 +69,10 @@ class Pesan_bc extends CI_Controller
             $this->load->view('template/footer');
         } else {
             if ($jenis == 1) {
-                $this->session->set_flashdata('message', ' <div class="alert alert-danger" role="alert" style="padding-top: -30px; padding-bottom: -30px; margin-top: 10px; margin-bottom: 10px;">pilih kontak untuk membuat pesan !</div>');
+                $this->session->set_flashdata('bc', '<div class="alert alert-danger alert-dismissible" role="alert" style="padding-top: -30px; padding-bottom: -30px; margin-top: 10px; margin-bottom: 10px;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><b><i class="fa fa-exclamation-circle"></i></b> pilih kontak untuk membuat pesan !</div>');
                 redirect('kontakwa');
             } else {
-                $this->session->set_flashdata('message', ' <div class="alert alert-danger" role="alert" style="padding-top: -30px; padding-bottom: -30px; margin-top: 10px; margin-bottom: 10px;">pilih grup untuk membuat pesan !</div>');
+                $this->session->set_flashdata('bc', ' <div class="alert alert-danger alert-dismissible"  role="alert" style="padding-top: -30px; padding-bottom: -30px; margin-top: 10px; margin-bottom: 10px;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><b><i class="fa fa-exclamation-circle"></i></b> pilih grup untuk membuat pesan !</div>');
                 redirect('grup');
             }
         }
@@ -158,7 +158,7 @@ class Pesan_bc extends CI_Controller
             fwrite($myfile, $txt);
             $txt = "Send, ^v\n";
             fwrite($myfile, $txt);
-            $txt = "Sleep," . mt_rand(1000, 10000) . "\n";
+            $txt = "Sleep, 7000\n";
             // fwrite($myfile, $txt);
             // $txt = "string =\n(\n" . $pesan_isi . "\n)\n";
             foreach ($PecahStr as $jml => $psn) {

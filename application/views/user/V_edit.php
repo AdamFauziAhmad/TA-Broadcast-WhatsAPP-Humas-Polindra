@@ -14,7 +14,7 @@
                  </div>
                  <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
-                         <li class="breadcrumb-item"><a href="#">Home</a></li>
+                         <li class="breadcrumb-item"><a href="<?= base_url('welcome');  ?>">Dashboard</a></li>
                          <?php if ($this->session->userdata('role') == 'admin') { ?>
                              <li class="breadcrumb-item active">Ganti Password</li>
                          <?php } else { ?>
@@ -53,6 +53,14 @@
                                          </div>
 
                                          <?php if ($this->session->userdata('role') == 'admin') { ?>
+                                             <div class="form-group" hidden>
+                                                 <label for="nama_admin">Nama Admin</label>
+                                                 <input type="text" value="<?php echo $row->nama_admin; ?>" class="form-control col-6" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin">
+                                             </div>
+                                             <div class="form-group" hidden>
+                                                 <label for="username">Username</label>
+                                                 <input type="text" value="<?php echo $row->username; ?>" class="form-control col-6" id="username" name="username">
+                                             </div>
                                              <div class="form-group">
                                                  <label for="username">Password Baru</label>
                                                  <input type="password" value="" class="form-control col-6" id="new_password" name="new_password" placeholder="Mauskan password baru" required>
@@ -69,11 +77,9 @@
                                                  <input type="text" value="<?php echo $row->nama_admin; ?>" class="form-control col-6" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin" required>
                                              </div>
 
-
-
                                              <div class="form-group">
                                                  <label>role </label>
-                                                 <select class="form-control col-6" id="edit_keterangan" name="keterangan">
+                                                 <select class="form-control col-6" id="role" name="role">
                                                      <option value="1" <?php echo ($row->role == 'superadmin' ?  'selected' : ''); ?>>Superadmin</option>
                                                      <option value="2" <?php echo ($row->role == 'admin' ? 'selected' : ''); ?>>Admin</option>
 

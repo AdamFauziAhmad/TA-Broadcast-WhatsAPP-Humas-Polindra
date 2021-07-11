@@ -9,7 +9,7 @@
                  </div>
                  <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
-                         <li class="breadcrumb-item"><a href="#">Home</a></li>
+                         <li class="breadcrumb-item"><a href="<?= base_url('welcome');  ?>">Dashboard</a></li>
                          <li class="breadcrumb-item active">Data Kontak</li>
                      </ol>
                  </div>
@@ -58,21 +58,14 @@
                              </div>
                              <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $jumlah_grup ?></b></p>
 
-                             <!-- <div class="card-tools">
-                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                                     <div class="input-group-append">
-                                         <button type="submit" class="btn btn-default">
-                                             <i class="fas fa-search"></i>
-                                         </button>
-                                     </div>
-                                 </div>
-                             </div> -->
-                             <?php echo $this->session->flashdata('message'); ?>
+
+                             <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('message'); ?>"></div>
+
                          </div>
                          <!-- /.card-header -->
                          <div class="card-body table-responsive p-0" style="height: 300px;">
+                             <?php echo $this->session->flashdata('bc'); ?>
                              <form id="kontak-checkbox" action="<?php echo site_url('pesan_bc'); ?>" method="post">
                                  <table class="table table-head-fixed text-nowrap">
                                      <thead>
@@ -125,7 +118,7 @@
                  <div class="modal-content card card-primary">
 
                      <div class="card-header">
-                         <h3 class="card-title">Tambah Kontak</h3>
+                         <h3 class="card-title">Tambah Grup</h3>
                      </div>
                      <!-- /.card-header -->
 
@@ -133,7 +126,7 @@
                      <form action="<?php echo site_url('grup/tambah_grup'); ?>" method="post">
                          <div class="card-body">
                              <div class="form-group">
-                                 <label for="nama_grup">Nama Kontak</label>
+                                 <label for="nama_grup">Nama Grup</label>
                                  <input type="text" class="form-control col-6" id="nama_grup" name="nama_grup" placeholder="Mauskan Nama Grup" required>
                              </div>
                              <div class="form-group">

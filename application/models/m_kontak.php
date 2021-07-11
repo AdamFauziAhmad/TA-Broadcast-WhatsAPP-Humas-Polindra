@@ -3,11 +3,21 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class M_kontak extends CI_Model
 {
+    // get all kontak
 
-    //menampilkan data kontak dari database
-    function get_kontak($nomor_kontak)
+    function get_kontak_all()
     {
         // GET ALL kontak
+        $this->db->select('*');
+        $this->db->order_by('nama_kontak', "asc");
+        $query = $this->db->get('kontak');
+        return $query;
+    }
+
+    //menampilkan data kontak dari database berdasarkan param
+    function get_kontak($nomor_kontak = null)
+    {
+
         $this->db->select('*');
         $this->db->where('nomor_kontak', $nomor_kontak);
         $this->db->order_by('nama_kontak', "asc");

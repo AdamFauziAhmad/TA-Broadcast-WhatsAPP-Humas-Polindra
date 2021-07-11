@@ -9,7 +9,7 @@
                  </div>
                  <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
-                         <li class="breadcrumb-item"><a href="#">Home</a></li>
+                         <li class="breadcrumb-item"><a href="<?= base_url('welcome');  ?>">Dashboard</a></li>
                          <li class="breadcrumb-item active">Pesan Broadcast</li>
                      </ol>
                  </div>
@@ -52,7 +52,7 @@
                                  </div>
                                  <div class="form-group">
                                      <label for="pesan">Pesan</label>
-                                     <textarea class="form-control col-7" rows="5" id="keterangan" name="pesan" placeholder="Masukan Pesan Anda ..."></textarea>
+                                     <textarea class="form-control col-7" rows="5" id="keterangan" name="pesan" placeholder="Masukan Pesan Anda ..." required></textarea>
                                  </div>
                                  <div class="card-body table-responsive p-0 col-6" style="height: 300px;">
                                      <table class="table table-head-fixed text-nowrap">
