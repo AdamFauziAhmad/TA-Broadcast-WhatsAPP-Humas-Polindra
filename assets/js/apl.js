@@ -5,7 +5,7 @@ if(flashdata){
     swal.fire({
         tittle : 'Data' ,
         text : 'Berhasil '+ flashdata,
-        icon :'warning',
+        icon :'success',
         showConfirmButton: false,
         timer: 1500
     });

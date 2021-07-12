@@ -31,7 +31,7 @@
                              <a href="#" form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;">Buat Pesan Broadcast</a> -->
 
 
-                             <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                             <button type="button" class="btn btn-primary btn-inline dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                  Tambah Data
                              </button>
                              <div class="dropdown-menu" role="menu">

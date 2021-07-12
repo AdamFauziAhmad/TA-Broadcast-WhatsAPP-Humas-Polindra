@@ -38,6 +38,8 @@ class History extends CI_Controller
     public function index()
     {
         $table_search = urldecode($this->input->get('table_search', true));
+        // $filter = urldecode($this->input->get('date', true));
+
 
         // set data yang akan dikirim ke view
         $riwayat = $this->m_history->get_filtered_history($table_search);
@@ -52,6 +54,7 @@ class History extends CI_Controller
         $data = array(
             'riwayat' => $riwayat,
             'table_search' => $table_search,
+            // 'filter' => $filter,
             'junlah_kontak' => $jumlah
         );
 

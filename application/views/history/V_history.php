@@ -26,29 +26,40 @@
                      <div class="card">
                          <div class="card-header">
 
+                             <!-- Date -->
+                             <!-- <form action="<?php //echo site_url('history'); 
+                                                ?>" method="get">
 
-                             <!-- <a href="#" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#addNewModal">Tambah Data</a>
-                             <a href="#" form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;">Buat Pesan Broadcast</a> -->
 
+                                 <div class="input-group  input-group-sm" style="width: 200px; margin-top: 5px;">
+                                     <input type="date" name="date" value="<?php // $tlg = date('d/m/Y', strtotime($filter));
+                                                                            // echo $tlg;  
+                                                                            ?>" class="form-control float-left" placeholder="tanggal">
 
-                             <!-- <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                 Tambah Data
-                             </button> -->
-                             <!-- <div class="dropdown-menu" role="menu">
-                                 <a data-toggle="modal" data-target="#addNewModal" class="btn btn-block btn-outline-primary btn-sm" href="#">Tambah Kontak</a>
-                                 <div class="dropdown-divider"></div>
-                                 <a data-toggle="modal" data-target="#addImport" class="btn btn-block btn-outline-success btn-sm" href="#">Import Kontak</a>
-                             </div> -->
+                                     <div class="input-group-append">
+                                         <?php
 
-                             <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button> -->
-                             <!-- <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-2">Buat Pesan Broadcast</button> -->
+                                            // if ($tlg <> '') {
+                                            ?>
+                                             <a href="<?php //echo site_url('history'); 
+                                                        ?>" class="btn btn-default">X</a>
+                                         <?php //} 
+                                            ?>
+                                         <button type="submit" class="btn btn-default">
+                                             <i class="far fa-calendar-alt"></i>
+                                         </button>
 
+                                     </div>
+
+                                 </div>
+                             </form> -->
 
                              <div class="card-tools">
-                                 <form action="<?php echo site_url('history'); ?>" method="get">
-                                     <div class="input-group input-group-sm" style="width: 150px; margin-top: 5px;">
 
-                                         <input type="text" name="table_search" value="" class="form-control float-right" placeholder="Search">
+                                 <form action="<?php echo site_url('history'); ?>" method="get">
+                                     <div class="input-group  input-group-sm" style="width: 150px; margin-top: 5px;">
+
+                                         <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right" placeholder="Search">
 
                                          <div class="input-group-append">
                                              <?php
@@ -66,6 +77,7 @@
                                  </form>
                              </div>
                              <?php echo $this->session->flashdata('message'); ?>
+
                              <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $junlah_kontak ?></b></p>
                          </div>
                          <!-- /.card-header -->
@@ -126,6 +138,7 @@
 
      </section>
  </div>
+
 
 
  <!-- /.content -->
