@@ -41,7 +41,7 @@
                              <!-- /.card-header -->
                              <div class="card-body">
                                  <blockquote>
-                                     <p> Selamat datang <?php echo $this->session->userdata('nama_admin'); ?>, Semoga Anda Sehat selalu</br>Ini Adalah <b>Website Generator Script Whatsapp Broadcast Untuk Humas Polindra</b></br>Website Ini Digunakan Untuk Mengatur kontak Whatsapp dan Generate Pesan Broadcast Whatsapp dengan Script AHK(AutoHotKey). </br>Silahkan kelola website ini dengan baik. <a href="<?php echo base_url();  ?>assets/file/userguide/User Guide Aplikasi.docx" download>Download user guide disini</a> </p>
+                                     <p> Selamat datang <?php echo $this->session->userdata('nama_admin'); ?>, Semoga Anda Sehat selalu</br>Ini Adalah <b>Website Generator Script Whatsapp Broadcast Untuk Humas Polindra</b></br>Website Ini Digunakan Untuk Mengatur kontak Whatsapp dan Generate Pesan Broadcast Whatsapp dengan Script AHK(AutoHotKey). </br>Silahkan kelola website ini dengan baik. <a href="<?php echo base_url();  ?>assets/file/userguide/User Guide Aplikasi.docx" download>Download user guide disini</a>.</br> Jika belum menginstall AHK anda bisa download di : <a href="<?php echo base_url();  ?>assets/file/support/AutoHotkey_1.1.33.06_setup.exe" download>Download AHK.exe</a> </p>
 
                                  </blockquote>
                              </div>

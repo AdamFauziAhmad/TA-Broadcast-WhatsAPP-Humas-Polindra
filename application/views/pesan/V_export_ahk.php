@@ -30,7 +30,7 @@
                          </div>
 
                          <div class="card-body">
-                             <p> Silahkan tekan tombol export untuk mendownload file ahk yang berisi Pesan Broadcast ! </p>
+                             <p> Silahkan tekan tombol export untuk mendownload file ahk yang berisi Pesan Broadcast !</br> Jika belum menginstall AHK anda bisa download di :<a href="<?php echo base_url();  ?>assets/file/support/AutoHotkey_1.1.33.06_setup.exe" download>Download AHK.exe</a> </p>
                              <form id="buat-pesan" action="<?php echo site_url('pesan_bc/download_AHK'); ?>" method="post" hidden>
                                  <div class="form-group">
                                      <label for="nama_file">Nama File</label>
