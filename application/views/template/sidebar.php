@@ -14,8 +14,8 @@
                 <!-- <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
-                <a href="#" class="d-block"> <i class="nav-icon fas fa-user"></i> <?php echo ucwords($this->session->userdata('nama_admin')); ?> <?php //echo ucwords($this->session->userdata('role')); 
-                                                                                                                                                    ?>
+                <a class="d-block"> <i class="nav-icon fas fa-user"></i> <?php echo ucwords($this->session->userdata('nama_admin')); ?> <?php //echo ucwords($this->session->userdata('role'));                                                                                                                   
+                                                                                                                                        ?>
 
             </div>
         </div>

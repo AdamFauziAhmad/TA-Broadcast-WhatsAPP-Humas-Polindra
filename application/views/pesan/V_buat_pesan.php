@@ -94,7 +94,9 @@
                              <?php } else { ?>
                                  <a href="<?php echo base_url('grup')  ?>" class="btn btn-block bg-gradient-danger col-6" style="display: inline; ">kembali</a>
                              <?php  } ?>
-                             <button form="buat-pesan" type="submit" class="btn btn-primary col-1">Simpan</button>
+
+                             <button form="buat-pesan" type="submit" class="btn btn-primary col-lg-1 col-3 col-sm-3  ">Simpan</button>
+
                          </div>
 
                      </div>

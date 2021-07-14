@@ -30,7 +30,7 @@
 
                              <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-outline-primary col-2">Tambah Data</button> -->
                              <form action="<?php echo base_url('admin/form_tambah')  ?>">
-                                 <button type="submit" class="btn btn-inline btn-outline-primary col-2">Tambah Data</button>
+                                 <button type="submit" class="btn btn-inline btn-outline-primary col-lg-2 col-6 col-sm-3">Tambah Data</button>
                              </form>
 
 

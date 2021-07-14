@@ -42,7 +42,7 @@
 
 
                              <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button> -->
-                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-2">Buat Pesan Broadcast</button>
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-lg-2 col-6 col-sm-3">Buat Pesan Broadcast</button>
 
 
                              <div class="card-tools">

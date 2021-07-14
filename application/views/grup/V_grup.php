@@ -28,9 +28,9 @@
 
                              <!-- <a href="#" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#addNewModal">Tambah Data</a>
                              <a href="#" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#newBCWA">Buat Pesan Broadcast</a> -->
-                             <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-outline-primary col-2">Tambah Data</button>
+                             <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-outline-primary col-lg-2 col-4 col-sm-3">Tambah Data</button>
                              <!-- <button form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline; margin-bottom: 5px;">Buat Pesan Broadcast</button> -->
-                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-2">Buat Pesan Broadcast</button>
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-lg-2 col-5 col-sm-3">Buat Pesan Broadcast</button>
 
                              <div class="card-tools">
                                  <form action="<?php echo site_url('grup'); ?>" method="get">

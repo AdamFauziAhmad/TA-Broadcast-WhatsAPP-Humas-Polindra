@@ -96,7 +96,7 @@ $db['default'] = array(
 );
 // $db['default'] = array(
 // 	'dsn'	=> '',
-// 	'hostname' => 'generatebcwa.mymovement.online',
+// 	'hostname' => 'localhost',
 // 	'username' => 'mymove_generatewabc',
 // 	'password' => 'generatewabc',
 // 	'database' => 'mymove_generate_wabc',
