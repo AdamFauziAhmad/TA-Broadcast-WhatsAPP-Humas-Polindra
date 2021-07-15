@@ -44,6 +44,8 @@ class Kontakwa extends CI_Controller
 
     public function index()
     {
+        $jenis = $this->uri->segment('3');
+
         $table_search = urldecode($this->input->get('table_search', true));
 
         // set data yang akan dikirim ke view
@@ -59,7 +61,8 @@ class Kontakwa extends CI_Controller
         $data = array(
             'kontak' => $kontak,
             'table_search' => $table_search,
-            'junlah_kontak' => $jumlah
+            'junlah_kontak' => $jumlah,
+            'jenis' => $jenis
         );
 
 

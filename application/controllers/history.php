@@ -66,4 +66,16 @@ class History extends CI_Controller
         $this->load->view('history/V_history', $data);
         $this->load->view('template/footer');
     }
+    public function export_pdf()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $history = $this->m_history->get_data_all();
+        $data_history = array(
+            "history" => $history
+        );
+        $nama_file = "Laporan riwayat BCWA.pdf";
+        $data = $this->load->view('history/V_pdf_export', $data_history, true);
+        $mpdf->WriteHTML($data);
+        $mpdf->Output($nama_file, 'I');
+    }
 }

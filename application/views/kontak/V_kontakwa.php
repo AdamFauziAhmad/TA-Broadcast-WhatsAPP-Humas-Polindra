@@ -30,19 +30,19 @@
                              <!-- <a href="#" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#addNewModal">Tambah Data</a>
                              <a href="#" form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;">Buat Pesan Broadcast</a> -->
 
-
-                             <button type="button" class="btn btn-primary btn-inline dropdown-toggle dropdown-icon" data-toggle="dropdown">
-                                 Tambah Data
-                             </button>
-                             <div class="dropdown-menu" role="menu">
-                                 <a data-toggle="modal" data-target="#addNewModal" class="btn btn-block btn-outline-primary btn-sm" href="#">Tambah Kontak</a>
-                                 <div class="dropdown-divider"></div>
-                                 <a data-toggle="modal" data-target="#addImport" class="btn btn-block btn-outline-success btn-sm" href="#">Import Kontak</a>
-                             </div>
-
-
+                             <?php if ($jenis != null || $jenis != "") {
+                                } else { ?>
+                                 <button type="button" class="btn btn-primary btn-inline dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                                     Tambah Data
+                                 </button>
+                                 <div class="dropdown-menu" role="menu">
+                                     <a data-toggle="modal" data-target="#addNewModal" class="btn btn-block btn-outline-primary btn-sm" href="#">Tambah Kontak</a>
+                                     <div class="dropdown-divider"></div>
+                                     <a data-toggle="modal" data-target="#addImport" class="btn btn-block btn-outline-success btn-sm" href="#">Import Kontak</a>
+                                 </div>
+                             <?php  } ?>
                              <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button> -->
-                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-lg-2 col-6 col-sm-3">Buat Pesan Broadcast</button>
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-secondary col-lg-2 col-6 col-sm-3">Broadcast WA <i class="fas fa-comment-dots"></i></button>
 
 
                              <div class="card-tools">
@@ -91,7 +91,10 @@
                                              <!-- <th>Kelas</th>
                                              <th>Tahun Masuk</th> -->
                                              <th>keterngan</th>
-                                             <th>#</th>
+                                             <?php if ($jenis != null || $jenis != "") { ?>
+                                             <?php } else { ?>
+                                                 <th>#</th>
+                                             <?php } ?>
                                          </tr>
                                      </thead>
                                      <tbody>
@@ -112,10 +115,12 @@
                                                         ?></td> -->
                                                  <td><?php echo $row->keterangan; ?></td>
                                                  <td>
-
-                                                     <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>
-                                                     <a href="#" class="btn btn-block bg-gradient-primary btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_kontak; ?>">Detail</a>
-                                                     <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_kontak; ?>">Delete</a>
+                                                     <?php if ($jenis != null || $jenis != "") {
+                                                        } else { ?>
+                                                         <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>
+                                                         <a href="#" class="btn btn-block bg-gradient-primary btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_detail<?php echo $row->id_kontak; ?>">Detail</a>
+                                                         <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_kontak; ?>">Delete</a>
+                                                     <?php } ?>
                                                  </td>
                                              </tr>
                                          <?php endforeach; ?>

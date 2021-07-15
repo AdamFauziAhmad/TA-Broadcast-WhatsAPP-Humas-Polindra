@@ -8,6 +8,13 @@ class M_history extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+    function get_data_all()
+    {
+
+        $this->db->select("*");
+
+        return $this->db->get('history');
+    }
 
     function get_filtered_history($q = NULL)
     {

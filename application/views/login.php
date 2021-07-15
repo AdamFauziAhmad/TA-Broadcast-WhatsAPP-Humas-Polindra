@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Generate Web AHK Polindra | Hummas)</title>
+    <title>Generate Web AHK Polindra | Humas)</title>
     <link rel="shortcut icon" href="<?= base_url();  ?>assets/img/Logo.png">
 
     <!-- Google Font: Source Sans Pro -->
@@ -27,7 +27,7 @@
         <!-- /.login-logo -->
         <div class="card card-outline card-primary" style="opacity: 0.87;">
             <div class="card-header text-center">
-                <a href="<?php echo base_url(); ?>assets/template/index2.html" class="h1"><b>Generate Script AHK</b><br /><b>Broadcast WA</b></br />HUMMAS POLINDRA</a>
+                <a href="<?php echo base_url(); ?>assets/template/index2.html" class="h1"><b>Broadcast Whasapp</b></br />HUMAS POLINDRA</a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>

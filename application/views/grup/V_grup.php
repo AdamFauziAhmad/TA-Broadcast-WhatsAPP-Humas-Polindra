@@ -28,9 +28,12 @@
 
                              <!-- <a href="#" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#addNewModal">Tambah Data</a>
                              <a href="#" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#newBCWA">Buat Pesan Broadcast</a> -->
-                             <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-outline-primary col-lg-2 col-4 col-sm-3">Tambah Data</button>
+                             <?php if ($jenis != null || $jenis != "") {
+                                } else { ?>
+                                 <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-primary col-lg-2 col-4 col-sm-3">Tambah Data</button>
+                             <?php  } ?>
                              <!-- <button form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline; margin-bottom: 5px;">Buat Pesan Broadcast</button> -->
-                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-outline-secondary col-lg-2 col-5 col-sm-3">Buat Pesan Broadcast</button>
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-secondary col-lg-2 col-5 col-sm-3">Broadcast WA <i class="fas fa-comment-dots"></i></button>
 
                              <div class="card-tools">
                                  <form action="<?php echo site_url('grup'); ?>" method="get">
@@ -74,7 +77,10 @@
                                              <th colspan="2">Nama Grup</th>
                                              <th>Dekskripsi Grup</th>
                                              <th>Jumlah Anggota</th>
-                                             <th>#</th>
+                                             <?php if ($jenis != null || $jenis != "") {
+                                                } else { ?>
+                                                 <th>#</th>
+                                             <?php  } ?>
                                          </tr>
                                      </thead>
                                      <tbody>
@@ -91,9 +97,12 @@
                                                  <td><?php echo $row->keterangan; ?></td>
                                                  <td><?php echo $row->item_grup; ?></td>
                                                  <td>
-                                                     <a href="#" class="btn btn-block bg-gradient-success btn-sm edit_grup" style="display: inline;" data-id="<?php echo $row->id; ?>" data-keterangan="<?php echo $row->keterangan; ?>" data-nama_grup=" <?php echo $row->nama_grup; ?>">Edit</a>
-                                                     <a href="<?php echo base_url('grup/detail_grup/') . $row->id; ?> " class="btn btn-block bg-gradient-info btn-sm" style="display: inline;">Detail</a>
-                                                     <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id ?>">Delete</a>
+                                                     <?php if ($jenis != null || $jenis != "") {
+                                                        } else { ?>
+                                                         <a href="#" class="btn btn-block bg-gradient-success btn-sm edit_grup" style="display: inline;" data-id="<?php echo $row->id; ?>" data-keterangan="<?php echo $row->keterangan; ?>" data-nama_grup=" <?php echo $row->nama_grup; ?>">Edit</a>
+                                                         <a href="<?php echo base_url('grup/detail_grup/') . $row->id; ?> " class="btn btn-block bg-gradient-info btn-sm" style="display: inline;">Detail</a>
+                                                         <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id ?>">Delete</a>
+                                                     <?php  } ?>
                                                  </td>
                                              </tr>
                                          <?php endforeach; ?>

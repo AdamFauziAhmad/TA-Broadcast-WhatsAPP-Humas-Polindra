@@ -4,12 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WA Broadcast | Hummas POLINDRA</title>
+    <title>WA Broadcast | Humas POLINDRA</title>
     <link rel="shortcut icon" href="<?= base_url();  ?>assets/img/Logo.png">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/template/plugins/fontawesome-free/css/all.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/template/plugins/daterangepicker/daterangepicker.css">
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/template/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Select2 -->

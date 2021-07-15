@@ -20,36 +20,59 @@
      <section class="content">
 
          <!-- Default box -->
+
          <div class="card">
              <div class="card-header">
-                 <h3 class="card-title">Dashboard</h3>
+                 <h3 class="card-title"></h3>
 
                  <div class="card-tools">
                      <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                          <i class="fas fa-minus"></i>
                      </button>
-                     <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                         <i class="fas fa-times"></i>
-                     </button>
                  </div>
              </div>
              <div class="card-body">
-
                  <div class="row justify-content-center">
-                     <div class="col-md-12">
+                     <div class="col-lg-4 col-4 col-sm-12">
+                         <!-- small box -->
+                         <div class="small-box bg-secondary">
+                             <div class="inner">
+                                 <h2><b>Broadcast Pesan</b></h2>
+
+                             </div>
+                             <div class="icon">
+                                 <i class="fas fa-comment-dots"></i>
+                             </div>
+                             <a type="button" class="small-box-footer dropdown-toggle dropdown-icon " data-toggle="dropdown">
+                                 Pilih untuk membuat pesan
+                             </a>
+                             <div class="dropdown-menu col-12" role="menu">
+                                 <a data-target="#addNewModal" class="btn btn-block btn-outline-primary btn-sm" href="<?php echo base_url('kontakwa/index/') . "1" ?>"><i class="fas fa-comment-dots"></i> Broadcast Kontak</a>
+                                 <div class="dropdown-divider"></div>
+                                 <a data-target="#addImport" class="btn btn-block btn-outline-success btn-sm" href="<?php echo base_url('grup/index/') . "2" ?>"><i class="fas fa-comment-dots"></i> Broadcast Grup</a>
+                             </div>
+                         </div>
+                     </div>
+
+
+                     <div class="row  justify-content-center">
                          <div class="card">
                              <!-- /.card-header -->
                              <div class="card-body">
                                  <blockquote>
-                                     <p> Selamat datang <?php echo $this->session->userdata('nama_admin'); ?>, Semoga Anda Sehat selalu</br>Ini Adalah <b>Website Generator Script Whatsapp Broadcast Untuk Humas Polindra</b></br>Website Ini Digunakan Untuk Mengatur kontak Whatsapp dan Generate Pesan Broadcast Whatsapp dengan Script AHK(AutoHotKey). </br>Silahkan kelola website ini dengan baik. <a href="<?php echo base_url();  ?>assets/file/userguide/User Guide Aplikasi.docx" download>Download user guide disini</a>.</br> Jika belum menginstall AHK anda bisa download di : <a href="<?php echo base_url();  ?>assets/file/support/AutoHotkey_1.1.33.06_setup.exe" download>Download AHK.exe</a> </p>
+                                     <p> Selamat datang <?php echo $this->session->userdata('nama_admin'); ?>, Semoga Anda Sehat selalu</br>Ini Adalah <b>Website Generator Script Whatsapp Broadcast Untuk Humas Polindra</b></br>Website Ini Digunakan Untuk Mengatur kontak Whatsapp dan Generate Pesan Broadcast Whatsapp dengan Script AHK(AutoHotKey). </br>Silahkan kelola website ini dengan baik. <a href="<?php echo base_url();  ?>assets/file/userguide/User Guide Aplikasi.docx">Download user bla guide disini</a>.</br> Jika belum menginstall AHK anda bisa download di : <a href="<?php echo base_url();  ?>assets/file/support/AutoHotkey_1.1.33.06_setup.exe" download>Download AHK.exe</a> </p>
 
                                  </blockquote>
                              </div>
                              <!-- /.card-body -->
                          </div>
                          <!-- /.card -->
+
+
                      </div>
-                     <div class="col-lg-6 col-6 col-sm-12">
+
+
+                     <div class="col-lg-4 col-4 col-sm-12">
                          <!-- small box -->
                          <div class="small-box bg-info">
                              <div class="inner">
@@ -64,7 +87,7 @@
                          </div>
                      </div>
                      <!-- ./col -->
-                     <div class="col-lg-6 col-6 col-sm-12">
+                     <div class="col-lg-4 col-4 col-sm-12">
                          <!-- small box -->
                          <div class="small-box bg-success">
                              <div class="inner">
@@ -79,7 +102,7 @@
                          </div>
                      </div>
                      <!-- ./col -->
-                     <div class="col-lg-6 col-6 col-sm-12">
+                     <div class="col-lg-4 col-4 col-sm-12">
                          <!-- small box -->
                          <div class="small-box bg-warning">
                              <div class="inner">
@@ -98,12 +121,12 @@
                      <!-- ./col -->
                  </div>
                  <!-- /.row -->
-             </div>
-             <!-- /.card-body -->
 
-             <!-- /.card-footer-->
-         </div>
-         <!-- /.card -->
+                 <!-- /.card-body -->
+
+                 <!-- /.card-footer-->
+             </div>
+             <!-- /.card -->
 
 
      </section>

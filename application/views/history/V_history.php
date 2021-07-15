@@ -26,33 +26,8 @@
                      <div class="card">
                          <div class="card-header">
 
-                             <!-- Date -->
-                             <!-- <form action="<?php //echo site_url('history'); 
-                                                ?>" method="get">
+                             <a href="<?= base_url('history/export_pdf'); ?>" class="btn btn-inline bg-gradient-danger"><i class="fas fa-file-download"></i> PDF</a>
 
-
-                                 <div class="input-group  input-group-sm" style="width: 200px; margin-top: 5px;">
-                                     <input type="date" name="date" value="<?php // $tlg = date('d/m/Y', strtotime($filter));
-                                                                            // echo $tlg;  
-                                                                            ?>" class="form-control float-left" placeholder="tanggal">
-
-                                     <div class="input-group-append">
-                                         <?php
-
-                                            // if ($tlg <> '') {
-                                            ?>
-                                             <a href="<?php //echo site_url('history'); 
-                                                        ?>" class="btn btn-default">X</a>
-                                         <?php //} 
-                                            ?>
-                                         <button type="submit" class="btn btn-default">
-                                             <i class="far fa-calendar-alt"></i>
-                                         </button>
-
-                                     </div>
-
-                                 </div>
-                             </form> -->
 
                              <div class="card-tools">
 
@@ -76,68 +51,129 @@
                                      </div>
                                  </form>
                              </div>
-                             <?php echo $this->session->flashdata('message'); ?>
+
+                             <div class="input-group col-3" style="display: inline-flex;" hidden>
+                                 <div class="input-group-prepend">
+                                     <span class="input-group-text">
+                                         <i class="far fa-calendar-alt"></i>
+                                     </span>
+                                 </div>
+                                 <input type="text" class="form-control float-right" id="reservation">
+                             </div>
 
                              <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $junlah_kontak ?></b></p>
                          </div>
                          <!-- /.card-header -->
                          <!-- tampilan tabel Kontak -->
-                         <div class="card-body table-responsive p-0" style="height: 300px;">
-                             <!-- <form id="kontak-checkbox" action="<?php //echo site_url('pesan_bc'); 
-                                                                        ?>" method="post"> -->
-                             <table class="table table-head-fixed text-nowrap">
-                                 <thead>
+
+
+
+                         <!-- /.input group -->
+
+                         <table class="table table-head-fixed text-nowrap">
+                             <thead>
+                                 <tr>
+                                     <th>#</th>
+                                     <th>Nama File</th>
+                                     <th>Keterangan</th>
+
+                                     <th>Tanggal Download</th>
+                                     <th>#</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <?php
+                                    $count = 0;
+                                    foreach ($riwayat->result() as $row) :
+                                        $count++;
+                                        $tanggal = date('d/m/Y', strtotime($row->waktu));
+                                    ?>
                                      <tr>
-                                         <th>#</th>
-                                         <th>Nama File</th>
-                                         <th>Keterangan</th>
-                                         <!-- <th>Kelas</th>
-                                             <th>Tahun Masuk</th> -->
-                                         <th>Tanggal Download</th>
-                                         <th>#</th>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                     <?php
-                                        $count = 0;
-                                        foreach ($riwayat->result() as $row) :
-                                            $count++;
-                                            $tanggal = date('d/m/Y', strtotime($row->waktu));
-                                        ?>
-                                         <tr>
-                                             <td> <?php echo $count; ?> </td>
-                                             <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
-                                             <td><?php echo $row->nama_file; ?></td>
-                                             <td><?php echo $row->keterangan; ?></td>
-                                             <td><?php echo $tanggal; ?></td>
-                                             <!-- <td>
+                                         <td> <?php echo $count; ?> </td>
+                                         <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
+                                         <td><?php echo $row->nama_file; ?></td>
+                                         <td><?php echo $row->keterangan; ?></td>
+                                         <td><?php echo $tanggal; ?></td>
+                                         <!-- <td>
                                                      <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>
                                                      <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_kontak; ?>">Delete</a>
                                                  </td> -->
-                                         </tr>
-                                     <?php endforeach; ?>
+                                     </tr>
+                                 <?php endforeach; ?>
 
-                                 </tbody>
+                             </tbody>
 
-                             </table>
-                             <!-- </form> -->
+                         </table>
+                         <!-- </form> -->
 
-                         </div>
-                         <!-- end tampilan tabel Kontak -->
-                         <!-- /.card-body -->
                      </div>
-                     <!-- /.card -->
+                     <!-- end tampilan tabel Kontak -->
+                     <!-- /.card-body -->
                  </div>
+                 <!-- /.card -->
              </div>
-
-             <!-- /.col -->
          </div>
-         <!-- /.row -->
 
-
-
-     </section>
+         <!-- /.col -->
  </div>
+ <!-- /.row -->
+
+
+
+ </section>
+ </div>
+ <!-- jQuery -->
+ <script src="<?= base_url(); ?>assets/template/plugins/jquery/jquery.min.js"></script>
+ <!-- Bootstrap 4 -->
+ <script src="<?= base_url(); ?>assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <!-- date-range-picker -->
+ <script src="<?= base_url(); ?>assets/template/plugins/daterangepicker/daterangepicker.js"></script>
+ <!-- AdminLTE App -->
+ <script src="<?= base_url(); ?>assets/template/dist/js/adminlte.min.js"></script>
+ <!-- AdminLTE for demo purposes -->
+ <script src="<?= base_url(); ?>assets/template/dist/js/demo.js"></script>
+ <script>
+     $(function() {
+         //Initialize Select2 Elements
+         $('.select2').select2()
+
+         //Initialize Select2 Elements
+         $('.select2bs4').select2({
+             theme: 'bootstrap4'
+         })
+
+         //Datemask dd/mm/yyyy
+         $('#datemask').inputmask('dd/mm/yyyy', {
+             'placeholder': 'dd/mm/yyyy'
+         })
+         //Datemask2 mm/dd/yyyy
+         $('#datemask2').inputmask('mm/dd/yyyy', {
+             'placeholder': 'mm/dd/yyyy'
+         })
+         //Money Euro
+         $('[data-mask]').inputmask()
+
+         //Date range picker
+         $('#reservationdate').datetimepicker({
+             format: 'L'
+         });
+         //Date range picker
+         $('#reservation').daterangepicker()
+         //Date range picker with time picker
+         $('#reservationtime').daterangepicker({
+             timePicker: true,
+             timePickerIncrement: 30,
+             locale: {
+                 format: 'MM/DD/YYYY hh:mm A'
+             }
+         })
+
+
+     })
+     // BS-Stepper Init
+
+     // DropzoneJS Demo Code End
+ </script>
 
 
 
