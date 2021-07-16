@@ -42,9 +42,9 @@
                                  </div>
                              <?php  } ?>
                              <!-- <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-block bg-gradient-primary" style="width: 20%; display: inline;">Tambah Data</button> -->
-                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-secondary col-lg-2 col-6 col-sm-3">Broadcast WA <i class="fas fa-comment-dots"></i></button>
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-secondary col-lg-2 col-6 col-xl-2 col-sm-3">Broadcast WA <i class="fas fa-comment-dots"></i></button>
 
-
+                             <button type="button" name="delete_all" id="delete_all_kontak" class="btn btn-inline btn-danger col-lg-2 col-6 col-xl-2 col-sm-3">Hapus Beberapa<i class="fas fa-trash-dots"></i></button>
                              <div class="card-tools">
                                  <form action="<?php echo site_url('kontakwa'); ?>" method="get">
                                      <div class="input-group input-group-sm" style="width: 150px; margin-top: 5px;">
@@ -107,7 +107,7 @@
                                                  <td> <?php echo $count; ?> </td>
                                                  <td style="width: 2px;"><input name="id_kontak[]" value="<?php echo $row->id_kontak ?>" type="checkbox"> </td>
                                                  <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
-                                                 <td><?php echo $row->nama_kontak; ?></td>
+                                                 <td><?php echo ucwords($row->nama_kontak); ?></td>
                                                  <td><?php echo $row->nomor_kontak; ?></td>
                                                  <!-- <td><?php //echo $row->kelas 
                                                             ?></td>
@@ -167,7 +167,8 @@
                              <div class="form-group">
                                  <label>Keterangan </label>
                                  <select class="form-control" id="keterangan" name="keterangan">
-                                     <option value="Lainnya" selected>Lainnya</option>
+                                     <option>Pilih Keterangan (default "Lainnya")</option>
+                                     <option value="Lainnya">Lainnya</option>
                                      <option value="Mahasiswa">Mahasiswa</option>
                                      <option value="Dosen">Dosen</option>
                                      <option value="Pegawai Polindra">Pegawai Polindra</option>

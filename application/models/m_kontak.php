@@ -76,4 +76,11 @@ class M_kontak extends CI_Model
         $this->db->where('id_kontak', $data);
         $this->db->delete($table);
     }
+    function hapus_batch($data, $table)
+    {
+        foreach ($data as $row) {
+            $this->db->where('id_kontak', $row);
+            $this->db->delete($table);
+        }
+    }
 }

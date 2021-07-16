@@ -92,7 +92,7 @@
                                         ?>
                                          <tr>
                                              <td> <?php echo $count; ?> </td>
-                                             <td><?php echo $row->nama_admin; ?></td>
+                                             <td><?php echo ucwords($row->nama_admin); ?></td>
                                              <td><?php echo $row->username; ?></td>
                                              <td><?php echo $row->role; ?></td>
                                              <td><?php echo $row->last_login; ?></td>

@@ -80,6 +80,66 @@
             }
         }
     }
+
+
+    // $('#btn_delete').click(function() {
+    //     if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+    //         var id = [];
+
+    //         $(':checkbox:checked').each(function(i) {
+    //             id[i] = $(this).val();
+    //         });
+
+    //         if (id.length === 0) {
+    //             alert("Pilih minimal satu data");
+    //         } else {
+    //             $.ajax({
+    //                 url: 'delete.php',
+    //                 method: 'POST',
+    //                 data: {
+    //                     id: id
+    //                 },
+    //                 success: function() {
+    //                     for (var i = 0; i < id.length; i++) {
+    //                         $('tr#' + id[i] + '').fadeOut('slow');
+    //                     }
+    //                 }
+    //             });
+    //         }
+    //     } else {
+    //         return false;
+    //     }
+    // });
+    $('#delete_all_kontak').click(function() {
+        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+            var id = [];
+
+            $(':checkbox:checked').each(function(i) {
+                id[i] = $(this).val();
+            });
+
+
+            if (id.length === 0) {
+                alert("Pilih minimal satu data");
+            } else {
+                $.ajax({
+                    url: "<?php echo site_url('kontakwa/detele_all'); ?>",
+                    method: 'POST',
+                    data: {
+                        id: id
+                    },
+                    success: function() {
+                        for (var i = 0; i < id.length; i++) {
+                            $('tr#' + id[i] + '').fadeOut('slow');
+                            location.reload(true);
+                        }
+                    }
+                });
+            }
+        } else {
+            return false;
+        }
+    });
     $('#addNewModal').on('hidden.bs.modal', function(e) {
         $(this)
             .find("input,textarea,select")

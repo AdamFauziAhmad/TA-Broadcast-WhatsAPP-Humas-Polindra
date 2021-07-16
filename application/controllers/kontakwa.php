@@ -74,7 +74,7 @@ class Kontakwa extends CI_Controller
         $this->load->view('template/footer');
     }
 
-    //tamabah data
+    //tambah data
     function tambah_kontak()
     {
         //menangkap data dari form
@@ -83,8 +83,14 @@ class Kontakwa extends CI_Controller
         $tahun_masuk = $this->input->post('tahun_masuk');
         $nohp = $this->input->post('nomor_kontak');
         $kelas = $this->input->post('kelas');
-        $keterangan = $this->input->post('keterangan');
+        $ket = $this->input->post('keterangan');
         $jurusan = $this->input->post('jurusan');
+
+        if ($ket == null || $ket == "") {
+            $keterangan = "Lainnya";
+        } else {
+            $keterangan = $ket;
+        }
         // membuat format nomor telepon jadi 628xxxxx
         if (substr(trim($nohp), 0, 1) == '0') {
             $pengganti = "62";
@@ -265,5 +271,10 @@ class Kontakwa extends CI_Controller
     public function download_format_excel()
     {
         force_download('assets/file/format_excel_import/Fromat Import Excel_BCWA.xlsx', null);
+    }
+    public function detele_all()
+    {
+        $id = $this->input->post('id');
+        $this->m_kontak->hapus_batch($id, 'kontak');
     }
 }

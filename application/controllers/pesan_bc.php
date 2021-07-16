@@ -122,7 +122,7 @@ class Pesan_bc extends CI_Controller
 
         $nama_file = $nama_file;
         date_default_timezone_set("ASIA/JAKARTA");
-        $tanggal = date('Y-m-d-H-i-s');
+        $tanggal = date('d-m-Y H:i:s');
         $file = "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";
         $data = array(
             'id_history' => uuid_v4(),

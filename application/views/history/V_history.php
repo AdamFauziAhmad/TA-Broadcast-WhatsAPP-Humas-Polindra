@@ -69,54 +69,55 @@
 
 
                          <!-- /.input group -->
-
-                         <table class="table table-head-fixed text-nowrap">
-                             <thead>
-                                 <tr>
-                                     <th>#</th>
-                                     <th>Nama File</th>
-                                     <th>Keterangan</th>
-
-                                     <th>Tanggal Download</th>
-                                     <th>#</th>
-                                 </tr>
-                             </thead>
-                             <tbody>
-                                 <?php
-                                    $count = 0;
-                                    foreach ($riwayat->result() as $row) :
-                                        $count++;
-                                        $tanggal = date('d/m/Y', strtotime($row->waktu));
-                                    ?>
+                         <div class="card-body table-responsive p-0" style="height: 300px;">
+                             <table class="table table-head-fixed text-nowrap">
+                                 <thead>
                                      <tr>
-                                         <td> <?php echo $count; ?> </td>
-                                         <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
-                                         <td><?php echo $row->nama_file; ?></td>
-                                         <td><?php echo $row->keterangan; ?></td>
-                                         <td><?php echo $tanggal; ?></td>
-                                         <!-- <td>
+                                         <th>#</th>
+                                         <th>Nama File</th>
+                                         <th>Keterangan</th>
+
+                                         <th>Tanggal Download</th>
+                                         <th>#</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <?php
+                                        $count = 0;
+                                        foreach ($riwayat->result() as $row) :
+                                            $count++;
+                                            $tanggal = date('d/m/Y', strtotime($row->waktu));
+                                        ?>
+                                         <tr>
+                                             <td> <?php echo $count; ?> </td>
+                                             <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
+                                             <td><?php echo $row->nama_file; ?></td>
+                                             <td><?php echo $row->keterangan; ?></td>
+                                             <td><?php echo $tanggal; ?></td>
+                                             <!-- <td>
                                                      <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>
                                                      <a href="#" class="btn btn-block bg-gradient-danger btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_hapus<?php echo $row->id_kontak; ?>">Delete</a>
                                                  </td> -->
-                                     </tr>
-                                 <?php endforeach; ?>
+                                         </tr>
+                                     <?php endforeach; ?>
 
-                             </tbody>
+                                 </tbody>
 
-                         </table>
-                         <!-- </form> -->
+                             </table>
+                             <!-- </form> -->
 
+                         </div>
+                         <!-- end tampilan tabel Kontak -->
+                         <!-- /.card-body -->
                      </div>
-                     <!-- end tampilan tabel Kontak -->
-                     <!-- /.card-body -->
+                     <!-- /.card -->
                  </div>
-                 <!-- /.card -->
              </div>
-         </div>
 
-         <!-- /.col -->
+             <!-- /.col -->
+         </div>
+         <!-- /.row -->
  </div>
- <!-- /.row -->
 
 
 

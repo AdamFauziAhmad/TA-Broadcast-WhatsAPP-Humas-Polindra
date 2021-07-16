@@ -33,7 +33,7 @@
              </div>
              <div class="card-body">
                  <div class="row justify-content-center">
-                     <div class="col-lg-4 col-4 col-sm-12">
+                     <div class="col-lg-4 col-12 col-sm-12">
                          <!-- small box -->
                          <div class="small-box bg-secondary">
                              <div class="inner">
@@ -72,7 +72,7 @@
                      </div>
 
 
-                     <div class="col-lg-4 col-4 col-sm-12">
+                     <div class="col-lg-4 col-12 col-sm-12">
                          <!-- small box -->
                          <div class="small-box bg-info">
                              <div class="inner">
@@ -87,7 +87,7 @@
                          </div>
                      </div>
                      <!-- ./col -->
-                     <div class="col-lg-4 col-4 col-sm-12">
+                     <div class="col-lg-4 col-12 col-sm-12">
                          <!-- small box -->
                          <div class="small-box bg-success">
                              <div class="inner">
@@ -102,7 +102,7 @@
                          </div>
                      </div>
                      <!-- ./col -->
-                     <div class="col-lg-4 col-4 col-sm-12">
+                     <div class="col-lg-4 col-12 col-sm-12">
                          <!-- small box -->
                          <div class="small-box bg-warning">
                              <div class="inner">

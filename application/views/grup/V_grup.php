@@ -5,12 +5,12 @@
          <div class="container-fluid">
              <div class="row mb-2">
                  <div class="col-sm-6">
-                     <h1>Data Kontak</h1>
+                     <h1>Data Grup</h1>
                  </div>
                  <div class="col-sm-6">
                      <ol class="breadcrumb float-sm-right">
                          <li class="breadcrumb-item"><a href="<?= base_url('welcome');  ?>">Dashboard</a></li>
-                         <li class="breadcrumb-item active">Data Kontak</li>
+                         <li class="breadcrumb-item active">Data Grup</li>
                      </ol>
                  </div>
              </div>
@@ -30,10 +30,10 @@
                              <a href="#" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline;" data-toggle="modal" data-target="#newBCWA">Buat Pesan Broadcast</a> -->
                              <?php if ($jenis != null || $jenis != "") {
                                 } else { ?>
-                                 <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-primary col-lg-2 col-4 col-sm-3">Tambah Data</button>
+                                 <button data-toggle="modal" data-target="#addNewModal" type="button" class="btn btn-inline btn-primary col-lg-2 col-5 col-xl-2 col-sm-3">Tambah Data</button>
                              <?php  } ?>
                              <!-- <button form="kontak-checkbox" type="submit" class="btn btn-block bg-gradient-secondary" style="width: 20%; display: inline; margin-bottom: 5px;">Buat Pesan Broadcast</button> -->
-                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-secondary col-lg-2 col-5 col-sm-3">Broadcast WA <i class="fas fa-comment-dots"></i></button>
+                             <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-secondary col-lg-2 col-xl-2 col-6 col-sm-3">Broadcast WA <i class="fas fa-comment-dots"></i></button>
 
                              <div class="card-tools">
                                  <form action="<?php echo site_url('grup'); ?>" method="get">
@@ -254,7 +254,7 @@
 
                          <div class="card-footer">
 
-                             <button type="reset" class="btn btn-danger" data-dismiss="modal">Batal</button>
+                             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
                              <button type="submit" class="btn btn-primary">Simpan</button>
                          </div>
                      </form>
