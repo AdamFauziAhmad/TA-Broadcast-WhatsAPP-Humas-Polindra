@@ -76,7 +76,6 @@
                                          <th>#</th>
                                          <th>Nama File</th>
                                          <th>Keterangan</th>
-
                                          <th>Tanggal Download</th>
                                          <th>#</th>
                                      </tr>
@@ -117,22 +116,20 @@
              <!-- /.col -->
          </div>
          <!-- /.row -->
+     </section>
+ </div>
  </div>
 
-
-
- </section>
- </div>
  <!-- jQuery -->
- <script src="<?= base_url(); ?>assets/template/plugins/jquery/jquery.min.js"></script>
+ <!-- <script src="<?= base_url(); ?>assets/template/plugins/jquery/jquery.min.js"></script> -->
  <!-- Bootstrap 4 -->
- <script src="<?= base_url(); ?>assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <!-- <script src="<?= base_url(); ?>assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
  <!-- date-range-picker -->
- <script src="<?= base_url(); ?>assets/template/plugins/daterangepicker/daterangepicker.js"></script>
+ <!-- <script src="<?= base_url(); ?>assets/template/plugins/daterangepicker/daterangepicker.js"></script> -->
  <!-- AdminLTE App -->
- <script src="<?= base_url(); ?>assets/template/dist/js/adminlte.min.js"></script>
+ <!-- <script src="<?= base_url(); ?>assets/template/dist/js/adminlte.min.js"></script> -->
  <!-- AdminLTE for demo purposes -->
- <script src="<?= base_url(); ?>assets/template/dist/js/demo.js"></script>
+ <!-- <script src="<?= base_url(); ?>assets/template/dist/js/demo.js"></script> -->
  <script>
      $(function() {
          //Initialize Select2 Elements

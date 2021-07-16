@@ -426,8 +426,8 @@
  <?php endforeach; ?>
  <!-- //End modal hapus -->
  <!-- /.card -->
- </section>
- </div>
+ <!-- </section>
+ </div> -->
 
 
  <!-- /.content -->
