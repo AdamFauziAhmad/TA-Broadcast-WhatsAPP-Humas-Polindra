@@ -46,7 +46,7 @@
 
                              <button type="button" name="delete_all" id="delete_all_kontak" class="btn btn-inline btn-danger col-lg-2 col-6 col-xl-2 col-sm-3">Hapus Beberapa<i class="fas fa-trash-dots"></i></button>
                              <div class="card-tools">
-                                 <form action="<?php echo site_url('kontakwa'); ?>" method="get">
+                                 <form action="<?php echo base_url('kontakwa'); ?>" method="get">
                                      <div class="input-group input-group-sm" style="width: 150px; margin-top: 5px;">
 
                                          <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right" placeholder="Search">
@@ -56,7 +56,7 @@
                                              <?php
                                                 if ($table_search <> '') {
                                                 ?>
-                                                 <a href="<?php echo site_url('kontakwa'); ?>" class="btn btn-default">X</a>
+                                                 <a href="<?php echo base_url('kontakwa'); ?>" class="btn btn-default">X</a>
                                              <?php
                                                 }
                                                 ?>
@@ -80,7 +80,7 @@
                          <!-- tampilan tabel Kontak -->
                          <div class="card-body table-responsive p-0" style="height: 300px;">
                              <?php echo $this->session->flashdata('bc'); ?>
-                             <form id="kontak-checkbox" action="<?php echo site_url('pesan_bc'); ?>" method="post">
+                             <form id="kontak-checkbox" action="<?php echo base_url('pesan_bc'); ?>" method="post">
                                  <table class="table table-head-fixed text-nowrap">
                                      <thead>
                                          <tr>

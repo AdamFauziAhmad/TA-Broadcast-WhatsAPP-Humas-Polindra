@@ -123,11 +123,12 @@ class Pesan_bc extends CI_Controller
         $nama_file = $nama_file;
         date_default_timezone_set("ASIA/JAKARTA");
         $tanggal = date('d-m-Y H:i:s');
+        $db_date = date('Y-m-d H:i:s');
         $file = "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";
         $data = array(
             'id_history' => uuid_v4(),
             'nama_file' => $file,
-            'waktu' => $tanggal,
+            'waktu' => $db_date,
             'keterangan' => $keterangan,
         );
         $this->m_history->tambah_hostory_file($data, 'history');

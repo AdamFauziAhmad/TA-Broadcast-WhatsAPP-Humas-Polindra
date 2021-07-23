@@ -36,7 +36,7 @@
                          </div>
 
                          <div class="card-body">
-                             <form id="buat-pesan" action="<?php echo site_url('pesan_bc/generate_AHK'); ?>" method="post">
+                             <form id="buat-pesan" action="<?php echo base_url('pesan_bc/generate_AHK'); ?>" method="post">
                                  <input class="form-control col-6" value="<?php echo $jenis; ?>" id="jenis" name="jenis" type="text" hidden>
                                  <div class="form-group">
                                      <label for="nama_file">Nama File</label>

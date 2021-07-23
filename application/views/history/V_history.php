@@ -25,22 +25,24 @@
                  <div class="col-12">
                      <div class="card">
                          <div class="card-header">
+                             <form action="<?php echo base_url('history/export_pdf'); ?>" method="get">
+                                 <!-- <a href="<?= base_url('history/export_pdf'); ?>" class="btn btn-inline bg-gradient-danger"><i class="fas fa-file-download"></i> PDF</a> -->
+                                 <button type="submit" class="btn btn-inline bg-gradient-danger "><i class="fas fa-file-download"></i> PDF</button>
+                                 <input type="text" value="<?php echo $table_daterange; ?>" class="form-control float-right" id="dates_download" name="dates_download" hidden>
+                             </form>
+                             <div class="card-tools col-6 col-xs-9">
 
-                             <a href="<?= base_url('history/export_pdf'); ?>" class="btn btn-inline bg-gradient-danger"><i class="fas fa-file-download"></i> PDF</a>
-
-
-                             <div class="card-tools">
-
-                                 <form action="<?php echo site_url('history'); ?>" method="get">
-                                     <div class="input-group  input-group-sm" style="width: 150px; margin-top: 5px;">
+                                 <form action="<?php echo base_url('history'); ?>" method="get">
+                                     <div class="input-group  input-group-sm col-12" style=" margin-top: 5px;">
 
                                          <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right" placeholder="Search">
+                                         <input type="text" value="<?php echo $table_daterange; ?>" class="form-control float-right" id="dates" name="dates">
 
                                          <div class="input-group-append">
                                              <?php
-                                                if ($table_search <> '') {
+                                                if ($table_search <> '' || $table_daterange <> '') {
                                                 ?>
-                                                 <a href="<?php echo site_url('history'); ?>" class="btn btn-default">X</a>
+                                                 <a href="<?php echo base_url('history'); ?>" class="btn btn-default">X</a>
                                              <?php } ?>
                                              <button type="submit" class="btn btn-default">
                                                  <i class="fas fa-search"></i>
@@ -52,14 +54,14 @@
                                  </form>
                              </div>
 
-                             <div class="input-group col-3" style="display: inline-flex;" hidden>
+                             <!-- <div class="input-group col-3" style="display: inline-flex;">
                                  <div class="input-group-prepend">
                                      <span class="input-group-text">
                                          <i class="far fa-calendar-alt"></i>
                                      </span>
                                  </div>
-                                 <input type="text" class="form-control float-right" id="reservation">
-                             </div>
+                                 <input type="text" class="form-control float-right" id="dates" name="dates">
+                             </div> -->
 
                              <p style="margin-bottom: 1px;"><b> Jumlah Data : <?php echo $junlah_kontak ?></b></p>
                          </div>
@@ -121,6 +123,7 @@
  </div>
 
  <!-- jQuery -->
+ <!-- jQuery -->
  <!-- <script src="<?= base_url(); ?>assets/template/plugins/jquery/jquery.min.js"></script> -->
  <!-- Bootstrap 4 -->
  <!-- <script src="<?= base_url(); ?>assets/template/plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
@@ -130,47 +133,32 @@
  <!-- <script src="<?= base_url(); ?>assets/template/dist/js/adminlte.min.js"></script> -->
  <!-- AdminLTE for demo purposes -->
  <!-- <script src="<?= base_url(); ?>assets/template/dist/js/demo.js"></script> -->
+ <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
  <script>
-     $(function() {
-         //Initialize Select2 Elements
-         $('.select2').select2()
+     //      $(function() {
 
-         //Initialize Select2 Elements
-         $('.select2bs4').select2({
-             theme: 'bootstrap4'
-         })
+     //          $('input[name="datefilter"]').daterangepicker({
+     //              autoUpdateInput: false,
+     //              locale: {
+     //                  cancelLabel: 'Clear'
+     //              }
+     //          });
 
-         //Datemask dd/mm/yyyy
-         $('#datemask').inputmask('dd/mm/yyyy', {
-             'placeholder': 'dd/mm/yyyy'
-         })
-         //Datemask2 mm/dd/yyyy
-         $('#datemask2').inputmask('mm/dd/yyyy', {
-             'placeholder': 'mm/dd/yyyy'
-         })
-         //Money Euro
-         $('[data-mask]').inputmask()
+     //          $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+     //              $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+     //          });
 
-         //Date range picker
-         $('#reservationdate').datetimepicker({
-             format: 'L'
-         });
-         //Date range picker
-         $('#reservation').daterangepicker()
-         //Date range picker with time picker
-         $('#reservationtime').daterangepicker({
-             timePicker: true,
-             timePickerIncrement: 30,
-             locale: {
-                 format: 'MM/DD/YYYY hh:mm A'
-             }
-         })
+     //          $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+     //              $(this).val('');
+     //          });
 
+     //      });
+     //      // BS-Stepper Init
 
-     })
-     // BS-Stepper Init
-
-     // DropzoneJS Demo Code End
+     //      // DropzoneJS Demo Code End
+     //  
  </script>
 
 

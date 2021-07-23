@@ -36,7 +36,7 @@
                              <button form="kontak-checkbox" type="submit" class="btn btn-inline btn-secondary col-lg-2 col-xl-2 col-6 col-sm-3">Broadcast WA <i class="fas fa-comment-dots"></i></button>
 
                              <div class="card-tools">
-                                 <form action="<?php echo site_url('grup'); ?>" method="get">
+                                 <form action="<?php echo base_url('grup'); ?>" method="get">
                                      <div class="input-group input-group-sm" style="width: 150px; margin-top: 5px;">
 
                                          <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right" placeholder="Search">
@@ -46,7 +46,7 @@
                                              <?php
                                                 if ($table_search <> '') {
                                                 ?>
-                                                 <a href="<?php echo site_url('grup'); ?>" class="btn btn-default">X</a>
+                                                 <a href="<?php echo base_url('grup'); ?>" class="btn btn-default">X</a>
                                              <?php
                                                 }
                                                 ?>
@@ -69,7 +69,7 @@
                          <!-- /.card-header -->
                          <div class="card-body table-responsive p-0" style="height: 300px;">
                              <?php echo $this->session->flashdata('bc'); ?>
-                             <form id="kontak-checkbox" action="<?php echo site_url('pesan_bc'); ?>" method="post">
+                             <form id="kontak-checkbox" action="<?php echo base_url('pesan_bc'); ?>" method="post">
                                  <table class="table table-head-fixed text-nowrap">
                                      <thead>
                                          <tr>

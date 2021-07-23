@@ -38,11 +38,33 @@
 <script src="<?php echo base_url(); ?>assets/template/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- js custom alert-->
 <script src="<?php echo base_url(); ?>assets/js/apl.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 
 
 <!-- Page specific script -->
 <script>
+    $(function() {
+
+        $('input[name="dates"]').daterangepicker({
+            autoUpdateInput: false,
+
+            locale: {
+                applyLabel: 'Terapkan'
+            }
+        });
+
+        $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+        });
+
+        $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+
+    });
     document.addEventListener("DOMContentLoaded", function() {
 
         var elements = document.getElementsByTagName("input");
@@ -111,6 +133,23 @@
     //     }
     // });
     $('#delete_all_kontak').click(function() {
+        // const swalWithBootstrapButtons = Swal.mixin({
+        //     customClass: {
+        //         confirmButton: 'btn btn-success',
+        //         cancelButton: 'btn btn-danger'
+        //     },
+        //     buttonsStyling: false
+        // })
+        // swalWithBootstrapButtons.fire({
+        //     title: 'Apa Anda Yakin?',
+        //     text: "Data Akan terhapus Permanen!!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Ya, Hapus!',
+        //     cancelButtonText: 'Tidak, Batalkan!',
+        //     reverseButtons: true
+        // })
+
         if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
             var id = [];
 
@@ -120,7 +159,12 @@
 
 
             if (id.length === 0) {
-                alert("Pilih minimal satu data");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Data Kosong',
+                    text: 'Pilih Data Yang Akan Dihapus!',
+                })
+                // alert("Pilih minimal satu data");
             } else {
                 $.ajax({
                     url: "<?php echo site_url('kontakwa/detele_all'); ?>",
@@ -129,10 +173,18 @@
                         id: id
                     },
                     success: function() {
+                        swal.fire({
+                            tittle: 'Data',
+                            text: 'Berhasil ' + flashdata,
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 900
+                        });
                         for (var i = 0; i < id.length; i++) {
                             $('tr#' + id[i] + '').fadeOut('slow');
                             location.reload(true);
                         }
+
                     }
                 });
             }

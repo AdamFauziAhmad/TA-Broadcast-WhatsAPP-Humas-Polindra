@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bcwa.css">
     <!-- ion icons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- date range cdn oline -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
 

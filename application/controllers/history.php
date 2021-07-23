@@ -38,12 +38,28 @@ class History extends CI_Controller
     public function index()
     {
         $table_search = urldecode($this->input->get('table_search', true));
+        $table_daterange = urldecode($this->input->get('dates', true));
+
+        if ($table_daterange == null || $table_daterange == "") {
+            $startdate = null;
+            $enddate = null;
+        } else {
+            $explode = explode('-', $table_daterange);
+            $start = strtr($explode[0], '/', '-');
+            $end = strtr($explode[1], '/', '-');
+            $startdate = date('Y-m-d', strtotime($start));
+            $enddate = date('Y-m-d', strtotime($end));
+        }
+
+
         // $filter = urldecode($this->input->get('date', true));
 
 
         // set data yang akan dikirim ke view
-        $riwayat = $this->m_history->get_filtered_history($table_search);
+        $riwayat = $this->m_history->get_filtered_history($table_search, $startdate, $enddate);
         $jumlah = $riwayat->num_rows();
+
+        // die;
         // if ($kontak->num_rows() > 0) {
         //     return $jumlah = $kontak->num_rows();
         // } else {
@@ -54,7 +70,7 @@ class History extends CI_Controller
         $data = array(
             'riwayat' => $riwayat,
             'table_search' => $table_search,
-            // 'filter' => $filter,
+            'table_daterange' => $table_daterange,
             'junlah_kontak' => $jumlah
         );
 
@@ -68,12 +84,35 @@ class History extends CI_Controller
     }
     public function export_pdf()
     {
+        $table_daterange = urldecode($this->input->get('dates_download', true));
+
+        if ($table_daterange == null || $table_daterange == "") {
+            $startdate = null;
+            $enddate = null;
+            $history = $this->m_history->pdf_download($startdate, $enddate);
+        } else {
+            $explode = explode('-', $table_daterange);
+            $start = strtr($explode[0], '/', '-');
+            $end = strtr($explode[1], '/', '-');
+            $startdate = date('Y/m/d', strtotime($start));
+            $enddate = date('Y/m/d', strtotime($end));
+            $history = $this->m_history->pdf_download($startdate, $enddate);
+            $P_awal =  date('d-m-Y', strtotime($start));
+            $P_akhir = date('d-m-Y', strtotime($end));
+            $periode = $P_awal . " - " . $P_akhir;
+        }
+        // echo $startdate;
+        // echo $enddate . "</br>";
+        // echo $history->num_rows();
+        // die;
+        $tgl_cetak = date("d/m/Y");
         $mpdf = new \Mpdf\Mpdf();
-        $history = $this->m_history->get_data_all();
+        // $history = $this->m_history->get_data_all();
         $data_history = array(
-            "history" => $history
+            "history" => $history,
+            "periode" => $periode
         );
-        $nama_file = "Laporan riwayat BCWA.pdf";
+        $nama_file = "Laporan riwayat BCWA_" . $tgl_cetak . ".pdf";
         $data = $this->load->view('history/V_pdf_export', $data_history, true);
         $mpdf->WriteHTML($data);
         $mpdf->Output($nama_file, 'I');

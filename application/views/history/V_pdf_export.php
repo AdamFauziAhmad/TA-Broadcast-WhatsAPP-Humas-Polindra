@@ -61,6 +61,13 @@
     <h1 style="text-align: center; font-size: 14pt;">Laporan Riwayat Broadcast Whatsapp </br></h1>
     <h1 style="text-align: center; font-size: 14pt;">Script AHK </br></h1>
     </br>
+    <?php if ($periode != null || $periode != "") { ?>
+        <P>Periode : <?= $periode ?></P>
+        </br>
+    <?php } else { ?>
+        <p>Semua Data</p>
+        </br>
+    <?php } ?>
     <p>Tanggal Cetak : <?= date('d F Y'); ?> </p>
     </br>
     <table class="items" width="100%" style="font-size: 10pt;" cellpadding="8">

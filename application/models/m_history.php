@@ -3,7 +3,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class M_history extends CI_Model
 {
-    //insert data yang didownload
+    //insert data history file AHK yang didownload
     function tambah_hostory_file($data, $table)
     {
         $this->db->insert($table, $data);
@@ -16,14 +16,46 @@ class M_history extends CI_Model
         return $this->db->get('history');
     }
 
-    function get_filtered_history($q = NULL)
+    //get data for download PDF
+    function  pdf_download($s = NULL, $e = NULL)
+    {
+        if ($s != NULL && $e != NULL) {
+            $this->db->where('waktu >=', $s);
+            $this->db->where('waktu <=', $e);
+            // $this->db->or_like('nama_file', $q);
+            // $this->db->or_like('waktu', $q);
+            // $this->db->or_like('keterangan', $q);
+            $this->db->order_by('waktu', "desc");
+
+            return $this->db->get('history');
+        } else {
+            $this->db->select('*');
+
+            return $this->db->get('history');
+        }
+    }
+
+    //get data for search 
+
+    function get_filtered_history($q = NULL, $s = NULL, $e = NULL)
     {
 
-        $this->db->or_like('nama_file', $q);
-        $this->db->or_like('waktu', $q);
-        $this->db->or_like('keterangan', $q);
-        $this->db->order_by('waktu', "desc");
+        if ($s != NULL && $e != NULL) {
+            $this->db->where('waktu >=', $s);
+            $this->db->where('waktu <=', $e);
+            // $this->db->or_like('nama_file', $q);
+            // $this->db->or_like('waktu', $q);
+            // $this->db->or_like('keterangan', $q);
+            $this->db->order_by('waktu', "desc");
 
-        return $this->db->get('history');
+            return $this->db->get('history');
+        } else {
+            $this->db->or_like('nama_file', $q);
+            $this->db->or_like('waktu', $q);
+            $this->db->or_like('keterangan', $q);
+            $this->db->order_by('waktu', "desc");
+
+            return $this->db->get('history');
+        }
     }
 }
