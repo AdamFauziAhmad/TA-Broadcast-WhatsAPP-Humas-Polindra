@@ -20,8 +20,9 @@ class M_history extends CI_Model
     function  pdf_download($s = NULL, $e = NULL)
     {
         if ($s != NULL && $e != NULL) {
+            $add_e = date('Y-m-d', strtotime($e . ' + 1 days'));
             $this->db->where('waktu >=', $s);
-            $this->db->where('waktu <=', $e);
+            $this->db->where('waktu <=', $add_e);
             // $this->db->or_like('nama_file', $q);
             // $this->db->or_like('waktu', $q);
             // $this->db->or_like('keterangan', $q);
@@ -41,14 +42,19 @@ class M_history extends CI_Model
     {
 
         if ($s != NULL && $e != NULL) {
+            $add_e = date('Y-m-d', strtotime($e . ' + 1 days'));
             $this->db->where('waktu >=', $s);
-            $this->db->where('waktu <=', $e);
+            $this->db->where('waktu <=', $add_e);
             // $this->db->or_like('nama_file', $q);
             // $this->db->or_like('waktu', $q);
             // $this->db->or_like('keterangan', $q);
             $this->db->order_by('waktu', "desc");
+            $query = $this->db->get('history');
+            // print_r($this->db->last_query());
+            // print_r($query->result());
 
-            return $this->db->get('history');
+            // die;
+            return $query;
         } else {
             $this->db->or_like('nama_file', $q);
             $this->db->or_like('waktu', $q);

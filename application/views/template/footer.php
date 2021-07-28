@@ -52,16 +52,29 @@
             autoUpdateInput: false,
 
             locale: {
+                format: "DD/MM/YYYY",
                 applyLabel: 'Terapkan'
             }
         });
 
         $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+            var range = $('#dates').val();
+            var date = range.split(" - ");
+            var obj_tgl_mulai = new Date(Date.parse(date[0]));
+            var obj_tgl_akhir = new Date(Date.parse(date[1]));
+
+            var month_custom = obj_tgl_mulai.getMonth() < 10 ? '0' + (obj_tgl_mulai.getMonth() + 1) : (obj_tgl_mulai.getMonth() + 1);
+            tgl_mulai_filter = obj_tgl_mulai.getFullYear() + "-" + month_custom + "-" + obj_tgl_mulai.getDate();
+
+            var month_custom_2 = obj_tgl_akhir.getMonth() < 10 ? '0' + (obj_tgl_akhir.getMonth() + 1) : (obj_tgl_akhir.getMonth() + 1);
+            tgl_akhir_filter = obj_tgl_akhir.getFullYear() + "-" + month_custom_2 + "-" + obj_tgl_akhir.getDate();
         });
 
         $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
             $(this).val('');
+            tgl_mulai_filter = '';
+            tgl_akhir_filter = '';
         });
 
     });

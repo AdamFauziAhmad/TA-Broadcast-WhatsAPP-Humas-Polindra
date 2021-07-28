@@ -45,7 +45,7 @@
                                              <?php
                                                 if ($table_search <> '') {
                                                 ?>
-                                                 <a href="<?php echo site_url('admin'); ?>" class="btn btn-default">X</a>
+                                                 <a href="<?php echo site_url('admin'); ?>" class="btn btn-danger">X</a>
                                              <?php
                                                 }
                                                 ?>

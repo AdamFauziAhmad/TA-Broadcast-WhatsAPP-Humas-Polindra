@@ -56,7 +56,7 @@
                                              <?php
                                                 if ($table_search <> '') {
                                                 ?>
-                                                 <a href="<?php echo base_url('kontakwa'); ?>" class="btn btn-default">X</a>
+                                                 <a href="<?php echo base_url('kontakwa'); ?>" class="btn btn-danger">X</a>
                                              <?php
                                                 }
                                                 ?>

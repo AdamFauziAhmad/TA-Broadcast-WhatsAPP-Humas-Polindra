@@ -46,7 +46,7 @@
                                              <?php
                                                 if ($table_search <> '') {
                                                 ?>
-                                                 <a href="<?php echo base_url('grup'); ?>" class="btn btn-default">X</a>
+                                                 <a href="<?php echo base_url('grup'); ?>" class="btn btn-danger">X</a>
                                              <?php
                                                 }
                                                 ?>

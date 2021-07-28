@@ -30,22 +30,23 @@
                                  <button type="submit" class="btn btn-inline bg-gradient-danger "><i class="fas fa-file-download"></i> PDF</button>
                                  <input type="text" value="<?php echo $table_daterange; ?>" class="form-control float-right" id="dates_download" name="dates_download" hidden>
                              </form>
-                             <div class="card-tools col-6 col-xs-9">
+                             <div class="card-tools ">
 
                                  <form action="<?php echo base_url('history'); ?>" method="get">
                                      <div class="input-group  input-group-sm col-12" style=" margin-top: 5px;">
 
-                                         <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right" placeholder="Search">
-                                         <input type="text" value="<?php echo $table_daterange; ?>" class="form-control float-right" id="dates" name="dates">
+                                         <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right col-md-4 offset-md-6" placeholder="Search" hidden>
+                                         <input type="text" value="<?php echo $table_daterange; ?>" class="form-control float-right col-md-10 offset-md-2" id="dates" name="dates">
 
                                          <div class="input-group-append">
                                              <?php
                                                 if ($table_search <> '' || $table_daterange <> '') {
                                                 ?>
-                                                 <a href="<?php echo base_url('history'); ?>" class="btn btn-default">X</a>
+                                                 <a href="<?php echo base_url('history'); ?>" class="btn btn-danger">X</a>
                                              <?php } ?>
                                              <button type="submit" class="btn btn-default">
-                                                 <i class="fas fa-search"></i>
+                                                 <!-- <i class="fas fa-search"></i> -->
+                                                 <i class="fas fa-filter"></i>
                                              </button>
 
                                          </div>
