@@ -176,11 +176,11 @@
                              </div>
                              <div class="form-group" name="kelas_tag" id="kelas_tag">
                                  <label for="kelas">Kelas</label>
-                                 <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas">
+                                 <input type="text" class="form-control" id="kelas" name="kelas" placeholder="Masukan Kelas (Boleh Dikosongkan)">
                              </div>
                              <div class="form-group" name="tahun_masuk_tag" id="tahun_masuk_tag">
                                  <label for="tahun_masuk">Tahun Masuk</label>
-                                 <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk">
+                                 <input type="text" class="form-control" id="tahun_masuk" name="tahun_masuk" placeholder="Masukan Tahun Masuk (Boleh Dikosongkan)">
                              </div>
                              <div class="form-group" id="jurusan_tags">
                                  <label>Jurusan</label>
@@ -346,7 +346,7 @@
                          </div>
                          <div class="form-group">
                              <label for="nomor_kontak">Nomor Kontak</label>
-                             <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA">
+                             <input type="number" value="<?php echo intval($row->nomor_kontak);  ?>" class="form-control" id="nomor_kontak" name="nomor_kontak" placeholder="Masukan Nomor Kontak WA(Wajib diisi)">
                          </div>
                          <div class="form-group">
                              <label>Keterangan </label>

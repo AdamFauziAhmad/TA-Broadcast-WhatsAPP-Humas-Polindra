@@ -21,12 +21,12 @@ class M_history extends CI_Model
     {
         if ($s != NULL && $e != NULL) {
             $add_e = date('Y-m-d', strtotime($e . ' + 1 days'));
-            $this->db->where('waktu >=', $s);
-            $this->db->where('waktu <=', $add_e);
+            $this->db->where('tgl_download >=', $s);
+            $this->db->where('tgl_download <=', $add_e);
             // $this->db->or_like('nama_file', $q);
             // $this->db->or_like('waktu', $q);
             // $this->db->or_like('keterangan', $q);
-            $this->db->order_by('waktu', "desc");
+            $this->db->order_by('tgl_download', "desc");
 
             return $this->db->get('history');
         } else {
@@ -43,12 +43,12 @@ class M_history extends CI_Model
 
         if ($s != NULL && $e != NULL) {
             $add_e = date('Y-m-d', strtotime($e . ' + 1 days'));
-            $this->db->where('waktu >=', $s);
-            $this->db->where('waktu <=', $add_e);
+            $this->db->where('tgl_download >=', $s);
+            $this->db->where('tgl_download <=', $add_e);
             // $this->db->or_like('nama_file', $q);
             // $this->db->or_like('waktu', $q);
             // $this->db->or_like('keterangan', $q);
-            $this->db->order_by('waktu', "desc");
+            $this->db->order_by('tgl_download', "desc");
             $query = $this->db->get('history');
             // print_r($this->db->last_query());
             // print_r($query->result());
@@ -57,9 +57,9 @@ class M_history extends CI_Model
             return $query;
         } else {
             $this->db->or_like('nama_file', $q);
-            $this->db->or_like('waktu', $q);
+            $this->db->or_like('tgl_download', $q);
             $this->db->or_like('keterangan', $q);
-            $this->db->order_by('waktu', "desc");
+            $this->db->order_by('tgl_download', "desc");
 
             return $this->db->get('history');
         }

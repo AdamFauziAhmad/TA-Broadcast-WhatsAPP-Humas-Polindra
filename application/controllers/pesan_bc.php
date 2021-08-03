@@ -128,7 +128,7 @@ class Pesan_bc extends CI_Controller
         $data = array(
             'id_history' => uuid_v4(),
             'nama_file' => $file,
-            'waktu' => $db_date,
+            'tgl_download' => $db_date,
             'keterangan' => $keterangan,
         );
         $this->m_history->tambah_hostory_file($data, 'history');
@@ -139,17 +139,19 @@ class Pesan_bc extends CI_Controller
         $pesan_isi = str_replace(array('!', '?', '.', ':', ',', '"', ';', '[', ']', '|', '<', '>'), array('{!}', '{?}',  '{.}', '{:}', '{,}', '{"}', '{;}', '{[}', '{}}', '{|}', '{<}', '{>}'), $pesan);
         $PecahStr = explode($str, $pesan_isi); //mengacak string setiap enter kedalam bentuk array
         $myfile = fopen("BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk", "w") or die("Unable to open file!");
-        $txt = "MsgBox, Mulai?\n";
-        fwrite($myfile, $txt);
 
+        $txt = "MsgBox,1,, Mulai?\n";
+        fwrite($myfile, $txt);
+        $txt = "IfMsgBox, Ok\n";
+        fwrite($myfile, $txt);
+        $txt = "{\n";
+        fwrite($myfile, $txt);
         $txt = ";Jika ingin mengirim gambar, copy foto yang akan dikirim ke WA\n";
         // fwrite($myfile, $txt);
         // $txt = 'clipboard :=""' . "\n";
-
-
-
+        fwrite($myfile, $txt);
         foreach ($data_kontak as $data) {
-            fwrite($myfile, $txt);
+
 
             $txt = "Run, https://api.whatsapp.com/send?phone=" . $data->nomor_kontak . "\n";
             // fwrite($myfile, $txt);
@@ -206,7 +208,17 @@ class Pesan_bc extends CI_Controller
         fwrite($myfile, $txt);
         $txt = "return\n";
         fwrite($myfile, $txt);
-        $txt = "Exit";
+        $txt = "Exit\n";
+        fwrite($myfile, $txt);
+        $txt = "}\n";
+        fwrite($myfile, $txt);
+        $txt = "else IfMsgBox Cancel\n";
+        fwrite($myfile, $txt);
+        $txt = "return\n";
+        fwrite($myfile, $txt);
+        $txt = "else\n";
+        fwrite($myfile, $txt);
+        $txt = "return\n";
         fwrite($myfile, $txt);
         fclose($myfile);
         header('Content-Type: application/octet-stream');

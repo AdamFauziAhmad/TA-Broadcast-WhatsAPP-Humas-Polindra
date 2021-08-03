@@ -86,7 +86,7 @@
             $count = 0;
             foreach ($history->result() as $row) :
                 $count++;
-                $tanggal = date('d F Y', strtotime($row->waktu));
+                $tanggal = date('d F Y', strtotime($row->tgl_download));
             ?>
                 <tr>
                     <td align="left"><?php echo $count; ?> </td>

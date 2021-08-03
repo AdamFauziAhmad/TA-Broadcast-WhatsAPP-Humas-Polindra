@@ -33,10 +33,10 @@
                              <div class="card-tools ">
 
                                  <form action="<?php echo base_url('history'); ?>" method="get">
-                                     <div class="input-group  input-group-sm col-12" style=" margin-top: 5px;">
+                                     <div class="input-group  input-group-sm " style="width: 180px;">
 
-                                         <input type="text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right col-md-4 offset-md-6" placeholder="Search" hidden>
-                                         <input type="text" value="<?php echo $table_daterange; ?>" class="form-control float-right col-md-10 offset-md-2" id="dates" name="dates">
+                                         <input type=" text" name="table_search" value="<?php echo $table_search;  ?>" class="form-control float-right col-md-4 offset-md-6" placeholder="Search" hidden>
+                                         <input type="text" value="<?php echo $table_daterange; ?>" class="form-control float-right col-md-10 offset-md-2" id="dates" name="dates" placeholder="Pilih Tanggal">
 
                                          <div class="input-group-append">
                                              <?php
@@ -88,7 +88,7 @@
                                         $count = 0;
                                         foreach ($riwayat->result() as $row) :
                                             $count++;
-                                            $tanggal = date('d/m/Y', strtotime($row->waktu));
+                                            $tanggal = date('d/m/Y', strtotime($row->tgl_download));
                                         ?>
                                          <tr>
                                              <td> <?php echo $count; ?> </td>
