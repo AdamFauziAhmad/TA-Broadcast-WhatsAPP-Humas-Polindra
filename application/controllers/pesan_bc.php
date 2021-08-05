@@ -161,7 +161,7 @@ class Pesan_bc extends CI_Controller
             fwrite($myfile, $txt);
             $txt = "Send, ^v\n";
             fwrite($myfile, $txt);
-            $txt = "Sleep, 7000\n";
+            $txt = "Sleep, 9000\n";
             // fwrite($myfile, $txt);
             // $txt = "string =\n(\n" . $pesan_isi . "\n)\n";
             foreach ($PecahStr as $jml => $psn) {
@@ -187,19 +187,19 @@ class Pesan_bc extends CI_Controller
             fwrite($myfile, $txt);
             $txt = "\n";
             fwrite($myfile, $txt);
-            $txt = "Sleep," . mt_rand(1000, 10000) . "\n";
+            $txt = "Sleep," . mt_rand(3000, 11000) . "\n";
             fwrite($myfile, $txt);
             $txt = "Send, {Enter}\n";
             fwrite($myfile, $txt);
-            $txt =  "Sleep," . mt_rand(1000, 10000) . "\n";
+            $txt =  "Sleep," . mt_rand(3000, 11000) . "\n";
             fwrite($myfile, $txt);
             $txt = "send, !{TAB}\n";
             fwrite($myfile, $txt);
-            $txt =  "Sleep," . mt_rand(1000, 10000) . "\n";
+            $txt =  "Sleep," . mt_rand(3000, 11000) . "\n";
             fwrite($myfile, $txt);
             $txt = "send, ^w\n";
             fwrite($myfile, $txt);
-            $txt =  "Sleep," . mt_rand(1000, 10000) . "\n";
+            $txt =  "Sleep," . mt_rand(3000, 11000) . "\n";
         }
         fwrite($myfile, $txt);
         $txt = 'clipboard :=""' . "\n";
