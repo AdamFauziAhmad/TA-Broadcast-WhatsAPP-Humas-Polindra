@@ -54,9 +54,15 @@ class M_grup extends CI_Model
         $this->db->trans_start();
 
         $this->db->insert('grup', $grup);
-        //GET ID Grup
 
-        $id = $this->db->insert_id();
+        $this->db->where('id', $grup["id"]);
+        $ambil = $this->db->get('grup');
+
+        foreach ($ambil->result() as $row) :
+            $id = $row->id;
+        endforeach;
+        //GET ID Grup
+        // $id = $this->db->insert_id();
         $result = array();
         foreach ($kontak as $key => $val) {
             $result[] = array(
@@ -83,15 +89,20 @@ class M_grup extends CI_Model
         $this->db->delete('detail_grup', array('id_detail_grup' => $id));
 
         $result = array();
+        // if ($kontak == null || $kontak == "") {
+        // } else {
         foreach ($kontak as $key => $val) {
             $result[] = array(
                 'id_detail' => uuid_v4(),
                 'id_detail_grup'   => $id,
                 'id_detail_kontak'   => $_POST['kontak_edit'][$key]
             );
+            //MULTIPLE INSERT TO DETAIL TABLE
+            $this->db->insert_batch('detail_grup', $result);
         }
-        //MULTIPLE INSERT TO DETAIL TABLE
-        $this->db->insert_batch('detail_grup', $result);
+        // }
+
+
         $this->db->trans_complete();
     }
 

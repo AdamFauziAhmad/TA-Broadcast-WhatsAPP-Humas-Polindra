@@ -63,6 +63,7 @@ class Grup extends CI_Controller
         $kontak = $this->input->post('kontak', TRUE);
 
         $grup = array(
+            'id' => uuid_v4(),
             'nama_grup' => $nama_grup,
             'keterangan' => $keterangan
 
