@@ -253,7 +253,7 @@
      <!-- //modal Detail -->
      <div class="modal fade" id="modal_detail<?php echo $row->id_kontak; ?>" role="dialog">
          <div class="modal-dialog" role="dokumen">
-             <div class="modal-content card card-Primary">
+             <div class="modal-content card card-primary">
 
                  <div class="card-header">
                      <h3 class="card-title">Detail Kontak</h3>
