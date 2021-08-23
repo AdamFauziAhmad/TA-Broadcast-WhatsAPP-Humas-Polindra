@@ -77,6 +77,7 @@
                 <th align="left">No</th>
                 <th align="left">Nama File</th>
                 <th align="left">Keterangan</th>
+                <th align="left">Jumlah Kontak</th>
                 <th align="left">Tanggal Download</th>
 
             </tr>
@@ -92,6 +93,7 @@
                     <td align="left"><?php echo $count; ?> </td>
                     <td align="left"><?php echo $row->nama_file; ?></td>
                     <td align="left"><?php echo $row->keterangan; ?></td>
+                    <td align="left"><?php echo $row->jumlah_kontak; ?></td>
                     <td align="left"><?php echo $tanggal; ?></td>
 
                 </tr>

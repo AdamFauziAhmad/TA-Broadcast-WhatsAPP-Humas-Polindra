@@ -55,6 +55,10 @@
                                      <label for="pesan">Pesan</label>
                                      <textarea class="form-control col-7" rows="0" id="keterangan" name="pesan" placeholder="Masukan Pesan Anda ..."><?php echo $pesan ?></textarea>
                                  </div>
+                                 <div class="form-group">
+                                     <label for="pesan">Paste</label>
+                                     <input class="form-control col-3" rows="0" id="paste" name="paste" value="<?php echo $paste ?>" type="text"><input>
+                                 </div>
 
 
                                  <table class="table table-head-fixed text-nowrap">

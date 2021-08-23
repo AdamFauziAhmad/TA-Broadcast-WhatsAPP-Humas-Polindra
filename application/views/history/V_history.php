@@ -79,6 +79,7 @@
                                          <th>#</th>
                                          <th>Nama File</th>
                                          <th>Keterangan</th>
+                                         <th>Jumlah Kontak</th>
                                          <th>Tanggal Download</th>
                                          <th>#</th>
                                      </tr>
@@ -95,6 +96,7 @@
                                              <td style="width: 2px;" hidden><input name="jenis" value="1" type="text"> </td>
                                              <td><?php echo $row->nama_file; ?></td>
                                              <td><?php echo $row->keterangan; ?></td>
+                                             <td><?php echo $row->jumlah_kontak ?></td>
                                              <td><?php echo $tanggal; ?></td>
                                              <!-- <td>
                                                      <a href="#" class="btn btn-block bg-gradient-success btn-sm" style="display: inline;" data-toggle="modal" data-target="#modal_edit<?php echo $row->id_kontak; ?>">Edit</a>

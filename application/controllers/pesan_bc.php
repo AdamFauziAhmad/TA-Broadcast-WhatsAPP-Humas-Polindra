@@ -89,6 +89,12 @@ class Pesan_bc extends CI_Controller
         $nama_file = $this->input->post('nama_file', true);
         $keterangan = $this->input->post('keterangan', true);
         $kode_enter = 13;
+        $paste_active = $this->input->post('paste_active', true);
+        if ($paste_active[0] == "active") {
+            $paste = "active";
+        } else {
+            $paste = "nonactive";
+        }
 
         $pesan =   $this->input->post('pesan', true);
         $dt_kontak = $this->m_kontak->get_kontak_by_id($Id_kontak)->result();
@@ -97,7 +103,8 @@ class Pesan_bc extends CI_Controller
             'nama_file' => $nama_file,
             'pesan' => $pesan,
             'keterangan' =>   $keterangan,
-            'jenis' => $jenis
+            'jenis' => $jenis,
+            'paste' => $paste
 
         );
         $this->load->view('template/header');
@@ -113,6 +120,8 @@ class Pesan_bc extends CI_Controller
         $Id_kontak = $this->input->post('id_kontak', true);
         $nama_file = $this->input->post('nama_file', true);
         $keterangan = $this->input->post('keterangan', true);
+        $paste = $this->input->post('paste', true);
+
 
         $kode_enter = 13;
 
@@ -125,11 +134,13 @@ class Pesan_bc extends CI_Controller
         $tanggal = date('d-m-Y H:i:s');
         $db_date = date('Y-m-d H:i:s');
         $file = "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";
+        $jml_nomor = count($data_kontak);
         $data = array(
             'id_history' => uuid_v4(),
             'nama_file' => $file,
             'tgl_download' => $db_date,
             'keterangan' => $keterangan,
+            'jumlah_kontak' => $jml_nomor
         );
         $this->m_history->tambah_hostory_file($data, 'history');
         $tanggal = date('d-M-Y-H-i-s');
@@ -156,10 +167,14 @@ class Pesan_bc extends CI_Controller
             $txt = "Run, https://api.whatsapp.com/send?phone=" . $data->nomor_kontak . "\n";
             // fwrite($myfile, $txt);
             // $txt = "Sleep, 10000\n";
-            fwrite($myfile, $txt);
-            $txt = "Sleep, 9000\n";
-            fwrite($myfile, $txt);
-            $txt = "Send, ^v\n";
+
+            if ($paste == "active") {
+                fwrite($myfile, $txt);
+                $txt = "Sleep, 9000\n";
+                fwrite($myfile, $txt);
+                $txt = "Send, ^v\n";
+            }
+
             fwrite($myfile, $txt);
             $txt = "Sleep, 9000\n";
             // fwrite($myfile, $txt);
@@ -169,7 +184,6 @@ class Pesan_bc extends CI_Controller
                     fwrite($myfile, $txt);
                     $txt = "string" . $jml . " =\n(\n" . $psn . "\n)\n";
                 } else {
-
                     fwrite($myfile, $txt);
                     $txt = "string" . $jml . " =\n(" . $psn . "\n)\n";
                 }

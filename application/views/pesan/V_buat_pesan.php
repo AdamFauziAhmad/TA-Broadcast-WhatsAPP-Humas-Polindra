@@ -53,7 +53,10 @@
                                  <div class="form-group">
                                      <label for="pesan">Pesan</label>
                                      <textarea class="form-control col-7" rows="5" id="keterangan" name="pesan" placeholder="Masukan Pesan Anda ..." required></textarea>
+                                     <label for="pesan">Aktifkan Hotkey (CTRL+V) paste untuk gambar</label>
+                                     <input name="paste_active[]" id="paste_active" value="active" type="checkbox" checked>
                                  </div>
+
                                  <div class="card-body table-responsive p-0 col-6" style="height: 300px;">
                                      <table class="table table-head-fixed text-nowrap">
                                          <thead>
