@@ -30,7 +30,7 @@
                          </div>
 
                          <div class="card-body">
-                             <p> Silahkan tekan tombol export untuk mendownload file ahk yang berisi Pesan Broadcast !</br> Jika belum menginstall AHK anda bisa download di :<a href="<?php echo base_url();  ?>assets/file/support/AutoHotkey_1.1.33.06_setup.exe" download>Download AHK.exe</a> </p>
+                             <p style="text-align: justify;"> Silahkan tekan tombol export untuk mendownload file ahk yang berisi Pesan Broadcast !</br> Jika belum menginstall AHK anda bisa download di :<a href="<?php echo base_url();  ?>assets/file/support/AutoHotkey_1.1.33.06_setup.exe" download>Download AHK.exe</a> </p>
                              <form id="buat-pesan" action="<?php echo base_url('pesan_bc/download_AHK'); ?>" method="post" hidden>
                                  <div class="form-group">
                                      <label for="nama_file">Nama File</label>
@@ -94,10 +94,10 @@
                              <?php if ($jenis == "GRUP") {
 
                                 ?>
-                                 <a href="<?php echo base_url('grup')  ?>" class="btn btn-inline bg-gradient-danger col-3">kembali</a>
+                                 <a href="<?php echo base_url('grup')  ?>" class="btn btn-inline bg-gradient-danger col-6">kembali</a>
 
                              <?php } else { ?>
-                                 <a href="<?php echo base_url('kontakwa')  ?>" class="btn btn-inline bg-gradient-danger col-3">kembali</a>
+                                 <a href="<?php echo base_url('kontakwa')  ?>" class="btn btn-inline bg-gradient-danger col-4 col-md-3 col-lg-3 col-xl-3">kembali</a>
 
                              <?php  } ?>
                              <!-- <a href="<?php //echo base_url('pesan_bc/download_AHK') . "BCWA" . "_" . $nama_file . "_" . $tanggal . ".ahk";

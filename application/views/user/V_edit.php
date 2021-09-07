@@ -55,31 +55,31 @@
                                          <?php if ($this->session->userdata('role') == 'admin') { ?>
                                              <div class="form-group" hidden>
                                                  <label for="nama_admin">Nama Admin</label>
-                                                 <input type="text" value="<?php echo $row->nama_admin; ?>" class="form-control col-6" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin">
+                                                 <input type="text" value="<?php echo $row->nama_admin; ?>" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin">
                                              </div>
                                              <div class="form-group" hidden>
                                                  <label for="username">Username</label>
-                                                 <input type="text" value="<?php echo $row->username; ?>" class="form-control col-6" id="username" name="username">
+                                                 <input type="text" value="<?php echo $row->username; ?>" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="username" name="username">
                                              </div>
                                              <div class="form-group">
                                                  <label for="username">Password Baru</label>
-                                                 <input type="password" value="" class="form-control col-6" id="new_password" name="new_password" placeholder="Mauskan password baru" required>
+                                                 <input type="password" value="" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="new_password" name="new_password" placeholder="Mauskan password baru" required>
                                              </div>
-                                             <?php echo form_error('new_password', '<div class="alert alert-danger alert-dismissible col-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
+                                             <?php echo form_error('new_password', '<div class="alert alert-danger alert-dismissible col-12 col-md-6 col-lg-6 col-xl-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
                                              <div class="form-group">
                                                  <label for="username">Konfirmasi Password Baru</label>
                                                  <input type="password" value="" class="form-control col-6" id="password_confirm" name="password_confirm" placeholder="Masukan ulang password baru" required>
                                              </div>
-                                             <?php echo form_error('password_confirm', '<div class="alert alert-danger alert-dismissible col-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
+                                             <?php echo form_error('password_confirm', '<div class="alert alert-danger alert-dismissible col-12 col-md-6 col-lg-6 col-xl-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
                                          <?php } else { ?>
                                              <div class="form-group">
                                                  <label for="nama_admin">Nama Admin</label>
-                                                 <input type="text" value="<?php echo $row->nama_admin; ?>" class="form-control col-6" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin" required>
+                                                 <input type="text" value="<?php echo $row->nama_admin; ?>" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="nama_admin" name="nama_admin" placeholder="Masukan Nama Admin" required>
                                              </div>
 
                                              <div class="form-group">
                                                  <label>role </label>
-                                                 <select class="form-control col-6" id="role" name="role">
+                                                 <select class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="role" name="role">
                                                      <option value="1" <?php echo ($row->role == 'superadmin' ?  'selected' : ''); ?>>Superadmin</option>
                                                      <option value="2" <?php echo ($row->role == 'admin' ? 'selected' : ''); ?>>Admin</option>
 
@@ -87,21 +87,21 @@
                                              </div>
                                              <div class="form-group">
                                                  <label for="username">Username</label>
-                                                 <input type="text" value="<?php echo $row->username; ?>" class="form-control col-6" id="username" name="username" readonly>
+                                                 <input type="text" value="<?php echo $row->username; ?>" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="username" name="username" readonly>
                                              </div>
                                              <div class="form-group">
                                                  <label for="username">Ganti Username</label>
-                                                 <input type="text" value="" class="form-control col-6" id="username_edit" name="username_edit" placeholder="SIlahkan di isi jika ingin ganti username(boleh kosong)">
+                                                 <input type="text" value="" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="username_edit" name="username_edit" placeholder="SIlahkan di isi jika ingin ganti username(boleh kosong)">
                                              </div>
-                                             <?php echo form_error('username_edit', '<div class="alert alert-danger alert-dismissible col-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
+                                             <?php echo form_error('username_edit', '<div class="alert alert-danger alert-dismissible col-12 col-md-6 col-lg-6 col-xl-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
                                              <div class="form-group">
                                                  <label for="username">Password Baru</label>
-                                                 <input type="password" value="" class="form-control col-6" id="new_password" name="new_password" placeholder="Mauskan password baru">
+                                                 <input type="password" value="" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="new_password" name="new_password" placeholder="Mauskan password baru">
                                              </div>
                                              <?php echo form_error('new_password', '<div class="alert alert-danger alert-dismissible col-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
                                              <div class="form-group">
                                                  <label for="username">Konfirmasi Password Baru</label>
-                                                 <input type="password" value="" class="form-control col-6" id="password_confirm" name="password_confirm" placeholder="Masukan ulang password baru">
+                                                 <input type="password" value="" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="password_confirm" name="password_confirm" placeholder="Masukan ulang password baru">
                                              </div>
 
                                          <?php  } ?>

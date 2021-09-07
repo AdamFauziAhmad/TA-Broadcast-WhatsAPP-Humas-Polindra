@@ -37,22 +37,22 @@
                                      </div>
                                      <div class="form-group">
                                          <label for="nama_kontak">Nama Admin</label>
-                                         <input type="text" value="<?= set_value('nama_admin'); ?>" class="form-control col-6" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin" required>
+                                         <input type="text" value="<?= set_value('nama_admin'); ?>" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="nama_admin" name="nama_admin" placeholder="Mauskan Nama Admin" required>
                                      </div>
                                      <div class="form-group">
                                          <label for="username">Username</label>
-                                         <input type="text" value="<?= set_value('username');  ?>" class="form-control col-6" id="username" name="username" placeholder="Mauskan Username" required>
+                                         <input type="text" value="<?= set_value('username');  ?>" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="username" name="username" placeholder="Mauskan Username" required>
                                      </div>
-                                     <?php echo form_error('username', '<div class="alert alert-danger alert-dismissible col-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
+                                     <?php echo form_error('username', '<div class="alert alert-danger alert-dismissible col-12 col-md-6 col-lg-6 col-xl-6" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>', '</div>')  ?>
                                      <div class="form-group">
                                          <label for="password">Password</label>
-                                         <input type="password" class="form-control col-6" id="password" name="password" placeholder="Mauskan Password" required>
+                                         <input type="password" class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="password" name="password" placeholder="Mauskan Password" required>
                                      </div>
 
 
                                      <div class="form-group">
                                          <label>role </label>
-                                         <select class="form-control col-6" id="role" name="role">
+                                         <select class="form-control col-12 col-md-6 col-lg-6 col-xl-6" id="role" name="role">
                                              <option value="">pilih role </option>
                                              <option value="1">Superadmin</option>
                                              <option value="2">Admin</option>
