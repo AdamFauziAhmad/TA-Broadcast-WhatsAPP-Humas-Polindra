@@ -93,6 +93,18 @@
                 e.target.setCustomValidity("");
             };
         }
+        var elements2 = document.getElementsByTagName("select");
+        for (var i = 0; i < elements2.length; i++) {
+            elements2[i].oninvalid = function(e) {
+                e.target.setCustomValidity("");
+                if (!e.target.validity.valid) {
+                    e.target.setCustomValidity("Mohon pilih data pada pilihan tersebut");
+                }
+            };
+            elements[i].oninput = function(e) {
+                e.target.setCustomValidity("");
+            };
+        }
     })
 
     function checkall(box) {

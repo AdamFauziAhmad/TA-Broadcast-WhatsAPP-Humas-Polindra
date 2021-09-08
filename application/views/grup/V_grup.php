@@ -145,7 +145,7 @@
                              <div class="form-group">
                                  <label for="kelas">Kontak</label>
                                  <div class="col-sm-12">
-                                     <select class="select2" data-live-search="true" name="kontak[]" id="kontak" multiple="multiple" data-placeholder="pilih kontak" style="width: 100%;">
+                                     <select class="select2" data-live-search="true" name="kontak[]" id="kontak" multiple="multiple" data-placeholder="pilih kontak" style="width: 100%;" required>
 
                                          <?php foreach ($kontak->result() as $row) : ?>
                                              <option value="<?php echo $row->id_kontak; ?>"><?php echo $row->nama_kontak . "( " . $row->nomor_kontak . ")" ?> </option>
@@ -212,7 +212,7 @@
                          <div class="card-body">
                              <div class="form-group">
                                  <label for="nama_grup">Nama Grup</label>
-                                 <input type="text" class="form-control col-6" id="nama_edit" name="nama_edit" placeholder="Mauskan Nama Grup">
+                                 <input type="text" class="form-control col-6" id="nama_edit" name="nama_edit" placeholder="Masukan Nama Grup" required>
                              </div>
                              <input type="text" class="form-control" id="grup_id" name="grup_id" hidden>
                              <div class="form-group">
@@ -222,7 +222,7 @@
                              <div class="form-group">
                                  <label for="kelas">Kontak</label>
                                  <div class="col-sm-12">
-                                     <select class="select2 strings" data-live-search="true" name="kontak_edit[]" id="kontak_edit[]" multiple="multiple" data-placeholder="pilih kontak" style="width: 100%;">
+                                     <select class="select2 strings" data-live-search="true" name="kontak_edit[]" id="kontak_edit[]" multiple="multiple" data-placeholder="pilih kontak" style="width: 100%;" required>
 
                                          <?php foreach ($kontak->result() as $row) : ?>
                                              <option value="<?php echo $row->id_kontak; ?>"><?php echo $row->nama_kontak . "( " . $row->nomor_kontak . ")" ?> </option>

@@ -45,12 +45,14 @@ class M_grup extends CI_Model
 
         $this->db->order_by('nama_grup', "asc");
         $query = $this->db->get();
+
         return $query;
     }
 
     // CREATE
     function create_grup($grup, $kontak)
     {
+
         $this->db->trans_start();
 
         $this->db->insert('grup', $grup);
@@ -79,6 +81,7 @@ class M_grup extends CI_Model
     // UPDATE
     function update_grup($id, $data, $kontak)
     {
+
         $this->db->trans_start();
         //UPDATE TO PACKAGE
 
@@ -91,15 +94,18 @@ class M_grup extends CI_Model
         $result = array();
         // if ($kontak == null || $kontak == "") {
         // } else {
+
         foreach ($kontak as $key => $val) {
             $result[] = array(
                 'id_detail' => uuid_v4(),
                 'id_detail_grup'   => $id,
                 'id_detail_kontak'   => $_POST['kontak_edit'][$key]
             );
+
             //MULTIPLE INSERT TO DETAIL TABLE
-            $this->db->insert_batch('detail_grup', $result);
+
         }
+        $this->db->insert_batch('detail_grup', $result);
         // }
 
 
